@@ -1,0 +1,1 @@
+/usr/bin/c++     CMakeFiles/IC_TEST.dir/main.cpp.o  -o IC_TEST  /usr/lib/x86_64-linux-gnu/libQt5Quick.so.5.12.8 /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.12.8 /usr/lib/x86_64-linux-gnu/libQt5Network.so.5.12.8 /usr/lib/x86_64-linux-gnu/libQt5Gui.so.5.12.8 /usr/lib/x86_64-linux-gnu/libQt5Core.so.5.12.8 
