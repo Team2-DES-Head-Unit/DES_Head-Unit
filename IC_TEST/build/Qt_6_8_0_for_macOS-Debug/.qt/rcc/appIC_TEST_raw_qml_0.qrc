@@ -1,0 +1,7 @@
+<RCC>
+  <qresource prefix="/qt/qml/IC_TEST/">
+    <file alias="Main.qml">/Users/kimseungjoo/Desktop/coding/IC_TEST/Main.qml</file>
+    <file alias="qml_t.qrc">/Users/kimseungjoo/Desktop/coding/IC_TEST/qml_t.qrc</file>
+  </qresource>
+</RCC>
+

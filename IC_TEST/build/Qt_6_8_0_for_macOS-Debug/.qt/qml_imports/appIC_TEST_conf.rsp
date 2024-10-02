@@ -1,0 +1,14 @@
+-rootPath
+/Users/kimseungjoo/Desktop/coding/IC_TEST
+-cmake-output
+-output-file
+/Users/kimseungjoo/Desktop/coding/IC_TEST/build/Qt_6_8_0_for_macOS-Debug/.qt/qml_imports/appIC_TEST_conf.cmake
+-importPath
+/Users/kimseungjoo/Desktop/coding/IC_TEST/build/Qt_6_8_0_for_macOS-Debug/IC_TEST
+-importPath
+/Users/kimseungjoo/Desktop/coding/IC_TEST/build/Qt_6_8_0_for_macOS-Debug
+-importPath
+/Users/kimseungjoo/Qt/6.8.0/macos/qml
+-qrcFiles
+/Users/kimseungjoo/Desktop/coding/IC_TEST/build/Qt_6_8_0_for_macOS-Debug/.qt/rcc/qmake_IC_TEST.qrc
+/Users/kimseungjoo/Desktop/coding/IC_TEST/build/Qt_6_8_0_for_macOS-Debug/.qt/rcc/appIC_TEST_raw_qml_0.qrc
