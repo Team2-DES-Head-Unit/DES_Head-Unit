@@ -27,13 +27,21 @@ find_package(Qt5 COMPONENTS Core Quick REQUIRED)
 if(ANDROID)
     add_library(IC_TEST SHARED
       main.cpp
-#      main.qml
+      Clock.h
+      get_battery.h
+      get_battery.cpp
+      receiver.h
+      receiver.cpp
       qml_t.qrc
     )
 else()
     add_executable(IC_TEST
       main.cpp
-#      main.qml
+      Clock.h
+      get_battery.h
+      get_battery.cpp
+      receiver.h
+      receiver.cpp
       qml_t.qrc
     )
 endif()
