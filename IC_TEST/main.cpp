@@ -1,31 +1,50 @@
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
+#include <QTimer>
+#include <QDebug>
+#include <QElapsedTimer>
 #include <QQmlContext>
+#include <QCoreApplication>
+#include <QPropertyAnimation>
+#include <deque>
+
+#include <DateClock.h>
+#include <receiver.h>
+#include <Weather.h>
+#include <Gauge.h>
+#include <get_battery.h>
+
+int i2c_fd;
 
 int main(int argc, char *argv[])
 {
-//    qputenv("QT_IM_MODULE", QByteArray("qtvirtualkeyboard"));
+    QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
 
-    QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling); //추가
     QGuiApplication app(argc, argv);
 
     QQmlApplicationEngine engine;
 
-//    QObject::connect(
-//        &engine,
-//        &QQmlApplicationEngine::objectCreationFailed,
-//        &app,
-//        []() { QCoreApplication::exit(-1); },
-//        Qt::QueuedConnection);
-//    engine.loadFromModule("IC_TEST", "Main");
+    DateClock clock;
+    DateClock date;
+    Receiver receiver;
 
-    const QUrl url(QStringLiteral("/home/llj/catkin_ws/src/DES_Head-Unit/IC_TEST/main.qml"));
-//    const QUrl url(u"qrc:main.qml"_qs);
+    receiver.initialize();
+    receiver.start();
+
+
+    engine.rootContext()->setContextProperty("Clock", &clock);
+    engine.rootContext()->setContextProperty("Date", &date);
+    engine.rootContext()->setContextProperty("Receiver", &receiver);
+
+    Weather weather;
+
+    engine.rootContext()->setContextProperty("Weather", &weather);
+
+    const QUrl url(QStringLiteral("qrc:/main.qml"));
     QObject::connect(&engine, &QQmlApplicationEngine::objectCreated,
                      &app, [url](QObject *obj, const QUrl &objUrl) {
-        if (!obj && url == objUrl){
+        if (!obj && url == objUrl)
             QCoreApplication::exit(-1);
-        }
     }, Qt::QueuedConnection);
     engine.load(url);
 

@@ -1,72 +1,56 @@
-cmake_minimum_required(VERSION 3.5) #수정
+cmake_minimum_required(VERSION 3.5)
 
-project(IC_TEST VERSION 0.1 LANGUAGES CXX)
+project(IC_TEST LANGUAGES CXX)
 
-set(CMAKE_INCLUDE_CURRENT_DIR ON) #추가
+set(CMAKE_INCLUDE_CURRENT_DIR ON)
+
+set(CMAKE_AUTOUIC ON)
+set(CMAKE_AUTOMOC ON)
+set(CMAKE_AUTORCC ON)
+
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-#find_package(Qt6 6.5 REQUIRED COMPONENTS Quick) #수정
+# QtCreator supports the following variables for Android, which are identical to qmake Android variables.
+# Check http://doc.qt.io/qt-5/deployment-android.html for more information.
+# They need to be set before the find_package(Qt5 ...) call.
+
+#if(ANDROID)
+#    set(ANDROID_PACKAGE_SOURCE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/android")
+#    if (ANDROID_ABI STREQUAL "armeabi-v7a")
+#        set(ANDROID_EXTRA_LIBS
+#            ${CMAKE_CURRENT_SOURCE_DIR}/path/to/libcrypto.so
+#            ${CMAKE_CURRENT_SOURCE_DIR}/path/to/libssl.so)
+#    endif()
+#endif()
+
 find_package(Qt5 COMPONENTS Core Quick REQUIRED)
+find_package(Qt5 COMPONENTS Core Gui OpenGL REQUIRED)
 
-#qt_standard_project_setup(REQUIRES 6.5) #qt5로 변경
-
-#qt_add_executable(appIC_TEST
-#    main.cpp
-#)
-
-#qt_add_qml_module(appIC_TEST
-#    URI IC_TEST
-#    VERSION 1.0
-#    QML_FILES
-#        Main.qml
-#        RESOURCES qml_t.qrc
-#)
-
-#추가
 if(ANDROID)
     add_library(IC_TEST SHARED
       main.cpp
-      Clock.h
-      get_battery.h
-      get_battery.cpp
-      receiver.h
-      receiver.cpp
-      qml_t.qrc
+      qml.qrc
+      Gauge.cpp
     )
 else()
     add_executable(IC_TEST
       main.cpp
-      Clock.h
-      get_battery.h
-      get_battery.cpp
+      qml.qrc
+      Gauge.cpp
+
+      DateClock.h
       receiver.h
       receiver.cpp
-      qml_t.qrc
+      Weather.h
+      Gauge.h
+      get_battery.h
+      get_battery.cpp
+
     )
 endif()
 
-
-# Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.
-# If you are developing for iOS or macOS you should consider setting an
-# explicit, fixed bundle identifier manually though.
-#set_target_properties(appIC_TEST PROPERTIES
-##    MACOSX_BUNDLE_GUI_IDENTIFIER com.example.appIC_TEST
-#    MACOSX_BUNDLE_BUNDLE_VERSION ${PROJECT_VERSION}
-#    MACOSX_BUNDLE_SHORT_VERSION_STRING ${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}
-#    MACOSX_BUNDLE TRUE
-#    WIN32_EXECUTABLE TRUE
-#)
-
 target_compile_definitions(IC_TEST
   PRIVATE $<$<OR:$<CONFIG:Debug>,$<CONFIG:RelWithDebInfo>>:QT_QML_DEBUG>)
-target_link_libraries(IC_TEST #수정
-    PRIVATE Qt5::Core Qt5::Quick
-)
-
-#include(GNUInstallDirs)
-#install(TARGETS appIC_TEST
-#    BUNDLE DESTINATION .
-#    LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
-#    RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
-#)
+target_link_libraries(IC_TEST
+  PRIVATE Qt5::Core Qt5::Quick)

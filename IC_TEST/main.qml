@@ -24,7 +24,7 @@ ApplicationWindow {
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.verticalCenter: parent.verticalCenter
         anchors.topMargin: 30
-        source: "background_car.png"
+        source: "/IC Assets/background_car.png"
         fillMode: Image.PreserveAspectFit
     }
 
@@ -32,7 +32,7 @@ ApplicationWindow {
         id: speed_dial
         anchors.left: parent.left
         anchors.verticalCenter: parent.verticalCenter
-        source: "speedometer.png"
+        source: "/IC Assets/speedometer.png"
         fillMode: Image.PreserveAspectFit
     }
 
@@ -40,7 +40,7 @@ ApplicationWindow {
         id: rpm_dial
         anchors.right: parent.right
         anchors.verticalCenter: parent.verticalCenter
-        source: "speedometer.png"
+        source: "/IC Assets/speedometer.png"
         fillMode: Image.PreserveAspectFit
     }
 
@@ -48,7 +48,7 @@ ApplicationWindow {
         id: topbar
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.top: parent.top
-        source: "top_bar.png"
+        source: "/IC Assets/top_bar.png"
         fillMode: Image.PreserveAspectFit
     }
 
@@ -56,18 +56,18 @@ ApplicationWindow {
         id: topbar_menu
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.top: parent.top
-        source: "top_bar_menu.png"
+        source: "/IC Assets/top_bar_menu.png"
         fillMode: Image.PreserveAspectFit
     }
 
     Image{
-        id: speed_needle_img
+        id: speed_needle
         anchors.right: speed_dial.horizontalCenter
         anchors.bottom: speed_dial.verticalCenter
-        source: "IC_TEST/needle.png"
+        source: "/IC Assets/needle.png"
         fillMode: Image.PreserveAspectFit
         transformOrigin: Item.BottomRight
-        rotation: bg_window.angle //(Receiver.speedKmh * 2.5 + 210) 계산식 변경
+        rotation: bg_window.angle /*(Receiver.speedKmh * 2.5 + 210)*/
 
         Behavior on rotation{
             NumberAnimation{
@@ -75,16 +75,16 @@ ApplicationWindow {
                 easing.type: Easing.InOutQuad
             }
         }
-        // Connections{
-        //     target: Receiver
-        //     onSpeedChanged: needle.angle = (Receiver.speedKmh * 2.5 + 210)
-        // }
+//         Connections{
+//             target: Receiver
+//             onSpeedChanged: needle.angle = (Receiver.speedKmh * 2.5 + 210)
+//         }
     }
 
     Image{
         id: speed_inner
         anchors.centerIn: speed_dial
-        source: "inner_circle.png"
+        source: "/IC Assets/inner_circle.png"
         fillMode: Image.PreserveAspectFit
     }
 
@@ -92,26 +92,26 @@ ApplicationWindow {
         id: rpm_needle
         anchors.right: rpm_dial.horizontalCenter
         anchors.bottom: rpm_dial.verticalCenter
-        source: "needle.png"
+        source: "/IC Assets/needle.png"
         fillMode: Image.PreserveAspectFit
         transformOrigin: Item.BottomRight
-        rotation: bg_window.angle //(Receiver.speedKmh * 2.5 + 210) 계산식 변경
+        rotation: bg_window.angle /*(((Receiver.speedKmh) / (2 * 3.14 * 3.3)) * 60)*/
         Behavior on rotation{
             NumberAnimation{
                 duration: 50
                 easing.type: Easing.InOutQuad
             }
         }
-        // Connections{
-        //     target: Receiver
-        //     onSpeedChanged: needle.angle = (Receiver.speedKmh * 2.5 + 210)
-        // }
+//         Connections{
+//             target: Receiver
+//             onSpeedChanged: needle.angle = (((Receiver.speedKmh) / (2 * 3.14 * 3.3)) * 60)
+//         }
     }
 
     Image{
         id: rpm_inner
         anchors.centerIn: rpm_dial
-        source: "inner_circle.png"
+        source: "/IC Assets/inner_circle.png"
         fillMode: Image.PreserveAspectFit
     }
 
@@ -121,7 +121,7 @@ ApplicationWindow {
         anchors.bottom: parent.verticalCenter
         anchors.rightMargin: 104
         anchors.bottomMargin: 65
-        source: "left_dark.png"
+        source: "/IC Assets/left_dark.png"
         fillMode: Image.PreserveAspectFit
     }
 
@@ -131,13 +131,13 @@ ApplicationWindow {
         anchors.bottom: parent.verticalCenter
         anchors.leftMargin: 96
         anchors.bottomMargin:65
-        source: "right_dark.png"
+        source: "/IC Assets/right_dark.png"
         fillMode: Image.PreserveAspectFit
     }
 
     Text {
         id: speed_text
-        text: qsTr("Speed") //Receiver.speedKmh.toFixed(0)
+        text: qsTr("Speed") /*Receiver.speedKmh.toFixed(0)*/
         anchors.centerIn: speed_dial
         anchors.bottom: parent.bottom
         anchors.bottomMargin: 30
@@ -145,22 +145,22 @@ ApplicationWindow {
         color: "white"
         font.bold: true
 
-        // NumberAnimation{
-        //     id: speedAnimation
-        //     target: speedTextComponent
-        //     property: "currentSpeed"
-        //     to: targetSpeed
-        //     duration: 800
-        //     asing.type: Easing.InOutQuad
-        // }
+//         NumberAnimation{
+//             id: speedAnimation
+//             target: speedTextComponent
+//             property: "currentSpeed"
+//             to: targetSpeed
+//             duration: 800
+//             easing.type: Easing.InOutQuad
+//         }
     }
-    // Connections{
-    //        target: Receiver
-    //        onSpeedChanged: {
-    //            speedTextComponent.targetSpeed = Receiver.speedKmh
-    //            speedAnimation.start()
-    //        }
-    // }
+//     Connections{
+//            target: Receiver
+//            onSpeedChanged: {
+//                speedTextComponent.targetSpeed = Receiver.speedKmh
+//                speedAnimation.start()
+//            }
+//     }
 
     Text {
         id: cm_s
@@ -188,7 +188,7 @@ ApplicationWindow {
         //     property: "currentrpm"
         //     to: targetrpm
         //     duration: 800
-        //     asing.type: Easing.InOutQuad
+        //     easing.type: Easing.InOutQuad
         // }
     }
     // Connections{
@@ -217,13 +217,13 @@ ApplicationWindow {
         anchors.top: parent.top
         width: 20
         height: 20
-        source: "battery.png"
+        source: "/IC Assets/battery.png"
         fillMode: Image.PreserveAspectFit
     }
 
     Text {
         id: battery_text
-        text: qsTr("battery")
+        text: qsTr("battery") /*battery_value + "%"*/
         anchors.right: battery.left
         anchors.rightMargin: 5
         anchors.top: parent.top
@@ -236,13 +236,13 @@ ApplicationWindow {
         id: bottombar
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.bottom: parent.bottom
-        source: "bottom_bar.png"
+        source: "/IC Assets/bottom_bar.png"
         fillMode: Image.PreserveAspectFit
     }
 
     Text {
         id: time_text
-        text: qsTr("Time") //Clock.currentTime
+        text: Clock.currentTime
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.bottom: parent.bottom
         anchors.bottomMargin: 55
@@ -250,14 +250,14 @@ ApplicationWindow {
         color: "white"
         font.bold: true
     }
-    // Connections{
-    //     target: Clock
-    //     onTimeChanged: timeDisplay.text = Clock.currentTime
-    // }
+     Connections{
+         target: Clock
+         onTimeChanged: time_text.text = Clock.currentTime
+     }
 
     Text {
         id: day_text
-        text: qsTr("Day")
+        text: Date.currentDate
         anchors.right: time_text.left
         anchors.rightMargin: 90
         anchors.bottom: parent.bottom
@@ -265,16 +265,24 @@ ApplicationWindow {
         font.pixelSize: 20
         color: "#939395"
     }
+    Connections{
+        target: Date
+        onDateChanged: day_text.text = Date.currentDate
+    }
 
     Text {
-        id: temperture_text
-        text: qsTr("Temperture")
+        id: temperature_text
+        text: Weather.temperature
         anchors.left: time_text.right
         anchors.leftMargin: 90
         anchors.bottom: parent.bottom
         anchors.bottomMargin: 45
         font.pixelSize: 20
         color: "#939395"
+    }
+    Connections{
+        target: Weather
+        onWeatherUpdated: temperature_text.text = Weather.temperature
     }
 
     Text {
