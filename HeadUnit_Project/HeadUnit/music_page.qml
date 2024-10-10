@@ -1,5 +1,6 @@
 import QtQuick 2.12
 import QtQuick.Window 2.12
+import QtQuick.Controls 2.12
 
 Window{
     id: music_window
@@ -126,6 +127,13 @@ Window{
                     Component.onCompleted: {
                         musicPath = musicPlayer.getPathForSong(songTitle);
                         console.log("file path : " + musicPath);
+                        ////////////////////////////////////////////////////////////////////////////
+//                        var musicFiles = musicPlayer.getCurrentPlayList(songTitle);
+//                        console.log(musicFiles.length);
+//                        for (var i = 0; i < musicFiles.length; i++){
+//                            console.log("playlist " + musicPlayer.getTitleForSong(musicFiles[i]));
+//                        }
+
                         musicPlayer.setMusic(musicPath)
                     }
 
@@ -240,6 +248,112 @@ Window{
                     music_end.text = formatTime(musicPlayer.music_duration())
                 }
             }
+        }
+
+        Rectangle {
+            id: track
+            x: 318
+            y: 101
+            width: 260
+            height: 350
+            color: "transparent"
+
+            Text {
+                id: playing_next
+                text: "Playing Next"
+                font.pixelSize: 15
+                color: "#CBC8C8"
+            }
+
+            ListView{
+                id: musicplayList
+                width: track.width
+                height: track.height - 20
+                anchors.bottom: track.bottom
+                clip: true
+                model: ListModel{
+                    Component.onCompleted: {
+                        var musicFilesList = musicPlayer.getCurrentPlayList(songTitle);
+                        for (var i = 0; i < musicFilesList.length; i++){
+                            var music_f = musicFilesList[i];
+                            var title = musicPlayer.getTitleForSong(music_f);
+                            var singer = musicPlayer.getArtistForSong(music_f);
+                            var cover_path = musicPlayer.getCoverForSong(music_f);
+//                            console.log("title : " + title + " , singer : " + singer + " , cover_path : " + cover_path);
+                            append({
+                                title: title,
+                                singer: singer,
+                                cover_path: cover_path,
+                            });
+                        }
+                    }
+                }
+                delegate: ItemDelegate{
+//                    text: model.title + " - " + model.singer
+                    id: playlist_item
+                    width: musicplayList.width
+                    height: 65
+
+                    Image {
+                        id: song_cover
+                        source: model.cover_path
+                        width: 53
+                        height: 53
+                        anchors.verticalCenter: playlist_item.verticalCenter
+                    }
+                    Text {
+                        id: song_title
+                        text: model.title
+                        font.pixelSize: 16
+                        anchors{
+                            left: song_cover.right
+                            leftMargin: 15
+                        }
+                        y: 10
+                        color: "#ffffff"
+                    }
+                    Text {
+                        id: singer_name
+                        text: model.singer
+                        font.pixelSize: 13
+                        anchors{
+                            left: song_cover.right
+                            leftMargin: 15
+                        }
+                        y: 30
+                        color: "#CBC8C8"
+                    }
+                }
+
+                ScrollBar.vertical: ScrollBar{
+                    policy: ScrollBar.AlwaysOn
+                }
+            }
+        }
+
+        Text {
+            id: track_list
+            x: 318
+            y: 30
+            text: "Track List"
+            font.pixelSize: 25
+            color: "#ffffff"
+        }
+
+        Image {
+            id: sequential_icon
+            x: 349
+            y: 65
+            fillMode: Image.PreserveAspectFit
+            source: "HU_Assets/Components/Music/sequential.png"
+        }
+
+        Image {
+            id: shuffle_icon
+            x: 318
+            y: 65
+            fillMode: Image.PreserveAspectFit
+            source: "HU_Assets/Components/Music/shuffle.png"
         }
     }
 

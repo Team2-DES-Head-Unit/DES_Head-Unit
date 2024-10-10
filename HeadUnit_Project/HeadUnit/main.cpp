@@ -31,6 +31,10 @@ int main(int argc, char *argv[])
 //    QString songtitle = "Hanumankind-Big_Dawgs.mp3";
 //    musicPlayer.playMusic(musicPlayer.getPathForSong(songtitle));
 
+//    // playlist test
+//    QString songtitle = "Hanumankind-Big_Dawgs.mp3";
+//    musicPlayer.getCurrentPlayLIst(songtitle);
+
     const QUrl url(QStringLiteral("qrc:/main.qml"));
     QObject::connect(&engine, &QQmlApplicationEngine::objectCreated,
                      &app, [url](QObject *obj, const QUrl &objUrl) {

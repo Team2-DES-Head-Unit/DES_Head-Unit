@@ -22,7 +22,7 @@ public:
     QStringList getAlbums(const QString &dir_path, const QString filtering){
         QDir usbDir(dir_path);
         usbDir.setNameFilters(QStringList() << filtering);
-        qDebug() << usbDir.entryList();
+//        qDebug() << usbDir.entryList();
         return usbDir.entryList();
     }
     QStringList getMusics() {
@@ -44,6 +44,7 @@ public:
     Q_INVOKABLE int music_duration() {return player->duration();}
     Q_INVOKABLE int music_position() {return player->position();}
 
+    // songTitle : ex)"Hanumankind-Big_Dawgs.mp3"
     Q_INVOKABLE QString getCoverForSong(const QString &songTitle){
         QStringList coverlist = getCovers();
 //        qDebug() << coverlist.last();
@@ -77,6 +78,18 @@ public:
             }
         } return QString();
     }
+
+    // playlist except current played song
+    Q_INVOKABLE QStringList getCurrentPlayList(const QString &songTitle){
+        QStringList playlist = getMusics();
+        foreach (const QString &music, playlist) {
+            if(music != songTitle){
+                qDebug() << music;
+                playlist.append(music);
+            }
+        } return playlist;
+    }
+
 
 signals:
     void musicProgressChanged();

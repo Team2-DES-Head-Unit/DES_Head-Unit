@@ -44,5 +44,8 @@
         
         <!-- music page -->
         <file>HU_Assets/Background/music_bar.png</file>
+        <file>HU_Assets/Components/Music/sequential.png</file>
+        <file>HU_Assets/Components/Music/shuffle.png</file>
+        
     </qresource>
 </RCC>

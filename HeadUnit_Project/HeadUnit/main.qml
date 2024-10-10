@@ -652,7 +652,6 @@ Window {
             color: "#ffffff"
             font.pixelSize: 12
         }
-
         Connections {
             target: musicPlayer
             onMusicProgressChanged: {
