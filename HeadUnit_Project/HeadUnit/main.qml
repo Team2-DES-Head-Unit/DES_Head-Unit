@@ -10,6 +10,25 @@ Window {
     height: 600
     color: "#1E1E1E"
     title: qsTr("Head Unit")
+    Connections{
+        target: musicPlayer
+        onNextSongInfo:{
+            console.log("Title: " + title);
+            console.log("Artist: " + artist);
+            console.log("Cover Path: " + coverPath);
+            song_title.text = title;
+            singer.text = artist;
+            album_cover.source = coverPath;
+        }
+
+        onMusicProgressChanged: {
+            //                console.log(musicPlayer.music_position());
+            //                console.log(musicPlayer.music_duration());
+            music_progress_fill.width = (parseFloat(musicPlayer.music_position() / musicPlayer.music_duration()) * music_progress_bar.width)
+            music_start.text = formatTime(musicPlayer.music_position())
+            music_end.text = formatTime(musicPlayer.music_duration())
+        }
+    }
 
     /////////////////////////////////////////////////////////////////////// car status
     Image {
@@ -47,14 +66,14 @@ Window {
                 }
 
                 Text {
-                    id: cm_s
+                    id: km_h
                     horizontalAlignment: Text.AlignHCenter
                     anchors{
                         top: speed_value.bottom
                     }
                     width: 70
                     height: 20
-                    text: qsTr("cm/s")
+                    text: qsTr("km/h")
                     font.pixelSize: 20
                     color: "#ffffff"
                 }
@@ -101,7 +120,7 @@ Window {
                     id: sa_scale
                     width: 48
                     height: 15
-                    text: qsTr("cm/s")
+                    text: qsTr("km/h")
                     color: "#ffffff"
                     font.pixelSize: 9
                     horizontalAlignment: Text.AlignHCenter
@@ -165,7 +184,7 @@ Window {
                     width: 48
                     height: 15
                     color: "#ffffff"
-                    text: qsTr("m")
+                    text: qsTr("km")
                     anchors.bottom: mileage.bottom
                     font.pixelSize: 9
                     anchors.bottomMargin: -2
@@ -221,7 +240,7 @@ Window {
                     width: 48
                     height: 15
                     color: "#ffffff"
-                    text: qsTr("min")
+                    text: qsTr("hour")
                     anchors.bottom: time.bottom
                     anchors.bottomMargin: -2
                     font.pixelSize: 9
@@ -585,7 +604,7 @@ Window {
             x: 123
             y: 23
             text: musicPlayer.getTitleForSong(songTitle)
-            font.pixelSize: 20
+            font.pixelSize: 17
             color: "#ffffff"
             Component.onCompleted: console.log("current song title: " + songTitle)
         }
@@ -601,7 +620,7 @@ Window {
 
         Row{
             id: music_menu
-            x: 286
+            x: 303
             y: 21
             spacing: 17
 
@@ -610,6 +629,14 @@ Window {
                 anchors.verticalCenter: music_menu.verticalCenter
                 fillMode: Image.PreserveAspectFit
                 source: "HU_Assets/Components/Music/skip_back.png"
+                MouseArea{
+                    anchors.fill: parent
+                    onClicked: {
+                        musicPlayer.skipPrevious();
+                        play_button.visible = false;
+                        stop_button.visible = true;
+                    }
+                }
             }
 
             Image {
@@ -683,6 +710,14 @@ Window {
                 anchors.verticalCenter: music_menu.verticalCenter
                 fillMode: Image.PreserveAspectFit
                 source: "HU_Assets/Components/Music/skip_front.png"
+                MouseArea{
+                    anchors.fill: parent
+                    onClicked: {
+                        musicPlayer.skipNext();
+                        play_button.visible = false;
+                        stop_button.visible = true;
+                    }
+                }
             }
             Component.onCompleted: {
                 //                musicPlayer.playMusic(musicPlayer.getPathForSong(songTitle));
@@ -693,7 +728,7 @@ Window {
 
         Rectangle {
             id: music_progress_bar
-            x: 286
+            x: 303
             y: 85
             width: 194
             height: 5
@@ -714,7 +749,7 @@ Window {
 
         Text {
             id: music_start
-            x: 288
+            x: 303
             y: 64
             text: formatTime(musicPlayer.music_position()) // "0:00"
             color: "#ffffff"
@@ -722,22 +757,22 @@ Window {
         }
         Text {
             id: music_end
-            x: 456
+            x: 475
             y: 64
             text: formatTime(musicPlayer.music_duration())
             color: "#ffffff"
             font.pixelSize: 12
         }
-        Connections {
-            target: musicPlayer
-            onMusicProgressChanged: {
-                //                console.log(musicPlayer.music_position());
-                //                console.log(musicPlayer.music_duration());
-                music_progress_fill.width = (parseFloat(musicPlayer.music_position() / musicPlayer.music_duration()) * music_progress_bar.width)
-                music_start.text = formatTime(musicPlayer.music_position())
-                music_end.text = formatTime(musicPlayer.music_duration())
-            }
-        }
+//        Connections {
+//            target: musicPlayer
+//            onMusicProgressChanged: {
+//                //                console.log(musicPlayer.music_position());
+//                //                console.log(musicPlayer.music_duration());
+//                music_progress_fill.width = (parseFloat(musicPlayer.music_position() / musicPlayer.music_duration()) * music_progress_bar.width)
+//                music_start.text = formatTime(musicPlayer.music_position())
+//                music_end.text = formatTime(musicPlayer.music_duration())
+//            }
+//        }
 
         Image {
             id: bluetooth_button

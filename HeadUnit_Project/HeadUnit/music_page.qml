@@ -9,6 +9,25 @@ Window{
     height: 480
     color: "transparent"
     flags: Qt.FramelessWindowHint
+    Connections{
+        target: musicPlayer
+        onNextSongInfo:{
+            console.log("Title: " + title);
+            console.log("Artist: " + artist);
+            console.log("Cover Path: " + coverPath);
+            song_title.text = title;
+            singer.text = artist;
+            album_cover.source = coverPath;
+        }
+
+        onMusicProgressChanged: {
+            //                console.log(musicPlayer.music_position());
+            //                console.log(musicPlayer.music_duration());
+            music_progress_fill.width = (parseFloat(musicPlayer.music_position() / musicPlayer.music_duration()) * music_progress_bar.width)
+            music_start.text = formatTime(musicPlayer.music_position())
+            music_end.text = formatTime(musicPlayer.music_duration())
+        }
+    }
 
     Image {
         id: base_window
@@ -22,6 +41,7 @@ Window{
             y: 12
             fillMode: Image.PreserveAspectFit
             source: "HU_Assets/Background/music_bar.png"
+
 
             Rectangle {
                 id: music
@@ -69,7 +89,7 @@ Window{
             }
 
             Image {
-                id: playing_cover
+                id: album_cover
                 y: 96
                 anchors.horizontalCenter: music_bar.horizontalCenter
                 width: 175
@@ -80,7 +100,7 @@ Window{
             }
 
             Text {
-                id: playing_title
+                id: song_title
                 anchors.horizontalCenter: music_bar.horizontalCenter
                 y: 285
                 text: musicPlayer.getTitleForSong(songTitle)
@@ -90,7 +110,7 @@ Window{
             }
 
             Text {
-                id: playing_singer
+                id: singer
                 anchors.horizontalCenter: music_bar.horizontalCenter
                 y: 312
                 text: musicPlayer.getArtistForSong(songTitle)
@@ -110,6 +130,14 @@ Window{
                     anchors.verticalCenter: music_menu.verticalCenter
                     fillMode: Image.PreserveAspectFit
                     source: "HU_Assets/Components/Music/skip_back.png"
+                    MouseArea{
+                        anchors.fill: parent
+                        onClicked: {
+                            musicPlayer.skipPrevious();
+                            play_button.visible = false;
+                            stop_button.visible = true;
+                        }
+                    }
                 }
 
                 Image {
@@ -190,6 +218,14 @@ Window{
                     anchors.verticalCenter: music_menu.verticalCenter
                     fillMode: Image.PreserveAspectFit
                     source: "HU_Assets/Components/Music/skip_front.png"
+                    MouseArea{
+                        anchors.fill: parent
+                        onClicked: {
+                            musicPlayer.skipNext();
+                            play_button.visible = false;
+                            stop_button.visible = true;
+                        }
+                    }
                 }
                 Component.onCompleted: {
                     //                musicPlayer.playMusic(musicPlayer.getPathForSong(songTitle));
@@ -238,16 +274,16 @@ Window{
                 font.pixelSize: 12
             }
 
-            Connections {
-                target: musicPlayer
-                onMusicProgressChanged: {
-    //                console.log(musicPlayer.music_position());
-    //                console.log(musicPlayer.music_duration());
-                    music_progress_fill.width = (parseFloat(musicPlayer.music_position() / musicPlayer.music_duration()) * music_progress_bar.width)
-                    music_start.text = formatTime(musicPlayer.music_position())
-                    music_end.text = formatTime(musicPlayer.music_duration())
-                }
-            }
+//            Connections {
+//                target: musicPlayer
+//                onMusicProgressChanged: {
+//    //                console.log(musicPlayer.music_position());
+//    //                console.log(musicPlayer.music_duration());
+//                    music_progress_fill.width = (parseFloat(musicPlayer.music_position() / musicPlayer.music_duration()) * music_progress_bar.width)
+//                    music_start.text = formatTime(musicPlayer.music_position())
+//                    music_end.text = formatTime(musicPlayer.music_duration())
+//                }
+//            }
         }
 
         Rectangle {
@@ -331,9 +367,9 @@ Window{
                             console.log("clicked song title : " + model.title + " , singer : " + model.singer + " , cover path : " + model.cover_path + " , mp3_path : " + model.mp3_path)
                             musicPlayer.setMusic(model.mp3_path);
                             musicPlayer.playMusic(model.mp3_path);
-                            playing_cover.source = model.cover_path;
-                            playing_title.text = model.title;
-                            playing_singer.text = model.singer;
+                            album_cover.source = model.cover_path;
+                            song_title.text = model.title;
+                            singer.text = model.singer;
                             play_button.visible = false;
                             stop_button.visible = true;
                         }
