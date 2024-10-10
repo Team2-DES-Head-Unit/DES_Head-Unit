@@ -2,9 +2,7 @@ PACKAGECONFIG:append = " gles2 eglfs journald"
 
 # set QPA
 FILESEXTRAPATHS:prepend := "${THISDIR}/files:"
-SRC_URI += " \
-  file://qt-qpa.sh \
-"
+
 
 do_install:append() {
   install -d "${D}${sysconfdir}/profile.d"
