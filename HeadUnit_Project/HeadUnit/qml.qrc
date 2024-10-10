@@ -28,6 +28,9 @@
         <file>HU_Assets/Components/Weather/weather_bar.png</file>
         <file>HU_Assets/Components/Weather/climate_fan.png</file>
         
+        <file>HU_Assets/Components/Calender/calender_bar.png</file>
+        <file>HU_Assets/Components/Calender/calender_component.png</file>
+        
         <file>HU_Assets/Components/Music/music_button_ring.png</file>
         <file>HU_Assets/Components/Music/play.png</file>
         <file>HU_Assets/Components/Music/skip_back.png</file>

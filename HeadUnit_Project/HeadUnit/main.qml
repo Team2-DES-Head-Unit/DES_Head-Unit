@@ -460,6 +460,82 @@ Window {
         height: 220
         radius: 15
         color: "#323232"
+
+        Text {
+            id: calender
+            x: 24
+            y: 18
+            text: qsTr("My Calender")
+            font.pixelSize: 23
+            color: "#ffffff"
+        }
+        Text {
+            id: day
+            x: 25
+            y: 51
+            text: "10 Oct - 2024" // need to fix - add today's date
+            font.pixelSize: 15
+            color: "#87888C"
+        }
+        Text {
+            id: time_1
+            x: 12
+            y: 94
+            text: "14:00"
+            font.pixelSize: 12
+            color: "#87888C"
+        }
+        Text {
+            id: time_2
+            x: 12
+            y: 146
+            text: "15:00"
+            font.pixelSize: 12
+            color: "#87888C"
+        }
+
+        Text {
+            id: time_3
+            x: 12
+            y: 197
+            color: "#87888c"
+            text: "16:00"
+            font.pixelSize: 12
+        }
+
+        Image {
+            id: calender_comp
+            x: 54
+            y: 94
+            source: "HU_Assets/Components/Calender/calender_component.png"
+            fillMode: Image.PreserveAspectFit
+
+            Text {
+                id: schedule
+                x: 21
+                y: 10
+                text: "Meeting with staffs"
+                font.pixelSize: 15
+                color: "#ffffff"
+            }
+            Text {
+                id: schedule_time
+                x: 22
+                y: 35
+                text: "14:00 - 15:00"
+                font.pixelSize: 13
+                color: "#87888C"
+            }
+        }
+
+        Image {
+            id: calender_bar
+            x: 0
+            y: 70
+            source: "HU_Assets/Components/Calender/calender_bar.png"
+            fillMode: Image.PreserveAspectFit
+        }
+
     }
 
     ///////////////////////////////////////////////////////////////// music_component
@@ -655,8 +731,8 @@ Window {
         Connections {
             target: musicPlayer
             onMusicProgressChanged: {
-//                console.log(musicPlayer.music_position());
-//                console.log(musicPlayer.music_duration());
+                //                console.log(musicPlayer.music_position());
+                //                console.log(musicPlayer.music_duration());
                 music_progress_fill.width = (parseFloat(musicPlayer.music_position() / musicPlayer.music_duration()) * music_progress_bar.width)
                 music_start.text = formatTime(musicPlayer.music_position())
                 music_end.text = formatTime(musicPlayer.music_duration())
@@ -882,6 +958,6 @@ Window {
 
 /*##^##
 Designer {
-    D{i:57;invisible:true}
+    D{i:66;invisible:true}
 }
 ##^##*/

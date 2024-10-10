@@ -279,11 +279,13 @@ Window{
                             var title = musicPlayer.getTitleForSong(music_f);
                             var singer = musicPlayer.getArtistForSong(music_f);
                             var cover_path = musicPlayer.getCoverForSong(music_f);
+                            var mp3_path = musicPlayer.getPathForSong(music_f)
 //                            console.log("title : " + title + " , singer : " + singer + " , cover_path : " + cover_path);
                             append({
                                 title: title,
                                 singer: singer,
                                 cover_path: cover_path,
+                                mp3_path: mp3_path,
                             });
                         }
                     }
@@ -322,6 +324,19 @@ Window{
                         }
                         y: 30
                         color: "#CBC8C8"
+                    }
+                    MouseArea{
+                        anchors.fill: parent
+                        onClicked: {
+                            console.log("clicked song title : " + model.title + " , singer : " + model.singer + " , cover path : " + model.cover_path + " , mp3_path : " + model.mp3_path)
+                            musicPlayer.setMusic(model.mp3_path);
+                            musicPlayer.playMusic(model.mp3_path);
+                            playing_cover.source = model.cover_path;
+                            playing_title.text = model.title;
+                            playing_singer.text = model.singer;
+                            play_button.visible = false;
+                            stop_button.visible = true;
+                        }
                     }
                 }
 
