@@ -1,4 +1,4 @@
-PACKAGECONFIG:append = " gles2 eglfs journald"
+PACKAGECONFIG:append = " journald"
 
 # set QPA
 FILESEXTRAPATHS:prepend := "${THISDIR}/files:"
