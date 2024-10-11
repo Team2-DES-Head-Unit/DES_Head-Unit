@@ -252,8 +252,6 @@ Window{
                     verticalCenter: music_progress_bar.verticalCenter
                 }
                 radius: 3
-                anchors.verticalCenterOffset: 327
-                anchors.leftMargin: -248
                 color: "#58C7A4"
             }
 
@@ -309,7 +307,7 @@ Window{
                 clip: true
                 model: ListModel{
                     Component.onCompleted: {
-                        var musicFilesList = musicPlayer.getCurrentPlayList(songTitle);
+                        var musicFilesList = musicPlayer.getMusics(); // musicPlayer.getCurrentPlayList(songTitle);
                         for (var i = 0; i < musicFilesList.length; i++){
                             var music_f = musicFilesList[i];
                             var title = musicPlayer.getTitleForSong(music_f);
@@ -340,7 +338,7 @@ Window{
                         anchors.verticalCenter: playlist_item.verticalCenter
                     }
                     Text {
-                        id: song_title
+                        id: song_titlename
                         text: model.title
                         font.pixelSize: 16
                         anchors{
@@ -368,7 +366,7 @@ Window{
                             musicPlayer.setMusic(model.mp3_path);
                             musicPlayer.playMusic(model.mp3_path);
                             album_cover.source = model.cover_path;
-                            song_title.text = model.title;
+                            song_titlename.text = model.title;
                             singer.text = model.singer;
                             play_button.visible = false;
                             stop_button.visible = true;

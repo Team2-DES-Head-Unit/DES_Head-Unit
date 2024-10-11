@@ -25,12 +25,13 @@ public:
 //        qDebug() << usbDir.entryList();
         return usbDir.entryList();
     }
-    QStringList getMusics() {
-        return getAlbums("/media/llj/SanDisk/Music/", "*.mp3");
-    }
 
     QStringList getCovers() {
         return getAlbums("/home/llj/catkin_ws/src/HeadUnit_Project/HeadUnit/Cover", "*.jpeg");
+    }
+
+    Q_INVOKABLE QStringList getMusics() {
+        return getAlbums("/media/llj/SanDisk/Music/", "*.mp3");
     }
 
     // songTitle : ex)"Hanumankind-Big_Dawgs.mp3"

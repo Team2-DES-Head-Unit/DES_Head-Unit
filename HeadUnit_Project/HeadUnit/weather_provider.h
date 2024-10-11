@@ -20,6 +20,7 @@ class WeatherProvider : public QObject{
 public:
     explicit WeatherProvider(QObject *parent = nullptr) : QObject(parent), manager(new QNetworkAccessManager(this)){
         connect(manager, &QNetworkAccessManager::finished, this, &WeatherProvider::onReplyFinished);
+        // finished : signal / onReplyFinished : slot
     }
     void fetchWeather(){
         QString apikey = "aaa5e0893167222be40d82dd62ff141d";
@@ -43,7 +44,7 @@ public:
     QString temperature() const {return m_temperature;}
     QString description() const {return m_description;}
 
-signals:
+signals: // when the data changed, notice the UI
     void cityNameChanged();
     void temperatureChanged();
     void descriptionChanged();
