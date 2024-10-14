@@ -17,7 +17,7 @@ Window {
             console.log("Artist: " + artist);
             console.log("Cover Path: " + coverPath);
             song_title.text = title;
-            singer.text = artist;
+            singer_txt.text = artist;
             album_cover.source = coverPath;
         }
 
@@ -609,7 +609,7 @@ Window {
             Component.onCompleted: console.log("current song title: " + songTitle)
         }
         Text {
-            id: singer
+            id: singer_txt
             x: 123
             y: 56
             text: musicPlayer.getArtistForSong(songTitle)
@@ -775,7 +775,7 @@ Window {
 //        }
 
         Image {
-            id: bluetooth_button
+            id: share_img
             x: 499
             y: 10
             fillMode: Image.PreserveAspectFit
@@ -834,6 +834,8 @@ Window {
         id: main_control_bar
         x: 0
         y: 537
+        width: 1024
+        height: 65
         fillMode: Image.PreserveAspectFit
         source: "HU_Assets/Background/main_control_bar.png"
 

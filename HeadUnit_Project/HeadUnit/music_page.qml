@@ -16,7 +16,7 @@ Window{
             console.log("Artist: " + artist);
             console.log("Cover Path: " + coverPath);
             song_title.text = title;
-            singer.text = artist;
+            singer_txt.text = artist;
             album_cover.source = coverPath;
         }
 
@@ -110,7 +110,7 @@ Window{
             }
 
             Text {
-                id: singer
+                id: singer_txt
                 anchors.horizontalCenter: music_bar.horizontalCenter
                 y: 312
                 text: musicPlayer.getArtistForSong(songTitle)
@@ -314,7 +314,7 @@ Window{
                             var singer = musicPlayer.getArtistForSong(music_f);
                             var cover_path = musicPlayer.getCoverForSong(music_f);
                             var mp3_path = musicPlayer.getPathForSong(music_f)
-//                            console.log("title : " + title + " , singer : " + singer + " , cover_path : " + cover_path);
+                            console.log("title : " + title + " , singer : " + singer + " , cover_path : " + cover_path);
                             append({
                                 title: title,
                                 singer: singer,
@@ -365,11 +365,11 @@ Window{
                             console.log("clicked song title : " + model.title + " , singer : " + model.singer + " , cover path : " + model.cover_path + " , mp3_path : " + model.mp3_path)
                             musicPlayer.setMusic(model.mp3_path);
                             musicPlayer.playMusic(model.mp3_path);
-                            album_cover.source = model.cover_path;
-                            song_titlename.text = model.title;
-                            singer.text = model.singer;
                             play_button.visible = false;
                             stop_button.visible = true;
+                            album_cover.source = model.cover_path;
+                            song_title.text = model.title;
+                            singer_txt.text = model.singer;
                         }
                     }
                 }
