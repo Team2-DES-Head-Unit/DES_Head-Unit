@@ -25,6 +25,8 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 #endif()
 
 find_package(Qt5 COMPONENTS Core Quick REQUIRED Multimedia)
+find_package(Qt5 COMPONENTS Core Gui REQUIRED)
+find_package(Wayland REQUIRED)
 
 if(ANDROID)
     add_library(HeadUnit SHARED
