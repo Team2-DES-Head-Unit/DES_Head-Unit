@@ -26,7 +26,6 @@ private:
     struct ifreq ifr = ifr;
     struct sockaddr_can addr;
     DataUnion speed_data;
-
     float speed_prev = 0;
 
 public:
@@ -41,6 +40,7 @@ public:
     float getSpeed() const {
         return speed_data.speed_kmh;
     }
+
 
     float EMA();
 

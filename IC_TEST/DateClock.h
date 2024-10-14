@@ -4,6 +4,7 @@
 #include <QObject>
 #include <QTimer>
 #include <QDateTime>
+#include <QTimeZone>
 
 class DateClock : public QObject
 {
@@ -23,14 +24,18 @@ public:
 
     QString currentTime() const
     {
+        QDateTime utcDateTime = QDateTime::currentDateTimeUtc(); // UTC 현재 시간
+        QTimeZone timeZone("Europe/Berlin");
         // 현재 시간을 QString 형식으로 반환
-        return QDateTime::currentDateTime().toString("hh:mm:ss");
+        return utcDateTime.toTimeZone(timeZone).toString("hh:mm:ss");
     }
 
     QString currentDate() const
     {
+        QDateTime utcDateTime = QDateTime::currentDateTimeUtc(); // UTC 현재 시간
+        QTimeZone timeZone("Europe/Berlin");
         // 현재 날짜를 mm/dd 형식으로 반환
-        return QDateTime::currentDateTime().toString("dd.MM");
+        return utcDateTime.toTimeZone(timeZone).toString("dd.MM");
     }
 
 signals:

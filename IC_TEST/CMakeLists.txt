@@ -46,7 +46,7 @@ else()
       Gauge.h
       get_battery.h
       get_battery.cpp
-
+      DataProvider.h
     )
 endif()
 

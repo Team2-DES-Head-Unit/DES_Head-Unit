@@ -1,4 +1,4 @@
-# Install script for directory: /home/llj/catkin_ws/src/DES_Head-Unit/IC_TEST
+# Install script for directory: /home/jimmy/coding/IC_TEST
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -45,5 +45,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/home/llj/catkin_ws/src/DES_Head-Unit/IC_TEST/build/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/home/jimmy/coding/IC_TEST/build/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

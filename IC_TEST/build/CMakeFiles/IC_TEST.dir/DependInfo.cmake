@@ -4,7 +4,12 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/llj/catkin_ws/src/DES_Head-Unit/IC_TEST/main.cpp" "/home/llj/catkin_ws/src/DES_Head-Unit/IC_TEST/build/CMakeFiles/IC_TEST.dir/main.cpp.o"
+  "/home/jimmy/coding/IC_TEST/Gauge.cpp" "/home/jimmy/coding/IC_TEST/build/CMakeFiles/IC_TEST.dir/Gauge.cpp.o"
+  "/home/jimmy/coding/IC_TEST/build/IC_TEST_autogen/EWIEGA46WW/qrc_qml.cpp" "/home/jimmy/coding/IC_TEST/build/CMakeFiles/IC_TEST.dir/IC_TEST_autogen/EWIEGA46WW/qrc_qml.cpp.o"
+  "/home/jimmy/coding/IC_TEST/build/IC_TEST_autogen/mocs_compilation.cpp" "/home/jimmy/coding/IC_TEST/build/CMakeFiles/IC_TEST.dir/IC_TEST_autogen/mocs_compilation.cpp.o"
+  "/home/jimmy/coding/IC_TEST/get_battery.cpp" "/home/jimmy/coding/IC_TEST/build/CMakeFiles/IC_TEST.dir/get_battery.cpp.o"
+  "/home/jimmy/coding/IC_TEST/main.cpp" "/home/jimmy/coding/IC_TEST/build/CMakeFiles/IC_TEST.dir/main.cpp.o"
+  "/home/jimmy/coding/IC_TEST/receiver.cpp" "/home/jimmy/coding/IC_TEST/build/CMakeFiles/IC_TEST.dir/receiver.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 
@@ -22,6 +27,7 @@ set(CMAKE_TARGET_DEFINITIONS_CXX
 set(CMAKE_CXX_TARGET_INCLUDE_PATH
   "."
   "../"
+  "IC_TEST_autogen/include"
   "/usr/include/x86_64-linux-gnu/qt5"
   "/usr/include/x86_64-linux-gnu/qt5/QtCore"
   "/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++"

@@ -43,10 +43,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/llj/catkin_ws/src/DES_Head-Unit/IC_TEST
+CMAKE_SOURCE_DIR = /home/jimmy/coding/IC_TEST
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/llj/catkin_ws/src/DES_Head-Unit/IC_TEST/build
+CMAKE_BINARY_DIR = /home/jimmy/coding/IC_TEST/build
 
 # Include any dependencies generated for this target.
 include CMakeFiles/IC_TEST.dir/depend.make
@@ -57,27 +57,121 @@ include CMakeFiles/IC_TEST.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/IC_TEST.dir/flags.make
 
+IC_TEST_autogen/EWIEGA46WW/qrc_qml.cpp: ../qml.qrc
+IC_TEST_autogen/EWIEGA46WW/qrc_qml.cpp: CMakeFiles/IC_TEST_autogen.dir/AutoRcc_qml_EWIEGA46WW_Info.json
+IC_TEST_autogen/EWIEGA46WW/qrc_qml.cpp: ../main.qml
+IC_TEST_autogen/EWIEGA46WW/qrc_qml.cpp: ../IC\ Assets/needle.png
+IC_TEST_autogen/EWIEGA46WW/qrc_qml.cpp: ../IC\ Assets/left_bright.png
+IC_TEST_autogen/EWIEGA46WW/qrc_qml.cpp: ../IC\ Assets/battery.png
+IC_TEST_autogen/EWIEGA46WW/qrc_qml.cpp: ../IC\ Assets/right_bright.png
+IC_TEST_autogen/EWIEGA46WW/qrc_qml.cpp: ../IC\ Assets/left_dark.png
+IC_TEST_autogen/EWIEGA46WW/qrc_qml.cpp: ../IC\ Assets/inner_circle.png
+IC_TEST_autogen/EWIEGA46WW/qrc_qml.cpp: ../IC\ Assets/bottom_bar.png
+IC_TEST_autogen/EWIEGA46WW/qrc_qml.cpp: ../IC\ Assets/speedometer.png
+IC_TEST_autogen/EWIEGA46WW/qrc_qml.cpp: ../IC\ Assets/right_dark.png
+IC_TEST_autogen/EWIEGA46WW/qrc_qml.cpp: ../IC\ Assets/top_bar_menu.png
+IC_TEST_autogen/EWIEGA46WW/qrc_qml.cpp: ../IC\ Assets/top_bar.png
+IC_TEST_autogen/EWIEGA46WW/qrc_qml.cpp: ../IC\ Assets/background_car.png
+IC_TEST_autogen/EWIEGA46WW/qrc_qml.cpp: /usr/lib/qt5/bin/rcc
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/jimmy/coding/IC_TEST/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Automatic RCC for qml.qrc"
+	/usr/bin/cmake -E cmake_autorcc /home/jimmy/coding/IC_TEST/build/CMakeFiles/IC_TEST_autogen.dir/AutoRcc_qml_EWIEGA46WW_Info.json 
+
+CMakeFiles/IC_TEST.dir/IC_TEST_autogen/mocs_compilation.cpp.o: CMakeFiles/IC_TEST.dir/flags.make
+CMakeFiles/IC_TEST.dir/IC_TEST_autogen/mocs_compilation.cpp.o: IC_TEST_autogen/mocs_compilation.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jimmy/coding/IC_TEST/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/IC_TEST.dir/IC_TEST_autogen/mocs_compilation.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/IC_TEST.dir/IC_TEST_autogen/mocs_compilation.cpp.o -c /home/jimmy/coding/IC_TEST/build/IC_TEST_autogen/mocs_compilation.cpp
+
+CMakeFiles/IC_TEST.dir/IC_TEST_autogen/mocs_compilation.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/IC_TEST.dir/IC_TEST_autogen/mocs_compilation.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/jimmy/coding/IC_TEST/build/IC_TEST_autogen/mocs_compilation.cpp > CMakeFiles/IC_TEST.dir/IC_TEST_autogen/mocs_compilation.cpp.i
+
+CMakeFiles/IC_TEST.dir/IC_TEST_autogen/mocs_compilation.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/IC_TEST.dir/IC_TEST_autogen/mocs_compilation.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/jimmy/coding/IC_TEST/build/IC_TEST_autogen/mocs_compilation.cpp -o CMakeFiles/IC_TEST.dir/IC_TEST_autogen/mocs_compilation.cpp.s
+
 CMakeFiles/IC_TEST.dir/main.cpp.o: CMakeFiles/IC_TEST.dir/flags.make
 CMakeFiles/IC_TEST.dir/main.cpp.o: ../main.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/llj/catkin_ws/src/DES_Head-Unit/IC_TEST/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/IC_TEST.dir/main.cpp.o"
-	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/IC_TEST.dir/main.cpp.o -c /home/llj/catkin_ws/src/DES_Head-Unit/IC_TEST/main.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jimmy/coding/IC_TEST/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/IC_TEST.dir/main.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/IC_TEST.dir/main.cpp.o -c /home/jimmy/coding/IC_TEST/main.cpp
 
 CMakeFiles/IC_TEST.dir/main.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/IC_TEST.dir/main.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/llj/catkin_ws/src/DES_Head-Unit/IC_TEST/main.cpp > CMakeFiles/IC_TEST.dir/main.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/jimmy/coding/IC_TEST/main.cpp > CMakeFiles/IC_TEST.dir/main.cpp.i
 
 CMakeFiles/IC_TEST.dir/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/IC_TEST.dir/main.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/llj/catkin_ws/src/DES_Head-Unit/IC_TEST/main.cpp -o CMakeFiles/IC_TEST.dir/main.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/jimmy/coding/IC_TEST/main.cpp -o CMakeFiles/IC_TEST.dir/main.cpp.s
+
+CMakeFiles/IC_TEST.dir/Gauge.cpp.o: CMakeFiles/IC_TEST.dir/flags.make
+CMakeFiles/IC_TEST.dir/Gauge.cpp.o: ../Gauge.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jimmy/coding/IC_TEST/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/IC_TEST.dir/Gauge.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/IC_TEST.dir/Gauge.cpp.o -c /home/jimmy/coding/IC_TEST/Gauge.cpp
+
+CMakeFiles/IC_TEST.dir/Gauge.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/IC_TEST.dir/Gauge.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/jimmy/coding/IC_TEST/Gauge.cpp > CMakeFiles/IC_TEST.dir/Gauge.cpp.i
+
+CMakeFiles/IC_TEST.dir/Gauge.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/IC_TEST.dir/Gauge.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/jimmy/coding/IC_TEST/Gauge.cpp -o CMakeFiles/IC_TEST.dir/Gauge.cpp.s
+
+CMakeFiles/IC_TEST.dir/receiver.cpp.o: CMakeFiles/IC_TEST.dir/flags.make
+CMakeFiles/IC_TEST.dir/receiver.cpp.o: ../receiver.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jimmy/coding/IC_TEST/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/IC_TEST.dir/receiver.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/IC_TEST.dir/receiver.cpp.o -c /home/jimmy/coding/IC_TEST/receiver.cpp
+
+CMakeFiles/IC_TEST.dir/receiver.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/IC_TEST.dir/receiver.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/jimmy/coding/IC_TEST/receiver.cpp > CMakeFiles/IC_TEST.dir/receiver.cpp.i
+
+CMakeFiles/IC_TEST.dir/receiver.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/IC_TEST.dir/receiver.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/jimmy/coding/IC_TEST/receiver.cpp -o CMakeFiles/IC_TEST.dir/receiver.cpp.s
+
+CMakeFiles/IC_TEST.dir/get_battery.cpp.o: CMakeFiles/IC_TEST.dir/flags.make
+CMakeFiles/IC_TEST.dir/get_battery.cpp.o: ../get_battery.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jimmy/coding/IC_TEST/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/IC_TEST.dir/get_battery.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/IC_TEST.dir/get_battery.cpp.o -c /home/jimmy/coding/IC_TEST/get_battery.cpp
+
+CMakeFiles/IC_TEST.dir/get_battery.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/IC_TEST.dir/get_battery.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/jimmy/coding/IC_TEST/get_battery.cpp > CMakeFiles/IC_TEST.dir/get_battery.cpp.i
+
+CMakeFiles/IC_TEST.dir/get_battery.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/IC_TEST.dir/get_battery.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/jimmy/coding/IC_TEST/get_battery.cpp -o CMakeFiles/IC_TEST.dir/get_battery.cpp.s
+
+CMakeFiles/IC_TEST.dir/IC_TEST_autogen/EWIEGA46WW/qrc_qml.cpp.o: CMakeFiles/IC_TEST.dir/flags.make
+CMakeFiles/IC_TEST.dir/IC_TEST_autogen/EWIEGA46WW/qrc_qml.cpp.o: IC_TEST_autogen/EWIEGA46WW/qrc_qml.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/jimmy/coding/IC_TEST/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/IC_TEST.dir/IC_TEST_autogen/EWIEGA46WW/qrc_qml.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/IC_TEST.dir/IC_TEST_autogen/EWIEGA46WW/qrc_qml.cpp.o -c /home/jimmy/coding/IC_TEST/build/IC_TEST_autogen/EWIEGA46WW/qrc_qml.cpp
+
+CMakeFiles/IC_TEST.dir/IC_TEST_autogen/EWIEGA46WW/qrc_qml.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/IC_TEST.dir/IC_TEST_autogen/EWIEGA46WW/qrc_qml.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/jimmy/coding/IC_TEST/build/IC_TEST_autogen/EWIEGA46WW/qrc_qml.cpp > CMakeFiles/IC_TEST.dir/IC_TEST_autogen/EWIEGA46WW/qrc_qml.cpp.i
+
+CMakeFiles/IC_TEST.dir/IC_TEST_autogen/EWIEGA46WW/qrc_qml.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/IC_TEST.dir/IC_TEST_autogen/EWIEGA46WW/qrc_qml.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/jimmy/coding/IC_TEST/build/IC_TEST_autogen/EWIEGA46WW/qrc_qml.cpp -o CMakeFiles/IC_TEST.dir/IC_TEST_autogen/EWIEGA46WW/qrc_qml.cpp.s
 
 # Object files for target IC_TEST
 IC_TEST_OBJECTS = \
-"CMakeFiles/IC_TEST.dir/main.cpp.o"
+"CMakeFiles/IC_TEST.dir/IC_TEST_autogen/mocs_compilation.cpp.o" \
+"CMakeFiles/IC_TEST.dir/main.cpp.o" \
+"CMakeFiles/IC_TEST.dir/Gauge.cpp.o" \
+"CMakeFiles/IC_TEST.dir/receiver.cpp.o" \
+"CMakeFiles/IC_TEST.dir/get_battery.cpp.o" \
+"CMakeFiles/IC_TEST.dir/IC_TEST_autogen/EWIEGA46WW/qrc_qml.cpp.o"
 
 # External object files for target IC_TEST
 IC_TEST_EXTERNAL_OBJECTS =
 
+IC_TEST: CMakeFiles/IC_TEST.dir/IC_TEST_autogen/mocs_compilation.cpp.o
 IC_TEST: CMakeFiles/IC_TEST.dir/main.cpp.o
+IC_TEST: CMakeFiles/IC_TEST.dir/Gauge.cpp.o
+IC_TEST: CMakeFiles/IC_TEST.dir/receiver.cpp.o
+IC_TEST: CMakeFiles/IC_TEST.dir/get_battery.cpp.o
+IC_TEST: CMakeFiles/IC_TEST.dir/IC_TEST_autogen/EWIEGA46WW/qrc_qml.cpp.o
 IC_TEST: CMakeFiles/IC_TEST.dir/build.make
 IC_TEST: /usr/lib/x86_64-linux-gnu/libQt5Quick.so.5.12.8
 IC_TEST: /usr/lib/x86_64-linux-gnu/libQt5Qml.so.5.12.8
@@ -85,7 +179,7 @@ IC_TEST: /usr/lib/x86_64-linux-gnu/libQt5Network.so.5.12.8
 IC_TEST: /usr/lib/x86_64-linux-gnu/libQt5Gui.so.5.12.8
 IC_TEST: /usr/lib/x86_64-linux-gnu/libQt5Core.so.5.12.8
 IC_TEST: CMakeFiles/IC_TEST.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/llj/catkin_ws/src/DES_Head-Unit/IC_TEST/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable IC_TEST"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/jimmy/coding/IC_TEST/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Linking CXX executable IC_TEST"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/IC_TEST.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -97,7 +191,7 @@ CMakeFiles/IC_TEST.dir/clean:
 	$(CMAKE_COMMAND) -P CMakeFiles/IC_TEST.dir/cmake_clean.cmake
 .PHONY : CMakeFiles/IC_TEST.dir/clean
 
-CMakeFiles/IC_TEST.dir/depend:
-	cd /home/llj/catkin_ws/src/DES_Head-Unit/IC_TEST/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/llj/catkin_ws/src/DES_Head-Unit/IC_TEST /home/llj/catkin_ws/src/DES_Head-Unit/IC_TEST /home/llj/catkin_ws/src/DES_Head-Unit/IC_TEST/build /home/llj/catkin_ws/src/DES_Head-Unit/IC_TEST/build /home/llj/catkin_ws/src/DES_Head-Unit/IC_TEST/build/CMakeFiles/IC_TEST.dir/DependInfo.cmake --color=$(COLOR)
+CMakeFiles/IC_TEST.dir/depend: IC_TEST_autogen/EWIEGA46WW/qrc_qml.cpp
+	cd /home/jimmy/coding/IC_TEST/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/jimmy/coding/IC_TEST /home/jimmy/coding/IC_TEST /home/jimmy/coding/IC_TEST/build /home/jimmy/coding/IC_TEST/build /home/jimmy/coding/IC_TEST/build/CMakeFiles/IC_TEST.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/IC_TEST.dir/depend
 

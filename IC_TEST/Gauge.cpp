@@ -1,240 +1,225 @@
 #include "Gauge.h"
 
 #include <QPainter>
+#include <QtMath>
 
-gauge::gauge(QQuickItem *parent)
-    :QQuickPaintedItem(parent),
-      m_SpeedometerSize(320), // touch screen is 800 x 480 : 380
-      m_StartAngle(50), // 50
-      m_AlignAngle(260), // 260
-      // it should be 360 - m_StartAngle*3 for good looking
+// Base Gauge class implementation
+Gauge::Gauge(QQuickItem *parent)
+    : QQuickPaintedItem(parent),
+      m_GaugeSize(350),
+      m_StartAngle(-108),
+      m_AlignAngle(306),
       m_LowestRange(0),
-      m_HighestRange(100), // 4000
-      m_RPM(50), // 1230
+      m_HighestRange(100),
       m_ArcWidth(30),
-      m_OuterColor(QColor("#00b890")), // QColor(12,16,247) 00b890
-      m_InnerColor(QColor("#a2f2d9")), // QColor(51,88,255,80) a2f2d9
-      m_TextColor(QColor("#ffffff")), // QColor(255,255,255)
+      m_OuterColor(QColor("#00b890")),
+      m_InnerColor(QColor("#a2f2d9")),
+      m_TextColor(QColor("#ffffff")),
       m_BackgroundColor(Qt::transparent)
 {
-
 }
 
-void gauge::paint(QPainter *painter){
+qreal Gauge::getGaugeSize() const { return m_GaugeSize; }
+qreal Gauge::getStartAngle() const { return m_StartAngle; }
+qreal Gauge::getAlignAngle() const { return m_AlignAngle; }
+qreal Gauge::getLowestRange() const { return m_LowestRange; }
+qreal Gauge::getHighestRange() const { return m_HighestRange; }
+int Gauge::getArcWidth() const { return m_ArcWidth; }
+QColor Gauge::getOuterColor() const { return m_OuterColor; }
+QColor Gauge::getInnerColor() const { return m_InnerColor; }
+QColor Gauge::getTextColor() const { return m_TextColor; }
+QColor Gauge::getBackgroundColor() const { return m_BackgroundColor; }
+
+void Gauge::setGaugeSize(qreal size) {
+    if (m_GaugeSize == size) return;
+    m_GaugeSize = size;
+    emit gaugeSizeChanged();
+}
+
+void Gauge::setStartAngle(qreal startAngle) {
+    if (m_StartAngle == startAngle) return;
+    m_StartAngle = startAngle;
+    emit startAngleChanged();
+}
+
+void Gauge::setAlignAngle(qreal angle) {
+    if (m_AlignAngle == angle) return;
+    m_AlignAngle = angle;
+    emit alignAngleChanged();
+}
+
+void Gauge::setLowestRange(qreal lowestRange) {
+    if (m_LowestRange == lowestRange) return;
+    m_LowestRange = lowestRange;
+    emit lowestRangeChanged();
+}
+
+void Gauge::setHighestRange(qreal highestRange) {
+    if (m_HighestRange == highestRange) return;
+    m_HighestRange = highestRange;
+    emit highestRangeChanged();
+}
+
+void Gauge::setArcWidth(int arcWidth) {
+    if (m_ArcWidth == arcWidth) return;
+    m_ArcWidth = arcWidth;
+    emit arcWidthChanged();
+}
+
+void Gauge::setOuterColor(const QColor &outerColor) {
+    if (m_OuterColor == outerColor) return;
+    m_OuterColor = outerColor;
+    emit outerColorChanged();
+}
+
+void Gauge::setInnerColor(const QColor &innerColor) {
+    if (m_InnerColor == innerColor) return;
+    m_InnerColor = innerColor;
+    emit innerColorChanged();
+}
+
+void Gauge::setTextColor(const QColor &textColor) {
+    if (m_TextColor == textColor) return;
+    m_TextColor = textColor;
+    emit textColorChanged();
+}
+
+void Gauge::setBackgroundColor(const QColor &backgroundColor) {
+    if (m_BackgroundColor == backgroundColor) return;
+    m_BackgroundColor = backgroundColor;
+    emit backgroundColorChanged();
+}
+
+
+// SpeedGauge class implementation
+SpeedGauge::SpeedGauge(QQuickItem *parent)
+    : Gauge(parent),
+      m_Speed(50),
+      m_Rpm(0)
+{
+}
+
+qreal SpeedGauge::getSpeed() const {
+    return m_Speed;
+}
+
+void SpeedGauge::setSpeed(qreal speed) {
+    if (m_Speed == speed) return;
+    m_Speed = speed;
+    update();
+    calculateRpm();
+    emit speedChanged();
+}
+
+qreal SpeedGauge::getRpm() const
+{
+    return m_Rpm;  // RPM 값을 반환
+}
+
+void SpeedGauge::calculateRpm()
+{
+    // 바퀴의 둘레를 cm로 설정 (예시: 20.73 cm)
+    qreal wheelCircumference = 20.73;  // cm 단위
+
+    // RPM 계산: (속도(cm/s) * 60) / 바퀴의 둘레
+    if (wheelCircumference > 0) {
+        m_Rpm = (m_Speed * 60) / wheelCircumference;  // RPM 계산
+    } else {
+        m_Rpm = 0;  // 바퀴의 둘레가 0일 경우 RPM을 0으로 설정
+    }
+
+    emit rpmChanged();  // RPM 값이 변경되었음을 알림
+}
+
+void SpeedGauge::paint(QPainter *painter) {
     QRectF rect = this->boundingRect();
     painter->setRenderHint(QPainter::Antialiasing);
     QPen pen = painter->pen();
     pen.setCapStyle(Qt::FlatCap);
 
-    double startAngle;
-    double spanAngle;
+    double startAngle = m_StartAngle - 20;
+    double spanAngle = -40 - m_AlignAngle;
 
-    startAngle = m_StartAngle - 20;
-    spanAngle = -40 - m_AlignAngle;
-
-    // outer pie
+    // Outer arc
     painter->save();
     pen.setWidth(m_ArcWidth);
     pen.setColor(m_InnerColor);
     painter->setPen(pen);
-//    painter->drawRect(rect);
     painter->drawArc(rect.adjusted(m_ArcWidth, m_ArcWidth, -m_ArcWidth, -m_ArcWidth), startAngle * 16, spanAngle * 16);
     painter->restore();
 
-    // inner pie
-//    int pieSize = m_SpeedometerSize/5;
-//    painter->save();
-//    pen.setColor(m_OuterColor);
-//    painter->setBrush(m_InnerColor);
-//    painter->drawPie(rect.adjusted(pieSize, pieSize, -pieSize, -pieSize), startAngle * 16, spanAngle * 16);
-//    painter->restore();
-
-    // text that shows the value
-//    painter->save();
-//    QFont font("Halvetica", 52, QFont::Bold);
-//    painter->setFont(font);
-//    pen.setColor(m_TextColor);
-//    painter->setPen(pen);
-////    painter->drawText(rect.adjusted(m_SpeedometerSize/30, m_SpeedometerSize/30, -m_SpeedometerSize/30, -m_SpeedometerSize/5),
-////                      Qt::AlignCenter, QString::number((m_Speed/40), 'f', 1));
-//    painter->drawText(rect.adjusted(m_SpeedometerSize/30, m_SpeedometerSize/2, -m_SpeedometerSize/30, -m_SpeedometerSize/5),
-//                      Qt::AlignCenter, QString::number((m_Speed/40), 'f', 1));
-//    painter->restore();
-
-    // current progress
+    // Current speed arc
     painter->save();
     pen.setWidth(m_ArcWidth);
     pen.setColor(m_OuterColor);
-    qreal valueToAngle = ((m_RPM - m_LowestRange)/(m_HighestRange - m_LowestRange)) * spanAngle;
+    qreal valueToAngle = ((m_Speed - m_LowestRange) / (m_HighestRange - m_LowestRange)) * spanAngle;
     painter->setPen(pen);
     painter->drawArc(rect.adjusted(m_ArcWidth, m_ArcWidth, -m_ArcWidth, -m_ArcWidth), startAngle * 16, valueToAngle * 16);
     painter->restore();
-}
 
-qreal gauge::getspeedometerSize()
-{
-    return m_SpeedometerSize;
-}
-
-qreal gauge::getStartAngle()
-{
-    return m_StartAngle;
-}
-
-
-qreal gauge::getAlignAngle()
-{
-    return m_AlignAngle;
+    // Speed value text
+    painter->save();
+    QFont font("Helvetica", 52, QFont::Bold);
+    painter->setFont(font);
+    pen.setColor(m_TextColor);
+    painter->setPen(pen);
+    painter->drawText(rect.adjusted(m_GaugeSize / 30, m_GaugeSize / 2, -m_GaugeSize / 30, -m_GaugeSize / 5),
+                      Qt::AlignCenter, QString::number(m_Speed, 'f', 1));
+    painter->restore();
 }
 
 
-qreal gauge::getLowestRange()
+// RpmGauge class implementation
+RpmGauge::RpmGauge(QQuickItem *parent)
+    : Gauge(parent),
+      m_Rpm(1000)
 {
-    return m_LowestRange;
 }
 
-qreal gauge::getHighestRange()
-{
-    return m_HighestRange;
+qreal RpmGauge::getRpm() const {
+    return m_Rpm;
 }
 
-qreal gauge::getRPM()
-{
-    return m_RPM;
-}
-
-int gauge::getArcWidth()
-{
-    return m_ArcWidth;
-}
-
-QColor gauge::getOuterColor()
-{
-    return m_OuterColor;
-}
-
-QColor gauge::getInnerColor()
-{
-    return m_InnerColor;
-}
-
-QColor gauge::getTextColor()
-{
-    return m_TextColor;
-}
-
-QColor gauge::getBackgroundColor()
-{
-    return m_BackgroundColor;
-}
-
-
-
-void gauge::setSpeedometerSize(qreal size)
-{
-    if(m_SpeedometerSize == size)
-        return;
-    m_SpeedometerSize = size;
-
-    emit speedometerSizeChanged();
-}
-
-void gauge::setStartAngle(qreal startAngle)
-{
-    if(m_StartAngle == startAngle)
-        return;
-
-    m_StartAngle = startAngle;
-
-    emit startAngleChanged();
-}
-
-void gauge::setAlignAngle(qreal angle)
-{
-    if(m_StartAngle == angle)
-        return;
-
-    m_StartAngle = angle;
-
-    emit alignAngleChanged();
-}
-
-void gauge::setLowestRange(qreal lowestRange)
-{
-    if(m_LowestRange == lowestRange)
-        return;
-
-    m_LowestRange = lowestRange;
-
-    emit lowestRangeChanged();
-}
-
-void gauge::setHighestRange(qreal highestRange)
-{
-    if(m_HighestRange == highestRange)
-        return;
-
-    m_HighestRange = highestRange;
-
-    emit highestRangeChanged();
-}
-
-void gauge::setRPM(qreal RPM)
-{
-    if(m_RPM == RPM)
-        return;
-
-    m_RPM = RPM;
+void RpmGauge::setRpm(qreal rpm) {
+    if (m_Rpm == rpm) return;
+    m_Rpm = rpm;
     update();
-    emit RPMChanged();
+    emit rpmChanged();
 }
 
-void gauge::setArcWidth(int arcWidth)
-{
-    if(m_ArcWidth == arcWidth)
-        return;
+void RpmGauge::paint(QPainter *painter) {
+    QRectF rect = this->boundingRect();
+    painter->setRenderHint(QPainter::Antialiasing);
+    QPen pen = painter->pen();
+    pen.setCapStyle(Qt::FlatCap);
 
-    m_ArcWidth = arcWidth;
+    double startAngle = m_StartAngle - 20;
+    double spanAngle = -40 - m_AlignAngle;
 
-    emit arcWidthChanged();
-}
+    // Outer arc
+    painter->save();
+    pen.setWidth(m_ArcWidth);
+    pen.setColor(m_InnerColor);
+    painter->setPen(pen);
+    painter->drawArc(rect.adjusted(m_ArcWidth, m_ArcWidth, -m_ArcWidth, -m_ArcWidth), startAngle * 16, spanAngle * 16);
+    painter->restore();
 
-void gauge::setOuterColor(QColor outerColor)
-{
-    if(m_OuterColor == outerColor)
-        return;
+    // Current RPM arc
+    painter->save();
+    pen.setWidth(m_ArcWidth);
+    pen.setColor(m_OuterColor);
+    qreal valueToAngle = ((m_Rpm - m_LowestRange) / (m_HighestRange - m_LowestRange)) * spanAngle;
+    painter->setPen(pen);
+    painter->drawArc(rect.adjusted(m_ArcWidth, m_ArcWidth, -m_ArcWidth, -m_ArcWidth), startAngle * 16, valueToAngle * 16);
+    painter->restore();
 
-    m_OuterColor = outerColor;
-
-    emit outerColorChanged();
-}
-
-void gauge::setInnerColor(QColor innerColor)
-{
-    if(m_InnerColor == innerColor)
-        return;
-
-    m_InnerColor = innerColor;
-
-    emit innerColorChanged();
-}
-
-void gauge::setTextColor(QColor textColor)
-{
-    if(m_TextColor == textColor)
-        return;
-
-    m_TextColor = textColor;
-
-    emit textColorChanged();
-}
-
-void gauge::setBackgroundColor(QColor backgroundColor)
-{
-    if(m_BackgroundColor == backgroundColor)
-        return;
-
-    m_BackgroundColor = backgroundColor;
-
-    emit backgroundColorChanged();
+    // RPM value text
+    painter->save();
+    QFont font("Helvetica", 52, QFont::Bold);
+    painter->setFont(font);
+    pen.setColor(m_TextColor);
+    painter->setPen(pen);
+    painter->drawText(rect.adjusted(m_GaugeSize / 30, m_GaugeSize / 2, -m_GaugeSize / 30, -m_GaugeSize / 5),
+                      Qt::AlignCenter, QString::number(m_Rpm, 'f', 1));
+    painter->restore();
 }

@@ -48,10 +48,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/llj/catkin_ws/src/DES_Head-Unit/IC_TEST
+CMAKE_SOURCE_DIR = /home/jimmy/coding/IC_TEST
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/llj/catkin_ws/src/DES_Head-Unit/IC_TEST/build
+CMAKE_BINARY_DIR = /home/jimmy/coding/IC_TEST/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -80,9 +80,9 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/llj/catkin_ws/src/DES_Head-Unit/IC_TEST/build/CMakeFiles /home/llj/catkin_ws/src/DES_Head-Unit/IC_TEST/build/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/jimmy/coding/IC_TEST/build/CMakeFiles /home/jimmy/coding/IC_TEST/build/CMakeFiles/progress.marks
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/llj/catkin_ws/src/DES_Head-Unit/IC_TEST/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/jimmy/coding/IC_TEST/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -123,6 +123,127 @@ IC_TEST/fast:
 	$(MAKE) -f CMakeFiles/IC_TEST.dir/build.make CMakeFiles/IC_TEST.dir/build
 .PHONY : IC_TEST/fast
 
+#=============================================================================
+# Target rules for targets named IC_TEST_autogen
+
+# Build rule for target.
+IC_TEST_autogen: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 IC_TEST_autogen
+.PHONY : IC_TEST_autogen
+
+# fast build rule for target.
+IC_TEST_autogen/fast:
+	$(MAKE) -f CMakeFiles/IC_TEST_autogen.dir/build.make CMakeFiles/IC_TEST_autogen.dir/build
+.PHONY : IC_TEST_autogen/fast
+
+Gauge.o: Gauge.cpp.o
+
+.PHONY : Gauge.o
+
+# target to build an object file
+Gauge.cpp.o:
+	$(MAKE) -f CMakeFiles/IC_TEST.dir/build.make CMakeFiles/IC_TEST.dir/Gauge.cpp.o
+.PHONY : Gauge.cpp.o
+
+Gauge.i: Gauge.cpp.i
+
+.PHONY : Gauge.i
+
+# target to preprocess a source file
+Gauge.cpp.i:
+	$(MAKE) -f CMakeFiles/IC_TEST.dir/build.make CMakeFiles/IC_TEST.dir/Gauge.cpp.i
+.PHONY : Gauge.cpp.i
+
+Gauge.s: Gauge.cpp.s
+
+.PHONY : Gauge.s
+
+# target to generate assembly for a file
+Gauge.cpp.s:
+	$(MAKE) -f CMakeFiles/IC_TEST.dir/build.make CMakeFiles/IC_TEST.dir/Gauge.cpp.s
+.PHONY : Gauge.cpp.s
+
+IC_TEST_autogen/EWIEGA46WW/qrc_qml.o: IC_TEST_autogen/EWIEGA46WW/qrc_qml.cpp.o
+
+.PHONY : IC_TEST_autogen/EWIEGA46WW/qrc_qml.o
+
+# target to build an object file
+IC_TEST_autogen/EWIEGA46WW/qrc_qml.cpp.o:
+	$(MAKE) -f CMakeFiles/IC_TEST.dir/build.make CMakeFiles/IC_TEST.dir/IC_TEST_autogen/EWIEGA46WW/qrc_qml.cpp.o
+.PHONY : IC_TEST_autogen/EWIEGA46WW/qrc_qml.cpp.o
+
+IC_TEST_autogen/EWIEGA46WW/qrc_qml.i: IC_TEST_autogen/EWIEGA46WW/qrc_qml.cpp.i
+
+.PHONY : IC_TEST_autogen/EWIEGA46WW/qrc_qml.i
+
+# target to preprocess a source file
+IC_TEST_autogen/EWIEGA46WW/qrc_qml.cpp.i:
+	$(MAKE) -f CMakeFiles/IC_TEST.dir/build.make CMakeFiles/IC_TEST.dir/IC_TEST_autogen/EWIEGA46WW/qrc_qml.cpp.i
+.PHONY : IC_TEST_autogen/EWIEGA46WW/qrc_qml.cpp.i
+
+IC_TEST_autogen/EWIEGA46WW/qrc_qml.s: IC_TEST_autogen/EWIEGA46WW/qrc_qml.cpp.s
+
+.PHONY : IC_TEST_autogen/EWIEGA46WW/qrc_qml.s
+
+# target to generate assembly for a file
+IC_TEST_autogen/EWIEGA46WW/qrc_qml.cpp.s:
+	$(MAKE) -f CMakeFiles/IC_TEST.dir/build.make CMakeFiles/IC_TEST.dir/IC_TEST_autogen/EWIEGA46WW/qrc_qml.cpp.s
+.PHONY : IC_TEST_autogen/EWIEGA46WW/qrc_qml.cpp.s
+
+IC_TEST_autogen/mocs_compilation.o: IC_TEST_autogen/mocs_compilation.cpp.o
+
+.PHONY : IC_TEST_autogen/mocs_compilation.o
+
+# target to build an object file
+IC_TEST_autogen/mocs_compilation.cpp.o:
+	$(MAKE) -f CMakeFiles/IC_TEST.dir/build.make CMakeFiles/IC_TEST.dir/IC_TEST_autogen/mocs_compilation.cpp.o
+.PHONY : IC_TEST_autogen/mocs_compilation.cpp.o
+
+IC_TEST_autogen/mocs_compilation.i: IC_TEST_autogen/mocs_compilation.cpp.i
+
+.PHONY : IC_TEST_autogen/mocs_compilation.i
+
+# target to preprocess a source file
+IC_TEST_autogen/mocs_compilation.cpp.i:
+	$(MAKE) -f CMakeFiles/IC_TEST.dir/build.make CMakeFiles/IC_TEST.dir/IC_TEST_autogen/mocs_compilation.cpp.i
+.PHONY : IC_TEST_autogen/mocs_compilation.cpp.i
+
+IC_TEST_autogen/mocs_compilation.s: IC_TEST_autogen/mocs_compilation.cpp.s
+
+.PHONY : IC_TEST_autogen/mocs_compilation.s
+
+# target to generate assembly for a file
+IC_TEST_autogen/mocs_compilation.cpp.s:
+	$(MAKE) -f CMakeFiles/IC_TEST.dir/build.make CMakeFiles/IC_TEST.dir/IC_TEST_autogen/mocs_compilation.cpp.s
+.PHONY : IC_TEST_autogen/mocs_compilation.cpp.s
+
+get_battery.o: get_battery.cpp.o
+
+.PHONY : get_battery.o
+
+# target to build an object file
+get_battery.cpp.o:
+	$(MAKE) -f CMakeFiles/IC_TEST.dir/build.make CMakeFiles/IC_TEST.dir/get_battery.cpp.o
+.PHONY : get_battery.cpp.o
+
+get_battery.i: get_battery.cpp.i
+
+.PHONY : get_battery.i
+
+# target to preprocess a source file
+get_battery.cpp.i:
+	$(MAKE) -f CMakeFiles/IC_TEST.dir/build.make CMakeFiles/IC_TEST.dir/get_battery.cpp.i
+.PHONY : get_battery.cpp.i
+
+get_battery.s: get_battery.cpp.s
+
+.PHONY : get_battery.s
+
+# target to generate assembly for a file
+get_battery.cpp.s:
+	$(MAKE) -f CMakeFiles/IC_TEST.dir/build.make CMakeFiles/IC_TEST.dir/get_battery.cpp.s
+.PHONY : get_battery.cpp.s
+
 main.o: main.cpp.o
 
 .PHONY : main.o
@@ -150,6 +271,33 @@ main.cpp.s:
 	$(MAKE) -f CMakeFiles/IC_TEST.dir/build.make CMakeFiles/IC_TEST.dir/main.cpp.s
 .PHONY : main.cpp.s
 
+receiver.o: receiver.cpp.o
+
+.PHONY : receiver.o
+
+# target to build an object file
+receiver.cpp.o:
+	$(MAKE) -f CMakeFiles/IC_TEST.dir/build.make CMakeFiles/IC_TEST.dir/receiver.cpp.o
+.PHONY : receiver.cpp.o
+
+receiver.i: receiver.cpp.i
+
+.PHONY : receiver.i
+
+# target to preprocess a source file
+receiver.cpp.i:
+	$(MAKE) -f CMakeFiles/IC_TEST.dir/build.make CMakeFiles/IC_TEST.dir/receiver.cpp.i
+.PHONY : receiver.cpp.i
+
+receiver.s: receiver.cpp.s
+
+.PHONY : receiver.s
+
+# target to generate assembly for a file
+receiver.cpp.s:
+	$(MAKE) -f CMakeFiles/IC_TEST.dir/build.make CMakeFiles/IC_TEST.dir/receiver.cpp.s
+.PHONY : receiver.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -159,9 +307,25 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... IC_TEST"
+	@echo "... IC_TEST_autogen"
+	@echo "... Gauge.o"
+	@echo "... Gauge.i"
+	@echo "... Gauge.s"
+	@echo "... IC_TEST_autogen/EWIEGA46WW/qrc_qml.o"
+	@echo "... IC_TEST_autogen/EWIEGA46WW/qrc_qml.i"
+	@echo "... IC_TEST_autogen/EWIEGA46WW/qrc_qml.s"
+	@echo "... IC_TEST_autogen/mocs_compilation.o"
+	@echo "... IC_TEST_autogen/mocs_compilation.i"
+	@echo "... IC_TEST_autogen/mocs_compilation.s"
+	@echo "... get_battery.o"
+	@echo "... get_battery.i"
+	@echo "... get_battery.s"
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
+	@echo "... receiver.o"
+	@echo "... receiver.i"
+	@echo "... receiver.s"
 .PHONY : help
 
 
