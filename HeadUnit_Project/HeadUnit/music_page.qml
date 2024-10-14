@@ -12,9 +12,9 @@ Window{
     Connections{
         target: musicPlayer
         onNextSongInfo:{
-            console.log("Title: " + title);
-            console.log("Artist: " + artist);
-            console.log("Cover Path: " + coverPath);
+//            console.log("Title: " + title);
+//            console.log("Artist: " + artist);
+//            console.log("Cover Path: " + coverPath);
             song_title.text = title;
             singer_txt.text = artist;
             album_cover.source = coverPath;
@@ -314,7 +314,7 @@ Window{
                             var singer = musicPlayer.getArtistForSong(music_f);
                             var cover_path = musicPlayer.getCoverForSong(music_f);
                             var mp3_path = musicPlayer.getPathForSong(music_f)
-                            console.log("title : " + title + " , singer : " + singer + " , cover_path : " + cover_path);
+//                            console.log("title : " + title + " , singer : " + singer + " , cover_path : " + cover_path);
                             append({
                                 title: title,
                                 singer: singer,
