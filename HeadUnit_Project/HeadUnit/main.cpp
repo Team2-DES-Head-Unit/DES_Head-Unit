@@ -1,6 +1,9 @@
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
+#include <QCommandLineParser>
 #include <QQmlContext>
+#include <QWindow>
+#include <QProcess>
 
 #include "basic_func.h"
 #include "weather_provider.h"
@@ -15,12 +18,40 @@ int main(int argc, char *argv[])
     QQmlApplicationEngine engine;
 
     // register TimeProvider class(set on basic_func) to use on Qml
-//    qmlRegisterType<TimeProvider>("timeprovider", 1, 0, "TimeProvider");
+    //    qmlRegisterType<TimeProvider>("timeprovider", 1, 0, "TimeProvider");
 
     TimeProvider timeProvider;
     SpeedProvider speedProvider;
     WeatherProvider weatherProvider;
     MusicPlayer musicPlayer;
+
+    QCommandLineParser parser;
+    parser.setApplicationDescription("Qt Wayland Application");
+    parser.addHelpOption(); // --help 옵션 추가
+    parser.addOption({{"fullscreen"}, "Enable fullscreen mode."}); // --fullscreen 옵션 추가
+    parser.addOption({{"display"}, "Set display output.", "display"}); // --display 옵션 추가
+    parser.process(app);
+
+    QWindow mainWindow;
+
+    if (parser.isSet("fullscreen")) {
+        qDebug() << "Fullscreen mode enabled.";
+        mainWindow.showFullScreen();
+    }else{
+        mainWindow.show();
+    }
+
+    // --display 옵션 처리
+    if (parser.isSet("display")) {
+        QString displayValue = parser.value("display");
+        
+        if (displayValue == 'dashboard'){
+            mainWindow.setPosition(1000, 0);
+        }
+        else if (displayValue == 'infortainment'){
+            mainWindow.setPosition(0,0);
+        }
+    }
 
     engine.rootContext()->setContextProperty("timeProvider", &timeProvider);
     engine.rootContext()->setContextProperty("speedProvider", &speedProvider);
