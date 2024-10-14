@@ -75,7 +75,7 @@ public:
         QStringList currentList;
         foreach (const QString &music, playList) {
             if(music != songTitle){
-                qDebug() << music;
+//                qDebug() << music;
                 currentList.append(music);
             }
         } return currentList;
