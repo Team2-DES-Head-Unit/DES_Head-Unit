@@ -1,0 +1,1 @@
+/usr/bin/c++ CMakeFiles/HelloWorldService.dir/HelloWorldService.cpp.o -o HelloWorldService  -Wl,-rpath,/usr/local/lib /usr/local/lib/libvsomeip3.so -lpthread 
