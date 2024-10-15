@@ -8,6 +8,7 @@ ApplicationWindow {
     id: bg_window
     visible: true
     width: 1280
+    visibility: Window.FullScreen
     height:400
     color: "#28282c"
     title: qsTr("Instrument Cluster")
