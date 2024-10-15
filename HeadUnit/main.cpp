@@ -28,8 +28,8 @@ int main(int argc, char *argv[])
     engine.rootContext()->setContextProperty("weatherProvider", &weatherProvider);
     engine.rootContext()->setContextProperty("musicPlayer", &musicPlayer);
 
-//    BluetoothManager btManager;
-//    engine.rootContext()->setContextProperty("btManager", &btManager);
+    BluetoothManager btManager;
+    engine.rootContext()->setContextProperty("btManager", &btManager);
 
 //    // music test
 //    QString songtitle = "Hanumankind-Big_Dawgs.mp3";

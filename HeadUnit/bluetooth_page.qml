@@ -63,23 +63,23 @@ Window{
                 text: qsTr("On")
                 width: 50
                 height: 25
-//                onClicked: {
-//                    btManager.startDiscovery();
-//                    isSearching = true;  // 검색 상태 시작
-//                    isStopped = false;   // 검색 중지 상태 해제
-//                    deviceModel.clear(); // 장치 목록 초기화
-//                }
+                onClicked: {
+                    btManager.startDiscovery();
+                    isSearching = true;  // 검색 상태 시작
+                    isStopped = false;   // 검색 중지 상태 해제
+                    deviceModel.clear(); // 장치 목록 초기화
+                }
             }
             Button {
                 id: bdbutton_off
                 text: qsTr("Off")
                 width: 50
                 height: 25
-//                onClicked: {
-//                    btManager.stopDiscovery();
-//                    isSearching = false;  // 검색 중지
-//                    isStopped = true;     // 검색 중지 상태 설정
-//                }
+                onClicked: {
+                    btManager.stopDiscovery();
+                    isSearching = false;  // 검색 중지
+                    isStopped = true;     // 검색 중지 상태 설정
+                }
             }
 
         }
@@ -168,18 +168,18 @@ Window{
                 policy: ScrollBar.AsNeeded
             }
         }
-//        Connections {
-//            target: btManager
+        Connections {
+            target: btManager
 
-//            onDeviceDiscovered: function(deviceName, deviceType) {
-//                deviceModel.append({"deviceName": deviceName, "deciveType": deviceType});
-//            }
+            onDeviceDiscovered: function(deviceName, deviceType) {
+                deviceModel.append({"deviceName": deviceName, "deciveType": deviceType});
+            }
 
-//            onDiscoveryFinished: {
-//                console.log("Discovery finished.");
-//                isSearching = false;  // 검색 상태 중지
-//            }
-//        }
+            onDiscoveryFinished: {
+                console.log("Discovery finished.");
+                isSearching = false;  // 검색 상태 중지
+            }
+        }
     }
 
 }
