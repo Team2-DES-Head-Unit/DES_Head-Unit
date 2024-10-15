@@ -9,7 +9,7 @@ ApplicationWindow {
     visible: true
     width: 1280
     height:400
-    visibility:Window.Fullscreen
+    visibility: Window.FullScreen
     color: "#28282c"
     title: qsTr("Instrument Cluster")
     flags: Qt.FramelessWindowHint
