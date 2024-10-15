@@ -83,41 +83,52 @@ Window{
             }
 
         }
-        ListView {
-            id: bd_list
-            width: parent.width - 70
-            height: 250
-            anchors.left: parent.left
-            anchors.leftMargin: 55
-            model: ListModel {
-                id: deviceModel
-            }
-
-            delegate: Text {
-                id: bd_txt
-                text: model.deviceName
-            }
-
-            // 검색 상태에 따라 표시할 텍스트 관리
-            Component.onCompleted: {
-                deviceModel.clear();  // 장치 목록 초기화
-            }
-
-            // 표시할 내용 제어 (검색 상태 및 장치 목록에 따라)
-            Text {
-                id: n_o
-                anchors.centerIn: parent
-                color: "white"
-                font.pixelSize: 25
-                font.bold: true
-                text: {
-                    if (isStopped) {
-                        return "Off";  // 검색이 중지되면 "Off" 표시
-                    } else if (isSearching && deviceModel.count === 0) {
-                        return "None";  // 검색 중, 장치 없음
-                    }
+        // 스크롤 가능한 ListView
+        Flickable {
+            id: flick
+            width: parent.width
+            height: 300
+            contentHeight: listView.contentHeight
+            ListView {
+                id: bd_list
+                width: parent.width - 70
+                height: 250
+                anchors.left: parent.left
+                anchors.leftMargin: 55
+                model: ListModel {
+                    id: deviceModel
                 }
-                visible: deviceModel.count === 0  // 장치가 없을 때만 표시
+
+                delegate: Text {
+                    id: bd_txt
+                    text: model.deviceName
+                }
+
+                // 검색 상태에 따라 표시할 텍스트 관리
+                Component.onCompleted: {
+                    deviceModel.clear();  // 장치 목록 초기화
+                }
+
+                // 표시할 내용 제어 (검색 상태 및 장치 목록에 따라)
+                Text {
+                    id: n_o
+                    anchors.centerIn: parent
+                    color: "white"
+                    font.pixelSize: 25
+                    font.bold: true
+                    text: {
+                        if (isStopped) {
+                            return "Off";  // 검색이 중지되면 "Off" 표시
+                        } else if (isSearching && deviceModel.count === 0) {
+                            return "None";  // 검색 중, 장치 없음
+                        }
+                    }
+                    visible: deviceModel.count === 0  // 장치가 없을 때만 표시
+                }
+            }
+            // 스크롤바 추가
+            ScrollBar.vertical: ScrollBar {
+                policy: ScrollBar.AsNeeded
             }
         }
 //        Connections {
