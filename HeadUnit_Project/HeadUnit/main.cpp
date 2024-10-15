@@ -1,9 +1,9 @@
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
-#include <QCommandLineParser>
+//#include <QCommandLineParser>
 #include <QQmlContext>
-#include <QWindow>
-#include <QProcess>
+//#include <QWindow>
+//#include <QProcess>
 
 #include "basic_func.h"
 #include "weather_provider.h"
@@ -25,33 +25,33 @@ int main(int argc, char *argv[])
     WeatherProvider weatherProvider;
     MusicPlayer musicPlayer;
 
-    QCommandLineParser parser;
-    parser.setApplicationDescription("Qt Wayland Application");
-    parser.addHelpOption(); // --help 옵션 추가
-    parser.addOption({{"fullscreen"}, "Enable fullscreen mode."}); // --fullscreen 옵션 추가
-    parser.addOption({{"display"}, "Set display output.", "display"}); // --display 옵션 추가
-    parser.process(app);
+//    QCommandLineParser parser;
+//    parser.setApplicationDescription("Qt Wayland Application");
+//    parser.addHelpOption(); // --help option
+//    parser.addOption({{"fullscreen"}, "Enable fullscreen mode."}); // --fullscreen option
+//    parser.addOption({{"display"}, "Set display output.", "display"}); // --display option
+//    parser.process(app);
 
-    QWindow mainWindow;
+//    QWindow mainWindow;
 
-    if (parser.isSet("fullscreen")) {
-        qDebug() << "Fullscreen mode enabled.";
-        mainWindow.showFullScreen();
-    }else{
-        mainWindow.show();
-    }
+//    if (parser.isSet("fullscreen")) {
+//        qDebug() << "Fullscreen mode enabled.";
+//        mainWindow.showFullScreen();
+//    }else{
+//        mainWindow.show();
+//    }
 
-    // --display 옵션 처리
-    if (parser.isSet("display")) {
-        QString displayValue = parser.value("display");
+//    // --display option
+//    if (parser.isSet("display")) {
+//        QString displayValue = parser.value("display");
         
-        if (displayValue == 'dashboard'){
-            mainWindow.setPosition(1000, 0);
-        }
-        else if (displayValue == 'infortainment'){
-            mainWindow.setPosition(0,0);
-        }
-    }
+//        if (displayValue == 'dashboard'){
+//            mainWindow.setPosition(1000, 0);
+//        }
+//        else if (displayValue == 'infortainment'){
+//            mainWindow.setPosition(0,0);
+//        }
+//    }
 
     engine.rootContext()->setContextProperty("timeProvider", &timeProvider);
     engine.rootContext()->setContextProperty("speedProvider", &speedProvider);

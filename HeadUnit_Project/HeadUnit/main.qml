@@ -10,6 +10,8 @@ Window {
     height: 600
     color: "#1E1E1E"
     title: qsTr("Head Unit")
+    flags: Qt.FramelessWindowHint
+    visibility: Window.FullScreen
     Connections{
         target: musicPlayer
         onNextSongInfo:{
