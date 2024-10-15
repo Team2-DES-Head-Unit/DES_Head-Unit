@@ -13,8 +13,16 @@ QString TimeProvider::currentTime() const{
     return locale.toString(dateTime, "hh:mm AP");
 }
 
+QString TimeProvider::currentDate() const{
+    QTimeZone timeZone("Europe/Berlin");
+    QDateTime dateTime = QDateTime::currentDateTime().toTimeZone(timeZone);
+    QLocale locale(QLocale::English, QLocale::UnitedStates);
+    return locale.toString(dateTime, "d MMM - yyyy");
+}
+
 void TimeProvider::timerEvent(QTimerEvent *){
     emit timeChanged();
+    emit dateChanged();
 }
 
 /*//////////////////////////////////////////////////////////////////////////////////////*/

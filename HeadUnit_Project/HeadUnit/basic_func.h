@@ -10,14 +10,17 @@
 class TimeProvider : public QObject{
     Q_OBJECT
     Q_PROPERTY(QString currentTime READ currentTime NOTIFY timeChanged)
+    Q_PROPERTY(QString currentDate READ currentDate NOTIFY dateChanged)
 
 public:
     explicit TimeProvider(QObject *parent = nullptr);
 
     QString currentTime() const;
+    QString currentDate() const;
 
 signals:
     void timeChanged();
+    void dateChanged();
 
 protected:
     void timerEvent(QTimerEvent *event) override;

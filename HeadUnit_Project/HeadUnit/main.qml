@@ -494,10 +494,15 @@ Window {
             id: day
             x: 25
             y: 51
-            text: "10 Oct - 2024" // need to fix - add today's date
+            text: timeProvider.currentDate // need to fix - add today's date
             font.pixelSize: 15
             color: "#87888C"
         }
+        Connections { // when timeChanged occurs, update time
+            target: timeProvider
+            onTimeChanged: day.text = timeProvider.currentDate
+        }
+
         Text {
             id: time_1
             x: 12

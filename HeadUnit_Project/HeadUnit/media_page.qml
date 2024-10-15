@@ -281,7 +281,7 @@ Window{
 
                 Row{
                     id: video_controls_bar
-                    width: 434
+                    width: 500
                     height: 40
                     spacing: 15
                     anchors.centerIn: parent
@@ -290,6 +290,8 @@ Window{
                         source: video_player.playbackState === MediaPlayer.PlayingState ? "HU_Assets/Components/Video/stop_icon.png" : "HU_Assets/Components/Video/play_icon.png"
                         width: 30
                         height: 30
+                        anchors.top: parent.top
+                        anchors.topMargin: 1
 //                        anchors{
 //                            top: video_controls_bar.top
 //                        }
@@ -334,20 +336,78 @@ Window{
                         }
                     }
 
-                    Slider {
-                        id: volume_slider
-                        width: 100
-                        from: 0
-                        to: 1
-                        value: video_player.volume
-                        onValueChanged: video_player.volume = value
-                        anchors.horizontalCenter: video_controls.horizontalCenter
+                    Rectangle{
+                        color: "transparent"
+                        width: 180
+                        height: 30
+                    }
+
+                    Rectangle{
+                        id: sound_control
+                        width: 130
+                        height: 30
+                        color: "transparent"
+
+                        Image {
+                            source: "HU_Assets/Components/Video/sound_icon.png"
+                            width: 30
+                            height: 30
+                            anchors{
+                                left: sound_control.left
+                            }
+                            MouseArea{
+                                anchors.fill: parent
+                                onClicked: {
+                                    volume_slider.value = 0
+                                }
+                            }
+                        }
+
+                        Slider {
+                            id: volume_slider
+                            width: 100
+                            value: video_player.volume
+                            onValueChanged: video_player.volume = value
+                            anchors.top: parent.top
+                            anchors.topMargin: -2
+                            anchors.right: sound_control.right
+
+                            background: Rectangle {
+                                x: volume_slider.leftPadding
+                                y: volume_slider.topPadding + volume_slider.availableHeight / 2 - height / 2
+                                implicitWidth: 200
+                                implicitHeight: 4
+                                width: volume_slider.availableWidth
+                                height: implicitHeight
+                                radius: 2
+                                color: "#bdbebf"
+
+                                Rectangle {
+                                    width: volume_slider.visualPosition * parent.width
+                                    height: parent.height
+                                    color: "#ffffff"
+                                    radius: 2
+                                }
+                            }
+
+                            handle: Rectangle {
+                                x: volume_slider.leftPadding + volume_slider.visualPosition * (volume_slider.availableWidth - width)
+                                y: volume_slider.topPadding + volume_slider.availableHeight / 2 - height / 2
+                                implicitWidth: 20
+                                implicitHeight: 20
+                                radius: 13
+                                color: volume_slider.pressed ? "#f0f0f0" : "#f6f6f6"
+                                border.color: "#bdbebf"
+                            }
+                        }
                     }
 
                     Image {
                         source: "HU_Assets/Components/Video/screen_off_icon.png"
                         width: 30
                         height: 30
+                        anchors.top: parent.top
+                        anchors.topMargin: -2
                         MouseArea {
                             anchors.fill: parent
                             onClicked: {

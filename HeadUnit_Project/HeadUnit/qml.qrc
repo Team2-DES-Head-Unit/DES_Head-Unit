@@ -57,5 +57,6 @@
         <file>HU_Assets/Components/Video/skip_next_icon.png</file>
         <file>HU_Assets/Components/Video/skip_prev_icon.png</file>
         <file>HU_Assets/Components/Video/stop_icon.png</file>
+        <file>HU_Assets/Components/Video/sound_icon.png</file>
     </qresource>
 </RCC>
