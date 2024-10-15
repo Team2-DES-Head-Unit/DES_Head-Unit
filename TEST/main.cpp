@@ -48,29 +48,32 @@ int main(int argc, char *argv[])
     }, Qt::QueuedConnection);
     engine.load(url);
 
+    // QScreen을 이용한 모니터 선택
     QObject *object = engine.rootObjects().isEmpty() ? nullptr : engine.rootObjects().first();
     if (!object) {
         qCritical() << "No root objects found!";
         return -1;
     }
 
-    // QScreen을 이용한 모니터 선택
+    QWindow *window = qobject_cast<QWindow*>(object);
+    if (!window) {
+        qCritical() << "Object is not a QWindow instance!";
+        return -1;
+    }
+
     QList<QScreen*> screens = QGuiApplication::screens();
     if (screens.size() > 1) {
         qDebug() << "Second screen detected: " << screens.at(1)->name();
-        QWindow *window = qobject_cast<QWindow*>(object);
-        if (window) {
-            window->setScreen(screens.at(1));  // 두 번째 모니터 설정
-            window->showFullScreen();          // 전체 화면 모드로 실행
-        }
+        window->setScreen(screens.at(1));  // 두 번째 모니터 설정
+        window->showFullScreen();          // 전체 화면 모드로 실행
     } else {
         qDebug() << "Only one screen detected.";
-        QWindow *window = qobject_cast<QWindow*>(object);
-        if (window) {
-            window->setScreen(screens.at(0));  // 첫 번째 모니터 설정
-            window->showFullScreen();          // 전체 화면 모드로 실행
-        }
+        window->setScreen(screens.at(0));  // 첫 번째 모니터 설정
+        window->showFullScreen();          // 전체 화면 모드로 실행
     }
+
+    // 모니터 정보 출력 (디버깅 용도)
+    qDebug() << "Using screen:" << window->screen()->name() << "with resolution" << window->screen()->geometry();
 
     return app.exec();
 }
