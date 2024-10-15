@@ -52,6 +52,10 @@
         
         <!-- media page -->
         <file>HU_Assets/Icons/library.png</file>
-        <file>HU_Assets/Components/Video/screen_off.png</file>
+        <file>HU_Assets/Components/Video/play_icon.png</file>
+        <file>HU_Assets/Components/Video/screen_off_icon.png</file>
+        <file>HU_Assets/Components/Video/skip_next_icon.png</file>
+        <file>HU_Assets/Components/Video/skip_prev_icon.png</file>
+        <file>HU_Assets/Components/Video/stop_icon.png</file>
     </qresource>
 </RCC>
