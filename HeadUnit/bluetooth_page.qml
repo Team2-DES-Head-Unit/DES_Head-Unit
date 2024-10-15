@@ -63,23 +63,23 @@ Window{
                 text: qsTr("On")
                 width: 50
                 height: 25
-                onClicked: {
-                    btManager.startDiscovery();
-                    isSearching = true;  // 검색 상태 시작
-                    isStopped = false;   // 검색 중지 상태 해제
-                    deviceModel.clear(); // 장치 목록 초기화
-                }
+//                onClicked: {
+//                    btManager.startDiscovery();
+//                    isSearching = true;  // 검색 상태 시작
+//                    isStopped = false;   // 검색 중지 상태 해제
+//                    deviceModel.clear(); // 장치 목록 초기화
+//                }
             }
             Button {
                 id: bdbutton_off
                 text: qsTr("Off")
                 width: 50
                 height: 25
-                onClicked: {
-                    btManager.stopDiscovery();
-                    isSearching = false;  // 검색 중지
-                    isStopped = true;     // 검색 중지 상태 설정
-                }
+//                onClicked: {
+//                    btManager.stopDiscovery();
+//                    isSearching = false;  // 검색 중지
+//                    isStopped = true;     // 검색 중지 상태 설정
+//                }
             }
 
         }
@@ -87,8 +87,8 @@ Window{
         Flickable {
             id: flick
             width: parent.width
-            height: 300
-            contentHeight: listView.contentHeight
+            height: 250
+            contentHeight: bd_list.contentHeight
             ListView {
                 id: bd_list
                 width: parent.width - 70
@@ -98,12 +98,49 @@ Window{
                 model: ListModel {
                     id: deviceModel
                 }
+                Row {
+                    spacing: 200
+                    anchors.fill: parent
 
-                delegate: Text {
-                    id: bd_txt
-                    text: model.deviceName
+                    Text {
+                        text: "Name"
+                        font.bold: true
+                        color: "white"
+                    }
+
+                    Text {
+                        text: "Type"
+                        font.bold: true
+                        color: "white"
+                    }
                 }
 
+                delegate: Item {
+                    width: listView.width
+                    height: 20  // 각 아이템의 높이 설정
+
+                    Row {
+                        spacing: 30
+                        anchors.fill: parent
+
+                        Text {
+                            text: model.deviceName
+                            font.bold: true
+                            color: "white"  // 볼드체 흰색 글씨
+                        }
+
+                        Text {
+                            text: "/"
+                            color: "white"
+                        }
+
+                        Text {
+                            text: model.deviceType  // 추가된 deviceType 표시
+                            font.bold: true
+                            color: "white"  // 일반 흰색 글씨
+                        }
+                    }
+                }
                 // 검색 상태에 따라 표시할 텍스트 관리
                 Component.onCompleted: {
                     deviceModel.clear();  // 장치 목록 초기화
@@ -131,18 +168,18 @@ Window{
                 policy: ScrollBar.AsNeeded
             }
         }
-        Connections {
-            target: btManager
+//        Connections {
+//            target: btManager
 
-            onDeviceDiscovered: {
-                deviceModel.append({"deviceName": deviceName});
-            }
+//            onDeviceDiscovered: function(deviceName, deviceType) {
+//                deviceModel.append({"deviceName": deviceName, "deciveType": deviceType});
+//            }
 
-            onDiscoveryFinished: {
-                console.log("Discovery finished.");
-                isSearching = false;  // 검색 상태 중지
-            }
-        }
+//            onDiscoveryFinished: {
+//                console.log("Discovery finished.");
+//                isSearching = false;  // 검색 상태 중지
+//            }
+//        }
     }
 
 }
