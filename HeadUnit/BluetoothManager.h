@@ -3,6 +3,7 @@
 #include <QBluetoothLocalDevice>
 #include <QBluetoothSocket>
 #include <QBluetoothDeviceInfo>
+#include <QList>  // QList 추가
 
 class BluetoothManager : public QObject
 {
@@ -12,8 +13,10 @@ public:
     ~BluetoothManager();
 
     Q_INVOKABLE void startDiscovery();
-    Q_INVOKABLE void stopDiscovery();  // 중지 메서드 추가
-    void connectToDevice(const QBluetoothDeviceInfo &deviceInfo);
+    Q_INVOKABLE void stopDiscovery();
+
+    // QML에서 장치 이름으로 연결할 수 있는 메서드 추가
+    Q_INVOKABLE void connectToDevice(const QString &deviceName);
 
 signals:
     void deviceDiscovered(const QString &deviceName, const QString &deviceType);
@@ -26,9 +29,12 @@ private slots:
     void connectedHandler();
 
 private:
-    QString getDeviceType(const QBluetoothDeviceInfo &deviceInfo) const;  // deviceType 가져오는 메서드 추가
+    QString getDeviceType(const QBluetoothDeviceInfo &deviceInfo) const;
 
     QBluetoothDeviceDiscoveryAgent *discoveryAgent;
     QBluetoothLocalDevice *localDevice;
     QBluetoothSocket *socket;
+
+    // 발견된 장치를 저장하는 리스트 추가
+    QList<QBluetoothDeviceInfo> discoveredDevices;
 };

@@ -30,20 +30,30 @@ BluetoothManager::~BluetoothManager()
 void BluetoothManager::startDiscovery()
 {
     if (localDevice->isValid()) {
+        discoveredDevices.clear(); // 새로운 검색 시작 시 목록 초기화
         discoveryAgent->start();
     }
 }
 
-void BluetoothManager::stopDiscovery()  // 장치 검색 중지 메서드
+void BluetoothManager::stopDiscovery()
 {
     if (discoveryAgent->isActive()) {
         discoveryAgent->stop();
     }
 }
 
-void BluetoothManager::connectToDevice(const QBluetoothDeviceInfo &deviceInfo)
+// 장치 이름으로 연결하는 메서드 추가
+void BluetoothManager::connectToDevice(const QString &deviceName)
 {
-    socket->connectToService(deviceInfo.address(), QBluetoothUuid(QBluetoothUuid::SerialPort), QIODevice::ReadWrite);
+    // 발견된 장치 중 이름이 일치하는 장치를 찾음
+    for (const QBluetoothDeviceInfo &deviceInfo : discoveredDevices) {
+        if (deviceInfo.name() == deviceName) {
+            qDebug() << "Connecting to device:" << deviceName;
+            socket->connectToService(deviceInfo.address(), QBluetoothUuid(QBluetoothUuid::SerialPort), QIODevice::ReadWrite);
+            return;
+        }
+    }
+    qDebug() << "Device not found:" << deviceName;
 }
 
 void BluetoothManager::deviceDiscoveredHandler(const QBluetoothDeviceInfo &deviceInfo)
@@ -55,7 +65,12 @@ void BluetoothManager::deviceDiscoveredHandler(const QBluetoothDeviceInfo &devic
     if (pairingStatus == QBluetoothLocalDevice::Unpaired) {
         QString deviceName = deviceInfo.name();
         QString deviceType = getDeviceType(deviceInfo);
-        emit deviceDiscovered(deviceName, deviceType);  // 페어링되지 않은 장치만 emit
+
+        // 발견된 장치 목록에 추가
+        discoveredDevices.append(deviceInfo);
+
+        // QML로 발견된 장치 전송
+        emit deviceDiscovered(deviceName, deviceType);
     }
 }
 

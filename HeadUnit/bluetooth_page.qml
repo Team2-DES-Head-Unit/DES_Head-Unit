@@ -125,7 +125,6 @@ Window{
                     id: deviceModel
                 }
 
-
                 // 각 아이템의 delegate 설정
                 delegate: Item {
                     width: bd_list.width
@@ -151,6 +150,20 @@ Window{
                             font.bold: true
                             color: "white"  // 일반 흰색 글씨
                         }
+                        MouseArea {
+                            anchors.fill: parent
+                            onClicked: {
+                                // 선택된 장치 이름을 전달하여 연결 시도
+                                btManager.connectToDevice(model.deviceName);
+                            }
+                        }
+                    }
+                }
+
+                // 스크롤 동작을 최상단에 고정
+                onContentYChanged: {
+                    if (contentY < 0) {
+                        contentY = 0;  // 스크롤을 최상단으로 고정
                     }
                 }
 
@@ -180,11 +193,13 @@ Window{
                     visible: deviceModel.count === 0  // 장치가 없을 때만 표시
                 }
             }
+
             // 스크롤바 추가
             ScrollBar.vertical: ScrollBar {
                 policy: ScrollBar.AsNeeded
             }
         }
+
         Connections {
             target: btManager
 
