@@ -10,6 +10,9 @@ Window {
     height: 600
     color: "#1E1E1E"
     title: qsTr("Head Unit")
+
+    property bool isBluetoothConnected: false
+
     Connections{
         target: musicPlayer
         onNextSongInfo:{
@@ -988,6 +991,26 @@ Window {
             mediaQmlLoader.item.visible = false;
         }
     }
+    // 블루투스 연결 시 표시되는 이미지
+    Image {
+        id: bluetooth_connected_image
+        x: 843
+        y: 10
+        source: "/HU_Assets/Icons/charm_bluetooth.png"  // 연결 시 표시할 이미지 경로
+        fillMode: Image.PreserveAspectFit
+        visible: isBluetoothConnected  // 블루투스가 연결되면만 보이게 설정
+    }
+    // BluetoothManager와 연결
+    Connections {
+        target: btManager
+        // BluetoothManager에서 장치 연결 시 신호를 받음
+        onConnectedToDevice: {
+            isBluetoothConnected = true;  // 블루투스가 연결되면 이미지를 표시
+        }
+        onDisconnectedFromDevice: {
+            isBluetoothConnected = false;  // 블루투스가 연결 해제되면 이미지를 숨김
+        }
+    }
 
 }
 
@@ -996,3 +1019,4 @@ Designer {
     D{i:66;invisible:true}
 }
 ##^##*/
+
