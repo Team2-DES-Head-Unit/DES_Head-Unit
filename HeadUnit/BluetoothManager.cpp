@@ -48,10 +48,15 @@ void BluetoothManager::connectToDevice(const QBluetoothDeviceInfo &deviceInfo)
 
 void BluetoothManager::deviceDiscoveredHandler(const QBluetoothDeviceInfo &deviceInfo)
 {
-    // 장치 발견 시 디바이스 이름과 타입을 QML로 전송
-    QString deviceName = deviceInfo.name();
-    QString deviceType = getDeviceType(deviceInfo);  // 장치 종류 가져오기
-    emit deviceDiscovered(deviceName, deviceType);    // deviceType 포함하여 emit
+    // 페어링 상태 확인
+    QBluetoothLocalDevice::Pairing pairingStatus = localDevice->pairingStatus(deviceInfo.address());
+
+    // 페어링되지 않은 장치만 QML로 전송
+    if (pairingStatus == QBluetoothLocalDevice::Unpaired) {
+        QString deviceName = deviceInfo.name();
+        QString deviceType = getDeviceType(deviceInfo);
+        emit deviceDiscovered(deviceName, deviceType);  // 페어링되지 않은 장치만 emit
+    }
 }
 
 QString BluetoothManager::getDeviceType(const QBluetoothDeviceInfo &deviceInfo) const

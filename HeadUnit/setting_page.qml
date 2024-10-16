@@ -161,8 +161,8 @@ Window{
                     onClicked: {
                         bluetoothQmlLoader.active = true;
                         bluetoothQmlLoader.item.visible = true;
-                        bluetoothQmlLoader.item.x = user_info.x + 661;
-                        bluetoothQmlLoader.item.y = user_info.y + 30;
+                        bluetoothQmlLoader.item.x = setting_window.x + 200;
+                        bluetoothQmlLoader.item.y = setting_window.y + 14;
                         service_selected.visible = true;
                     }
                 }
