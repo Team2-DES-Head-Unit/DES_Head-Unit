@@ -1,3 +1,0 @@
-/home/jo/onlyvsomeip/vsomeip/src/build/CMakeFiles/HelloWorldClient.dir
-/home/jo/onlyvsomeip/vsomeip/src/build/CMakeFiles/edit_cache.dir
-/home/jo/onlyvsomeip/vsomeip/src/build/CMakeFiles/rebuild_cache.dir
