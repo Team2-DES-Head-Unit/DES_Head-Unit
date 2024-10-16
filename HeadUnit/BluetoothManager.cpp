@@ -3,6 +3,7 @@
 #include <QBluetoothUuid>
 #include <QBluetoothLocalDevice>
 #include <QBluetoothSocket>
+#include <QDebug>
 
 BluetoothManager::BluetoothManager(QObject *parent) :
     QObject(parent),
@@ -55,19 +56,21 @@ void BluetoothManager::deviceDiscoveredHandler(const QBluetoothDeviceInfo &devic
 
 QString BluetoothManager::getDeviceType(const QBluetoothDeviceInfo &deviceInfo) const
 {
-    // 장치 종류를 결정하는 간단한 로직
-    switch (deviceInfo.majorDeviceClass()) {
-        case 0x00000000: // Miscellaneous
+    // 장치 종류를 결정하는 로직
+    int majorClass = deviceInfo.majorDeviceClass();
+
+    switch (majorClass) {
+        case 0: // Miscellaneous
             return "Miscellaneous";
-        case 0x00000001: // Computer
+        case 1: // Computer
             return "Computer";
-        case 0x00000002: // Phone
+        case 2: // Phone
             return "Phone";
-        case 0x00000004: // Audio
+        case 4: // Audio
             return "Audio";
-        case 0x00000005: // Peripheral
+        case 5: // Peripheral
             return "Peripheral";
-        case 0x00000006: // Wearable
+        case 6: // Wearable
             return "Wearable";
         default:
             return "Unknown"; // 알 수 없는 장치

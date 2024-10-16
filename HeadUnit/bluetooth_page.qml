@@ -79,9 +79,34 @@ Window{
                     btManager.stopDiscovery();
                     isSearching = false;  // 검색 중지
                     isStopped = true;     // 검색 중지 상태 설정
+                    deviceModel.clear(); // 장치 목록 초기화
                 }
             }
 
+        }
+
+        // 헤더 섹션
+        Row {
+            spacing: 130
+            width: bd_list.width
+            height: 30
+            anchors.horizontalCenter: parent.horizontalCenter
+
+            // Name 헤더
+            Text {
+                text: "Name"
+                font.bold: true
+                color: "white"
+                width: parent.width / 2
+            }
+
+            // Type 헤더
+            Text {
+                text: "Type"
+                font.bold: true
+                color: "white"
+                width: parent.width / 2
+            }
         }
         // 스크롤 가능한 ListView
         Flickable {
@@ -89,6 +114,7 @@ Window{
             width: parent.width
             height: 250
             contentHeight: bd_list.contentHeight
+
             ListView {
                 id: bd_list
                 width: parent.width - 70
@@ -98,26 +124,12 @@ Window{
                 model: ListModel {
                     id: deviceModel
                 }
-                Row {
-                    spacing: 200
-                    anchors.fill: parent
 
-                    Text {
-                        text: "Name"
-                        font.bold: true
-                        color: "white"
-                    }
 
-                    Text {
-                        text: "Type"
-                        font.bold: true
-                        color: "white"
-                    }
-                }
-
+                // 각 아이템의 delegate 설정
                 delegate: Item {
-                    width: listView.width
-                    height: 20  // 각 아이템의 높이 설정
+                    width: bd_list.width
+                    height: 30  // 각 아이템의 높이 설정
 
                     Row {
                         spacing: 30
@@ -141,6 +153,7 @@ Window{
                         }
                     }
                 }
+
                 // 검색 상태에 따라 표시할 텍스트 관리
                 Component.onCompleted: {
                     deviceModel.clear();  // 장치 목록 초기화
@@ -149,7 +162,9 @@ Window{
                 // 표시할 내용 제어 (검색 상태 및 장치 목록에 따라)
                 Text {
                     id: n_o
-                    anchors.centerIn: parent
+                    anchors.top: parent.top  // 상단에 배치
+                    anchors.horizontalCenter: parent.horizontalCenter  // 수평 가운데 정렬
+                    anchors.topMargin: 10  // 상단 여백 설정 (필요에 따라 조정 가능)
                     color: "white"
                     font.pixelSize: 25
                     font.bold: true
@@ -158,6 +173,8 @@ Window{
                             return "Off";  // 검색이 중지되면 "Off" 표시
                         } else if (isSearching && deviceModel.count === 0) {
                             return "None";  // 검색 중, 장치 없음
+                        } else {
+                            return ""; // 아무 값도 설정하지 않음 (빈 문자열 반환)
                         }
                     }
                     visible: deviceModel.count === 0  // 장치가 없을 때만 표시
@@ -172,7 +189,7 @@ Window{
             target: btManager
 
             onDeviceDiscovered: function(deviceName, deviceType) {
-                deviceModel.append({"deviceName": deviceName, "deciveType": deviceType});
+                deviceModel.append({"deviceName": deviceName, "deviceType": deviceType});
             }
 
             onDiscoveryFinished: {
