@@ -5,14 +5,14 @@
         <file>map_page.qml</file>
         <file>music_page.qml</file>
         <file>media_page.qml</file>
-                
+        <file>media_page_youtube.qml</file>
+        
         <file>HU_Assets/Background/car_status_background.png</file>
         <file>HU_Assets/Background/progress_bar.png</file>
         <file>HU_Assets/Background/main_control_bar.png</file>
         <file>HU_Assets/Background/basic_window.png</file>
         <file>HU_Assets/Background/menu_bar.png</file>
         
-        <!-- main_home page -->
         <file>HU_Assets/Icons/person.png</file>
         <file>HU_Assets/Icons/home.png</file>
         <file>HU_Assets/Icons/map.png</file>
@@ -25,12 +25,15 @@
         <file>HU_Assets/Components/line.png</file>
         <file>HU_Assets/Components/battery.png</file>
         
+        <!-- weather -->
         <file>HU_Assets/Components/Weather/weather_bar.png</file>
         <file>HU_Assets/Components/Weather/climate_fan.png</file>
         
+        <!-- calender -->
         <file>HU_Assets/Components/Calender/calender_bar.png</file>
         <file>HU_Assets/Components/Calender/calender_component.png</file>
         
+        <!-- music -->
         <file>HU_Assets/Components/Music/music_button_ring.png</file>
         <file>HU_Assets/Components/Music/play.png</file>
         <file>HU_Assets/Components/Music/skip_back.png</file>
@@ -50,7 +53,7 @@
         <file>HU_Assets/Components/Music/sequential.png</file>
         <file>HU_Assets/Components/Music/shuffle.png</file>
         
-        <!-- media page -->
+        <!-- video page -->
         <file>HU_Assets/Icons/library.png</file>
         <file>HU_Assets/Components/Video/play_icon.png</file>
         <file>HU_Assets/Components/Video/screen_off_icon.png</file>
@@ -58,5 +61,6 @@
         <file>HU_Assets/Components/Video/skip_prev_icon.png</file>
         <file>HU_Assets/Components/Video/stop_icon.png</file>
         <file>HU_Assets/Components/Video/sound_icon.png</file>
+        <file>HU_Assets/Components/Video/youtube_icon.png</file>
     </qresource>
 </RCC>

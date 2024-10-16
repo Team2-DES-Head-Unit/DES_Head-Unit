@@ -946,10 +946,18 @@ Window {
                         anchors.fill: parent
                         onClicked: {
                             icon_line.x = 285;
-                            mediaQmlLoader.active = true;
-                            mediaQmlLoader.item.visible = true;
-                            mediaQmlLoader.item.x = main_window.x + 393;
-                            mediaQmlLoader.item.y = main_window.y + 40;
+
+                            // media qml with usb
+//                            mediaQmlLoader.active = true;
+//                            mediaQmlLoader.item.visible = true;
+//                            mediaQmlLoader.item.x = main_window.x + 393;
+//                            mediaQmlLoader.item.y = main_window.y + 40;
+
+                            // media qml with youtube
+                            youtubeMediaQmlLoader.active = true;
+                            youtubeMediaQmlLoader.item.visible = true;
+                            youtubeMediaQmlLoader.item.x = main_window.x + 393;
+                            youtubeMediaQmlLoader.item.y = main_window.y + 40;
                         }
                     }
                 }
@@ -998,6 +1006,15 @@ Window {
         }
     }
 
+    Loader{
+        id: youtubeMediaQmlLoader
+        source: "media_page_youtube.qml"
+        active: false
+        visible: false
+        onLoaded: {
+            youtubeMediaQmlLoader.item.visible = false;
+        }
+    }
 }
 
 /*##^##

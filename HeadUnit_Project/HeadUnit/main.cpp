@@ -8,6 +8,7 @@
 #include "basic_func.h"
 #include "weather_provider.h"
 #include "music_player.h"
+#include "youtube_player.h"
 
 int main(int argc, char *argv[])
 {
@@ -24,6 +25,7 @@ int main(int argc, char *argv[])
     SpeedProvider speedProvider;
     WeatherProvider weatherProvider;
     MusicPlayer musicPlayer;
+//    YoutubePlayer youtubePlayer;
 
 //    QCommandLineParser parser;
 //    parser.setApplicationDescription("Qt Wayland Application");
@@ -57,6 +59,8 @@ int main(int argc, char *argv[])
     engine.rootContext()->setContextProperty("speedProvider", &speedProvider);
     engine.rootContext()->setContextProperty("weatherProvider", &weatherProvider);
     engine.rootContext()->setContextProperty("musicPlayer", &musicPlayer);
+    qmlRegisterType<YoutubePlayer>("youtubePlayer", 1, 0, "YoutubePlayer");
+//    engine.rootContext()->setContextProperty("youtubePlayer", &youtubePlayer);
 
 //    // music test
 //    QString songtitle = "Hanumankind-Big_Dawgs.mp3";
