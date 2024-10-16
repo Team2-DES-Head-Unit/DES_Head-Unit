@@ -11,7 +11,7 @@ Window {
     color: "#1E1E1E"
     title: qsTr("Head Unit")
     flags: Qt.FramelessWindowHint
-    visibility: Window.FullScreen
+    // visibility: Window.FullScreen
     Connections{
         target: musicPlayer
         onNextSongInfo:{
@@ -845,7 +845,7 @@ Window {
             id: icon_list
             x: 354
             y: 14
-            width: 316
+            width: 484
             height: 38
             anchors.centerIn: main_control_bar
             color: "transparent"
@@ -948,6 +948,24 @@ Window {
                         }
                     }
                 }
+
+                Image {
+                    id: mirror_icon
+                    fillMode: Image.PreserveAspectFit
+                    source: "HU_Assets/Icons/user_phone.png"
+                    width: 36
+                    height: 36
+                    MouseArea{
+                        anchors.fill: parent
+                        onClicked: {
+                            icon_line.x = 357;
+                            mirrorQmlLoader.active = true;
+                            mirrorQmlLoader.item.visible = true;
+                            mirrorQmlLoader.item.x = main_window.x + 393;
+                            mirrorQmlLoader.item.y = main_window.y + 40;
+                        }
+                    }
+                }
             }
         }
     }
@@ -993,6 +1011,16 @@ Window {
         }
     }
 
+    Loader{
+        id: mirrorQmlLoader
+        source: "mirror_page.qml"
+        active: false
+        visible: false
+        onLoaded: {
+            mirrorQmlLoader.item.visible = false;
+            mirrorProvider.init()
+        }
+    }
 }
 
 /*##^##

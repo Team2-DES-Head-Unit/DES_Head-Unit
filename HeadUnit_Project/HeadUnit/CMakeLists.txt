@@ -34,6 +34,7 @@ if(ANDROID)
       basic_func.h
       weather_provider.h
       music_player.h
+      mirrorprovider.h
 
       basic_func.cpp
 
@@ -46,6 +47,7 @@ else()
       basic_func.h
       weather_provider.h
       music_player.h
+      mirrorprovider.h
 
       basic_func.cpp
 
