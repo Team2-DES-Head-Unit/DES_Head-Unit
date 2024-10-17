@@ -9,6 +9,7 @@
 #include "weather_provider.h"
 #include "music_player.h"
 #include "youtube_player.h"
+//#include "BluetoothManager.h"
 
 int main(int argc, char *argv[])
 {
@@ -25,7 +26,7 @@ int main(int argc, char *argv[])
     SpeedProvider speedProvider;
     WeatherProvider weatherProvider;
     MusicPlayer musicPlayer;
-//    YoutubePlayer youtubePlayer;
+    YoutubePlayer youtubePlayerProvider;
 
 //    QCommandLineParser parser;
 //    parser.setApplicationDescription("Qt Wayland Application");
@@ -59,12 +60,13 @@ int main(int argc, char *argv[])
     engine.rootContext()->setContextProperty("speedProvider", &speedProvider);
     engine.rootContext()->setContextProperty("weatherProvider", &weatherProvider);
     engine.rootContext()->setContextProperty("musicPlayer", &musicPlayer);
+    engine.rootContext()->setContextProperty("youtubePlayerProvider", &youtubePlayerProvider);
+//    engine.rootContext()->setContextProperty("btManager", &btManager);
     qmlRegisterType<YoutubePlayer>("youtubePlayer", 1, 0, "YoutubePlayer");
-//    engine.rootContext()->setContextProperty("youtubePlayer", &youtubePlayer);
 
 //    // music test
-//    QString songtitle = "Hanumankind-Big_Dawgs.mp3";
-//    musicPlayer.playMusic(musicPlayer.getPathForSong(songtitle));
+    QString songtitle = "Hanumankind-Big_Dawgs.mp3";
+    musicPlayer.playMusic(musicPlayer.getPathForSong(songtitle));
 
 //    // playlist test
 //    QString songtitle = "Hanumankind-Big_Dawgs.mp3";

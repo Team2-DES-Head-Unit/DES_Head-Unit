@@ -20,7 +20,7 @@ public:
         QNetworkAccessManager *manager = new QNetworkAccessManager(this);
         connect(manager, &QNetworkAccessManager::finished, this, &YoutubePlayer::VideoResult);
 
-        QString api_url = "https://www.googleapis.com/youtube/v3/videos?part=snippet&chart=mostPopular&regionCode=KR&key=AIzaSyCtwAD9fqgYlFNDceBrzv0wIwEw8dWl30w";
+        QString api_url = "https://www.googleapis.com/youtube/v3/videos?part=snippet&chart=mostPopular&maxResults=10&regionCode=KR&key=AIzaSyCtwAD9fqgYlFNDceBrzv0wIwEw8dWl30w";
         QUrl url(api_url);
         manager->get(QNetworkRequest(url));
     }

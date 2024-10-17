@@ -40,12 +40,12 @@ Window{
 
         Image {
             id: window_close_button
-            x: 544
-            y: 20
-            width: 50
-            height: 50
+            x: 552
+            y: 28
+            width: 35
+            height: 35
             fillMode: Image.PreserveAspectFit
-            source: "HU_Assets/Icons/tap_close_button.png"
+            source: "HU_Assets/Icons/close_icon.png"
 
             MouseArea{
                 anchors.fill: parent
@@ -189,6 +189,7 @@ Window{
                 }
             }
         }
+
     } // base_window
 
     WebEngineView {
@@ -203,9 +204,9 @@ Window{
 
     Image {
         id: youtube_quit
-        x: 542
-        y: 427
-        source: "HU_Assets/Components/Video/screen_off_icon.png"
+        x: 467
+        y: 34
+        source: "HU_Assets/Components/Video/back_icon.png"
         width: 26
         height: 26
         MouseArea {
@@ -217,6 +218,22 @@ Window{
                 youtubeListView.visible = true;
                 webView.visible = false;
                 youtube_quit.visible = false;
+            }
+        }
+    }
+
+    Image {
+        id: reset_list
+        x: 510
+        y: 35
+        source: "HU_Assets/Components/Video/reset_list_icon.png"
+        fillMode: Image.PreserveAspectFit
+        MouseArea{
+            width: 30
+            height: 30
+            anchors.fill: parent
+            onClicked: {
+                youtubePlayerProvider.fetchVideo();
             }
         }
     }

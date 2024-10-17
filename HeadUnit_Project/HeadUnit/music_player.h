@@ -83,8 +83,16 @@ public:
 
     Q_INVOKABLE void setMusic(const QString &filePath){player->setMedia(QUrl::fromLocalFile(filePath));}
 
-    Q_INVOKABLE void playMusic(const QString &filePath){player->play();}
-    Q_INVOKABLE void pauseMusic() {player->pause();}
+    Q_INVOKABLE void playMusic(const QString &filePath){
+        player->play();
+        emit musicPlayButton();
+    }
+
+    Q_INVOKABLE void pauseMusic() {
+        player->pause();
+        emit musicPauseButton();
+    }
+
     Q_INVOKABLE void stopMusic() {player->stop();}
 
     Q_INVOKABLE bool playState() {return player->state() == QMediaPlayer::PlayingState;}
@@ -142,10 +150,24 @@ public:
         emit nextSongInfo(title, artist, coverPath);
     }
 
+    Q_INVOKABLE void musicSelect(const QString &selectedMusic){
+        setMusic(getPathForSong(selectedMusic));
+        playMusic(getPathForSong(selectedMusic));
+
+        QString coverPath = getCoverForSong(selectedMusic);
+        QString title = getTitleForSong(selectedMusic);
+        QString artist = getArtistForSong(selectedMusic);
+
+        emit currentSongChanged(selectedMusic);
+        emit nextSongInfo(title, artist, coverPath);
+    }
+
 signals:
     void musicProgressChanged();
     void currentSongChanged(const QString &songTitle);
     void nextSongInfo(const QString &title, const QString &artist, const QString &coverPath);
+    void musicPauseButton();
+    void musicPlayButton();
 
 private slots:
     // occurs when positionChanged signal called - calculate music progress

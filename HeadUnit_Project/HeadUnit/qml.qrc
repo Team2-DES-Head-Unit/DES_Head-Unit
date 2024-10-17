@@ -21,6 +21,8 @@
         <file>HU_Assets/Icons/settings.png</file>
         <file>HU_Assets/Icons/icon_line.png</file>
         <file>HU_Assets/Icons/tap_close_button.png</file>
+        <file>HU_Assets/Icons/close_icon.png</file>
+        <file>HU_Assets/Icons/charm_bluetooth.png</file>
         
         <file>HU_Assets/Components/line.png</file>
         <file>HU_Assets/Components/battery.png</file>
@@ -62,5 +64,7 @@
         <file>HU_Assets/Components/Video/stop_icon.png</file>
         <file>HU_Assets/Components/Video/sound_icon.png</file>
         <file>HU_Assets/Components/Video/youtube_icon.png</file>
+        <file>HU_Assets/Components/Video/reset_list_icon.png</file>
+        <file>HU_Assets/Components/Video/back_icon.png</file>
     </qresource>
 </RCC>

@@ -18,6 +18,8 @@ Window{
             song_title.text = title;
             singer_txt.text = artist;
             album_cover.source = coverPath;
+            play_button.visible = false;
+            stop_button.visible = true;
         }
 
         onMusicProgressChanged: {
@@ -26,6 +28,16 @@ Window{
             music_progress_fill.width = (parseFloat(musicPlayer.music_position() / musicPlayer.music_duration()) * music_progress_bar.width)
             music_start.text = formatTime(musicPlayer.music_position())
             music_end.text = formatTime(musicPlayer.music_duration())
+        }
+
+        onMusicPauseButton:{
+            play_button.visible = true;
+            stop_button.visible = false;
+        }
+
+        onMusicPlayButton:{
+            play_button.visible = false;
+            stop_button.visible = true;
         }
     }
 
@@ -134,8 +146,8 @@ Window{
                         anchors.fill: parent
                         onClicked: {
                             musicPlayer.skipPrevious();
-                            play_button.visible = false;
-                            stop_button.visible = true;
+//                            play_button.visible = false;
+//                            stop_button.visible = true;
                         }
                     }
                 }
@@ -180,8 +192,8 @@ Window{
                             onClicked: {
                                 console.log("play button")
                                 musicPlayer.playMusic(musicPath);
-                                play_button.visible = false;
-                                stop_button.visible = true;
+//                                play_button.visible = false;
+//                                stop_button.visible = true;
                                 console.log("Current play state: " + musicPlayer.playState());
                             }
                         }
@@ -198,8 +210,8 @@ Window{
                             onClicked: {
                                 console.log("stop button")
                                 musicPlayer.pauseMusic();
-                                stop_button.visible = false;
-                                play_button.visible = true;
+//                                stop_button.visible = false;
+//                                play_button.visible = true;
                                 console.log("Current play state: " + musicPlayer.playState());
                             }
                         }
@@ -222,8 +234,8 @@ Window{
                         anchors.fill: parent
                         onClicked: {
                             musicPlayer.skipNext();
-                            play_button.visible = false;
-                            stop_button.visible = true;
+//                            play_button.visible = false;
+//                            stop_button.visible = true;
                         }
                     }
                 }
@@ -314,8 +326,10 @@ Window{
                             var singer = musicPlayer.getArtistForSong(music_f);
                             var cover_path = musicPlayer.getCoverForSong(music_f);
                             var mp3_path = musicPlayer.getPathForSong(music_f)
+                            // music_f : ex)"Hanumankind-Big_Dawgs.mp3"
 //                            console.log("title : " + title + " , singer : " + singer + " , cover_path : " + cover_path);
                             append({
+                                music_f: music_f,
                                 title: title,
                                 singer: singer,
                                 cover_path: cover_path,
@@ -362,14 +376,19 @@ Window{
                     MouseArea{
                         anchors.fill: parent
                         onClicked: {
-                            console.log("clicked song title : " + model.title + " , singer : " + model.singer + " , cover path : " + model.cover_path + " , mp3_path : " + model.mp3_path)
-                            musicPlayer.setMusic(model.mp3_path);
-                            musicPlayer.playMusic(model.mp3_path);
-                            play_button.visible = false;
-                            stop_button.visible = true;
-                            album_cover.source = model.cover_path;
-                            song_title.text = model.title;
-                            singer_txt.text = model.singer;
+//                            console.log("clicked song title : " + model.title + " , singer : " + model.singer + " , cover path : " + model.cover_path + " , mp3_path : " + model.mp3_path)
+//                            musicPlayer.setMusic(model.mp3_path);
+//                            musicPlayer.playMusic(model.mp3_path);
+//                            play_button.visible = false;
+//                            stop_button.visible = true;
+//                            album_cover.source = model.cover_path;
+//                            song_title.text = model.title;
+//                            singer_txt.text = model.singer;
+
+//                            console.log("selectedMusic : " + model.music_f);
+                            musicPlayer.musicSelect(model.music_f);
+//                            play_button.visible = false;
+//                            stop_button.visible = true;
                         }
                     }
                 }

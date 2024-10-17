@@ -24,7 +24,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 #    endif()
 #endif()
 
-find_package(Qt5 COMPONENTS Core Quick WebEngine Multimedia REQUIRED)
+find_package(Qt5 COMPONENTS Core Quick WebEngine Multimedia Bluetooth REQUIRED)
 find_package(Qt5 COMPONENTS Core Gui REQUIRED)
 #find_package(Wayland REQUIRED)
 
@@ -59,4 +59,4 @@ endif()
 target_compile_definitions(HeadUnit
   PRIVATE $<$<OR:$<CONFIG:Debug>,$<CONFIG:RelWithDebInfo>>:QT_QML_DEBUG>)
 target_link_libraries(HeadUnit
-  PRIVATE Qt5::Core Qt5::Quick Qt5::WebEngine Qt5::Multimedia)
+  PRIVATE Qt5::Core Qt5::Quick Qt5::WebEngine Qt5::Multimedia Qt5::Bluetooth)
