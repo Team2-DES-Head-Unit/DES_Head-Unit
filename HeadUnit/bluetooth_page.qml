@@ -87,17 +87,27 @@ Window{
 
         // 헤더 섹션
         Row {
-            spacing: 130
+            spacing: 20
             width: bd_list.width
             height: 30
-            anchors.horizontalCenter: parent.horizontalCenter
+
+            Item {
+                id: name_gap
+                width: 10
+                height: 30
+            }
 
             // Name 헤더
             Text {
                 text: "Name"
                 font.bold: true
                 color: "white"
-                width: parent.width / 2
+            }
+
+            Item {
+                id: type_gap
+                width: 150
+                height: 30
             }
 
             // Type 헤더
@@ -105,7 +115,6 @@ Window{
                 text: "Type"
                 font.bold: true
                 color: "white"
-                width: parent.width / 2
             }
         }
         // 스크롤 가능한 ListView
