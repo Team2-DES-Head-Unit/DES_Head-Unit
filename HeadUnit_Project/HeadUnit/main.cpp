@@ -9,7 +9,7 @@
 #include "weather_provider.h"
 #include "music_player.h"
 #include "youtube_player.h"
-//#include "BluetoothManager.h"
+#include "bluetoothmanager.h"
 
 int main(int argc, char *argv[])
 {
@@ -27,6 +27,7 @@ int main(int argc, char *argv[])
     WeatherProvider weatherProvider;
     MusicPlayer musicPlayer;
     YoutubePlayer youtubePlayerProvider;
+    BluetoothManager btManager;
 
 //    QCommandLineParser parser;
 //    parser.setApplicationDescription("Qt Wayland Application");
@@ -61,7 +62,7 @@ int main(int argc, char *argv[])
     engine.rootContext()->setContextProperty("weatherProvider", &weatherProvider);
     engine.rootContext()->setContextProperty("musicPlayer", &musicPlayer);
     engine.rootContext()->setContextProperty("youtubePlayerProvider", &youtubePlayerProvider);
-//    engine.rootContext()->setContextProperty("btManager", &btManager);
+    engine.rootContext()->setContextProperty("btManager", &btManager);
     qmlRegisterType<YoutubePlayer>("youtubePlayer", 1, 0, "YoutubePlayer");
 
 //    // music test

@@ -994,15 +994,18 @@ Window {
            visible: isBluetoothConnected
        }
 
-   //    Connections {
-   //        target: btManager
-   //        onConnectedToDevice: {
-   //            isBluetoothConnected = true;
-   //        }
-   //        onDisconnectedFromDevice: {
-   //            isBluetoothConnected = false;
-   //        }
-   //    }
+       Connections {
+           target: btManager
+           onConnectedToDevice: {
+               isBluetoothConnected = true;
+           }
+           onConnectionLost: {
+               isBluetoothConnected = false;
+           }
+           onConnectionFailed: {
+               isBluetoothConnected = false;
+           }
+       }
 
     /////////////////////////////////////////////////////////////////////// dynamic load pages
     Loader{

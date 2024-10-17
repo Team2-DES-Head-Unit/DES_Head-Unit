@@ -1,6 +1,7 @@
 import QtQuick 2.12
 import QtQuick.Window 2.12
 
+
 Window{
     id: setting_window
     visible: true
@@ -90,6 +91,16 @@ Window{
                 }
             }
 
+            Image {
+                id: display_selected
+                anchors.horizontalCenter: display.horizontalCenter
+                anchors.verticalCenter: display.verticalCenter
+                anchors.verticalCenterOffset: 6
+                fillMode: Image.PreserveAspectFit
+                visible: false
+                source: "/HU_Assets/Background/select_menu.png"
+            }
+
             Rectangle {
                 id: display
                 x: 42
@@ -108,6 +119,16 @@ Window{
                     source: "HU_Assets/Icons/display.png"
                     fillMode: Image.PreserveAspectFit
                 }
+                MouseArea{
+                    anchors.fill: parent
+                    onClicked: {
+                        lightQmlLoader.active = true;
+                        lightQmlLoader.item.visible = true;
+                        lightQmlLoader.item.x = setting_window.x + 200;
+                        lightQmlLoader.item.y = setting_window.y + 14;
+                        display_selected.visible = true;
+                    }
+                }
 
                 Text {
                     id: display_text
@@ -119,6 +140,16 @@ Window{
                 }
             }
 
+            Image {
+                id: service_selected
+                anchors.horizontalCenter: services.horizontalCenter
+                anchors.verticalCenter: services.verticalCenter
+                anchors.verticalCenterOffset: 6
+                fillMode: Image.PreserveAspectFit
+                visible: false
+                source: "/HU_Assets/Background/select_menu.png"
+            }
+
             Rectangle {
                 id: services
                 x: 42
@@ -126,6 +157,7 @@ Window{
                 width: 101
                 height: 25
                 color: "#00000000"
+
                 Image {
                     id: service_icon
                     x: 0
@@ -144,8 +176,40 @@ Window{
                     anchors.verticalCenter: services.verticalCenter
                     font.pixelSize: 17
                 }
+                MouseArea{
+                    anchors.fill: parent
+                    onClicked: {
+                        bluetoothQmlLoader.active = true;
+                        bluetoothQmlLoader.item.visible = true;
+                        bluetoothQmlLoader.item.x = setting_window.x + 200;
+                        bluetoothQmlLoader.item.y = setting_window.y + 14;
+                        service_selected.visible = true;
+                    }
+                }
             }
 
+        }
+    }
+
+    Loader{
+        id: lightQmlLoader
+        asynchronous: false
+        source: "light_page.qml"
+        active: false
+        visible: true
+        onLoaded: {
+            lightQmlLoader.item.visible = false;
+        }
+    }
+
+    Loader{
+        id: bluetoothQmlLoader
+        asynchronous: false
+        source: "bluetooth_page.qml"
+        active: false
+        visible: true
+        onLoaded: {
+            bluetoothQmlLoader.item.visible = false;
         }
     }
 

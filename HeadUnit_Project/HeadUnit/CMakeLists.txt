@@ -35,8 +35,10 @@ if(ANDROID)
       weather_provider.h
       music_player.h
       youtube_player.h
+      bluetoothmanager.h
 
       basic_func.cpp
+      bluetoothmanager.cpp
 
       qml.qrc
       media_contents.qrc
@@ -48,8 +50,10 @@ else()
       weather_provider.h
       music_player.h
       youtube_player.h
+      bluetoothmanager.h
 
       basic_func.cpp
+      bluetoothmanager.cpp
 
       qml.qrc
       media_contents.qrc
