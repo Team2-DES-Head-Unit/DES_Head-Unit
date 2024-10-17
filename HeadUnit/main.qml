@@ -1007,7 +1007,10 @@ Window {
 //        onConnectedToDevice: {
 //            isBluetoothConnected = true;  // 블루투스가 연결되면 이미지를 표시
 //        }
-//        onDisconnectedFromDevice: {
+//        onConnectionLost: {
+//            isBluetoothConnected = false;  // 블루투스가 연결 해제되면 이미지를 숨김
+//        }
+//        onConnectionFailed: {
 //            isBluetoothConnected = false;  // 블루투스가 연결 해제되면 이미지를 숨김
 //        }
 //    }

@@ -62,8 +62,19 @@ void BluetoothManager::connectToDevice(const QString &deviceName)
     // 발견된 장치 중 이름이 일치하는 장치를 찾음
     for (const QBluetoothDeviceInfo &deviceInfo : discoveredDevices) {
         if (deviceInfo.name() == deviceName) {
-            qDebug() << "Device found, attempting to connect:" << deviceName;
-            socket->connectToService(deviceInfo.address(), QBluetoothUuid(QBluetoothUuid::SerialPort), QIODevice::ReadWrite);
+            qDebug() << "Device found, checking pairing status:" << deviceName;
+
+            // 페어링 상태 확인
+            QBluetoothLocalDevice::Pairing pairingStatus = localDevice->pairingStatus(deviceInfo.address());
+            if (pairingStatus == QBluetoothLocalDevice::Unpaired) {
+                // 페어링되지 않은 장치일 경우 페어링 요청
+                qDebug() << "Requesting pairing for device:" << deviceName;
+                localDevice->requestPairing(deviceInfo.address(), QBluetoothLocalDevice::Paired);
+            } else {
+                // 이미 페어링된 경우 바로 연결
+                qDebug() << "Device already paired. Connecting to service...";
+                socket->connectToService(deviceInfo.address(), QBluetoothUuid(QBluetoothUuid::SerialPort), QIODevice::ReadWrite);
+            }
             return;
         }
     }
@@ -73,23 +84,14 @@ void BluetoothManager::connectToDevice(const QString &deviceName)
 
 void BluetoothManager::deviceDiscoveredHandler(const QBluetoothDeviceInfo &deviceInfo)
 {
-    // 페어링 상태 확인
-    QBluetoothLocalDevice::Pairing pairingStatus = localDevice->pairingStatus(deviceInfo.address());
-
+    // 페어링 여부와 관계없이 발견된 장치 목록에 추가
     QString deviceName = deviceInfo.name();
     QString deviceType = getDeviceType(deviceInfo);
 
-    // 발견된 장치 목록에 추가
     discoveredDevices.append(deviceInfo);
 
     // QML로 발견된 장치 전송
     emit deviceDiscovered(deviceName, deviceType);
-
-    // 페어링되지 않은 장치일 경우 페어링 시도
-    if (pairingStatus == QBluetoothLocalDevice::Unpaired) {
-        qDebug() << "Requesting pairing for device:" << deviceName;
-        localDevice->requestPairing(deviceInfo.address(), QBluetoothLocalDevice::Paired);
-    }
 }
 
 QString BluetoothManager::getDeviceType(const QBluetoothDeviceInfo &deviceInfo) const
