@@ -63,24 +63,24 @@ Window{
                 text: qsTr("On")
                 width: 50
                 height: 25
-//                onClicked: {
-//                    btManager.startDiscovery();
-//                    isSearching = true;  // 검색 상태 시작
-//                    isStopped = false;   // 검색 중지 상태 해제
-//                    deviceModel.clear(); // 장치 목록 초기화
-//                }
+                onClicked: {
+                    btManager.startDiscovery();
+                    isSearching = true;  // 검색 상태 시작
+                    isStopped = false;   // 검색 중지 상태 해제
+                    deviceModel.clear(); // 장치 목록 초기화
+                }
             }
             Button {
                 id: bdbutton_off
                 text: qsTr("Off")
                 width: 50
                 height: 25
-//                onClicked: {
-//                    btManager.stopDiscovery();
-//                    isSearching = false;  // 검색 중지
-//                    isStopped = true;     // 검색 중지 상태 설정
-//                    deviceModel.clear(); // 장치 목록 초기화
-//                }
+                onClicked: {
+                    btManager.stopDiscovery();
+                    isSearching = false;  // 검색 중지
+                    isStopped = true;     // 검색 중지 상태 설정
+                    deviceModel.clear(); // 장치 목록 초기화
+                }
             }
 
         }
@@ -160,13 +160,13 @@ Window{
                             color: "white"  // 일반 흰색 글씨
                         }
                     }
-//                    MouseArea {
-//                        anchors.fill: parent
-//                        onClicked: {
-//                            // 선택된 장치 이름을 전달하여 연결 시도
-//                            btManager.connectToDevice(model.deviceName);
-//                        }
-//                    }
+                    MouseArea {
+                        anchors.fill: parent
+                        onClicked: {
+                            // 선택된 장치 이름을 전달하여 연결 시도
+                            btManager.connectToDevice(model.deviceName);
+                        }
+                    }
                 }
 
                 // 스크롤 동작을 최상단에 고정
@@ -209,18 +209,18 @@ Window{
             }
         }
 
-//        Connections {
-//            target: btManager
+        Connections {
+            target: btManager
 
-//            onDeviceDiscovered: function(deviceName, deviceType) {
-//                deviceModel.append({"deviceName": deviceName, "deviceType": deviceType});
-//            }
+            onDeviceDiscovered: function(deviceName, deviceType) {
+                deviceModel.append({"deviceName": deviceName, "deviceType": deviceType});
+            }
 
-//            onDiscoveryFinished: {
-//                console.log("Discovery finished.");
-//                isSearching = false;  // 검색 상태 중지
-//            }
-//        }
+            onDiscoveryFinished: {
+                console.log("Discovery finished.");
+                isSearching = false;  // 검색 상태 중지
+            }
+        }
     }
 
 }

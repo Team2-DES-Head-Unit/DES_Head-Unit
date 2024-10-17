@@ -1,0 +1,25 @@
+{
+	"BUILD_DIR" : "/home/yeongyoo/DES_Head-Unit/build-HeadUnit-Desktop_Qt_5_12_8_GCC_64bit-Debug/HeadUnit_autogen",
+	"CMAKE_BINARY_DIR" : "/home/yeongyoo/DES_Head-Unit/build-HeadUnit-Desktop_Qt_5_12_8_GCC_64bit-Debug",
+	"CMAKE_CURRENT_BINARY_DIR" : "/home/yeongyoo/DES_Head-Unit/build-HeadUnit-Desktop_Qt_5_12_8_GCC_64bit-Debug",
+	"CMAKE_CURRENT_SOURCE_DIR" : "/home/yeongyoo/DES_Head-Unit/HeadUnit",
+	"CMAKE_SOURCE_DIR" : "/home/yeongyoo/DES_Head-Unit/HeadUnit",
+	"INCLUDE_DIR" : "/home/yeongyoo/DES_Head-Unit/build-HeadUnit-Desktop_Qt_5_12_8_GCC_64bit-Debug/HeadUnit_autogen/include",
+	"INPUTS" : 
+	[
+		"/home/yeongyoo/DES_Head-Unit/HeadUnit/Cover/AlainaCastillo-cover.jpeg",
+		"/home/yeongyoo/DES_Head-Unit/HeadUnit/Cover/Hanumankind-cover.jpeg",
+		"/home/yeongyoo/DES_Head-Unit/HeadUnit/Cover/AimeeCarty-cover.jpeg",
+		"/home/yeongyoo/DES_Head-Unit/HeadUnit/Cover/DAY6-cover.jpeg"
+	],
+	"LOCK_FILE" : "/home/yeongyoo/DES_Head-Unit/build-HeadUnit-Desktop_Qt_5_12_8_GCC_64bit-Debug/CMakeFiles/HeadUnit_autogen.dir/AutoRcc_media_contents_EWIEGA46WW_Lock.lock",
+	"MULTI_CONFIG" : false,
+	"OPTIONS" : [ "-name", "media_contents" ],
+	"OUTPUT_CHECKSUM" : "EWIEGA46WW",
+	"OUTPUT_NAME" : "qrc_media_contents.cpp",
+	"RCC_EXECUTABLE" : "/home/yeongyoo/Qt5.12.8/5.12.8/gcc_64/bin/rcc",
+	"RCC_LIST_OPTIONS" : [ "--list" ],
+	"SETTINGS_FILE" : "/home/yeongyoo/DES_Head-Unit/build-HeadUnit-Desktop_Qt_5_12_8_GCC_64bit-Debug/CMakeFiles/HeadUnit_autogen.dir/AutoRcc_media_contents_EWIEGA46WW_Used.txt",
+	"SOURCE" : "/home/yeongyoo/DES_Head-Unit/HeadUnit/media_contents.qrc",
+	"VERBOSITY" : 0
+}
