@@ -1018,7 +1018,6 @@ Window {
         visible: false
         onLoaded: {
             mirrorQmlLoader.item.visible = false;
-            mirrorProvider.init()
         }
     }
 }

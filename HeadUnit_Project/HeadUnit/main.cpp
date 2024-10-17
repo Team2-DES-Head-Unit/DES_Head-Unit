@@ -59,7 +59,8 @@ int main(int argc, char *argv[])
     engine.rootContext()->setContextProperty("speedProvider", &speedProvider);
     engine.rootContext()->setContextProperty("weatherProvider", &weatherProvider);
     engine.rootContext()->setContextProperty("musicPlayer", &musicPlayer);
-    engine.rootContext()->setContextProperty("mirrorProvider", &mirrorProvider);
+
+    qmlRegisterType<MirrorProvider>("QtQuick.mirroring", 1, 0, "MirrorProvider");
 
 //    // music test
 //    QString songtitle = "Hanumankind-Big_Dawgs.mp3";

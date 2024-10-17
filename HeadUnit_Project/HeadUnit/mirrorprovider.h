@@ -5,51 +5,60 @@
 #include <QDebug>
 #include <QProcess>
 #include <QLocale>
+#include <QWindow>
+#include <QQmlApplicationEngine>
+#include <QQuickView>
 
-enum STATE{
-    LOADING, ERROR, PLAYING
-};
-
-
-class MirrorProvider : public QObject
-{
+class MirrorProvider : public QQuickView{
     Q_OBJECT
+
+    Q_PROPERTY(bool isLoaded READ init NOTIFY stateChanged)
+
 private:
     QProcess * scrcpyProcess;
-    STATE state = LOADING;
+    QProcess * xwindowProcess;
+    QString window_title = "Trash";
+
+signals:
+    void stateChanged();
 
 public:
-    explicit MirrorProvider(QObject *parent = nullptr){
+    explicit MirrorProvider(QQuickView *parent = nullptr):QQuickView(parent){
         scrcpyProcess = new QProcess();
+        xwindowProcess = new QProcess();
+        this->init();
+        qDebug() << "Constructor of Mirrorprivider";
     }
 
     ~MirrorProvider(){
         this->end();
     }
 
-    Q_INVOKABLE void init(){
-        scrcpyProcess->start("scrcpy", QStringList() << "--output" << "tcp://localhost:8080");
-        connect(scrpyProcess, &QProcess::readyReadStandardOutput, this, &MirrorProvider::state);
+    Q_INVOKABLE bool init(QQuickItem* parent){
+        // scrcpyProcess->start("scrcpy", QStringList() << "--window-title" << window_title);
+        xwindowProcess->start("xdotool", QStringList() << "search" <<"--name" << window_title);
+        xwindowProcess->waitForFinished();
+        QString output = xwindowProcess->readAllStandardOutput();
+        WId scrcpyWindowId = output.toULongLong();
+
+        emit stateChanged();
+
+        if (scrcpyWindowId == 0){
+            return false;
+        }
+        else{
+            QWindow *scrcpyWindow = QWindow::fromWinId(scrcpyWindowId);
+
+            scrcpyWindow->setParent(this);
+            scrcpyWindow->setGeometry(0, 0, this->width(), this->height());
+            scrcpyWindow->show();
+            return true;
+        }
     }
 
     Q_INVOKABLE void end(){
         scrcpyProcess->kill();
-    }
-
-signals:
-
-public slots:
-    STATE state(){
-        QByteArray output = process->readAllStandardOutput();
-        QString outputString = QString(output);
-
-        qDebug() << outputString;
-
-                if (outputString.contains("Connected to")) {
-                    qDebug() << "Device detected and connected.";
-                } else if (outputString.contains("No devices found")) {
-                    qDebug() << "No device found. Please connect a phone.";
-                }
+        xwindowProcess->kill();
     }
 
 };

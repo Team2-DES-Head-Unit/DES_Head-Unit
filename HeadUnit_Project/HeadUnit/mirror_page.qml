@@ -1,6 +1,7 @@
 import QtQuick 2.12
 import QtQuick.Window 2.12
 import QtMultimedia 5.12
+import QtQuick.mirroring 1.0
 
 Window{
     id: mirror_window
@@ -16,17 +17,19 @@ Window{
         anchors.fill: parent
         source: "HU_Assets/Background/basic_window.png"
 
-        MediaPlayer {
-            id: mediaPlayer
-            source: "tcp://localhost:8080"  // The scrcpy stream source
-            autoPlay: true
-        }
-        VideoOutput {
-            anchors.fill: parent
-            source: mediaPlayer
-            fillMode: VideoOutput.PreserveAspectFit
+        MirrorProvider{
+            id: mirrorProvider
+            visible: mirrorProvider.isLoaded
         }
 
+        Rectangle{
+            anchors.fill: parent
+            visible: !mirrorProvider.isLoaded
+            Text {
+                id: name
+                text: qsTr("Video is not found")
+            }
+        }
     }
 
     Image {
