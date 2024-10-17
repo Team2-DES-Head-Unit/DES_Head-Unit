@@ -12,7 +12,7 @@ pkg_check_modules(VSOMEIP REQUIRED vsomeip3)
 include_directories(${VSOMEIP_INCLUDE_DIRS})
 
 # HelloWorldClient.cpp 파일로 실행 파일 생성
-add_executable(HelloWorldClient HelloWorldClient.cpp)
+add_executable(HelloWorldClient client.cpp)
 
 # vsomeip 라이브러리와 pthread 라이브러리 링크
 target_link_libraries(HelloWorldClient ${VSOMEIP_LIBRARIES} pthread)
