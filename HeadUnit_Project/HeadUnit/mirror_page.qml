@@ -11,6 +11,13 @@ Window{
     color: "transparent"
     flags: Qt.FramelessWindowHint
 
+    onActiveChanged: {
+        console.log("Complete!")
+        mirrorProvider.init(base_window);
+    }
+
+
+
     Image {
         id: base_window
         fillMode: Image.PreserveAspectFit
@@ -19,7 +26,6 @@ Window{
 
         MirrorProvider{
             id: mirrorProvider
-            visible: mirrorProvider.isLoaded
         }
 
         Rectangle{
@@ -49,4 +55,5 @@ Window{
             }
         }
     }
+
 }

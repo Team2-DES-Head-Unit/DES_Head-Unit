@@ -8,25 +8,29 @@
 #include <QWindow>
 #include <QQmlApplicationEngine>
 #include <QQuickView>
+#include <QQuickItem>
 
 class MirrorProvider : public QQuickView{
     Q_OBJECT
 
-    Q_PROPERTY(bool isLoaded READ init NOTIFY stateChanged)
+    Q_PROPERTY(bool isLoaded READ getisLoaded NOTIFY stateChanged)
 
 private:
     QProcess * scrcpyProcess;
     QProcess * xwindowProcess;
-    QString window_title = "Trash";
+    QString window_title = "seungjuphone";
+    bool isloaded;
 
 signals:
     void stateChanged();
+
+public slots:
+    bool getisLoaded(){return isloaded;}
 
 public:
     explicit MirrorProvider(QQuickView *parent = nullptr):QQuickView(parent){
         scrcpyProcess = new QProcess();
         xwindowProcess = new QProcess();
-        this->init();
         qDebug() << "Constructor of Mirrorprivider";
     }
 
@@ -34,8 +38,8 @@ public:
         this->end();
     }
 
-    Q_INVOKABLE bool init(QQuickItem* parent){
-        // scrcpyProcess->start("scrcpy", QStringList() << "--window-title" << window_title);
+    Q_INVOKABLE void init(QQuickItem* parent){
+        scrcpyProcess->start("scrcpy", QStringList() << "--window-title" << window_title);
         xwindowProcess->start("xdotool", QStringList() << "search" <<"--name" << window_title);
         xwindowProcess->waitForFinished();
         QString output = xwindowProcess->readAllStandardOutput();
@@ -43,17 +47,22 @@ public:
 
         emit stateChanged();
 
+        qDebug() << "init() function called";
+
         if (scrcpyWindowId == 0){
-            return false;
+            qDebug() << "failed to load";
+            isloaded = false;
         }
         else{
+            qDebug() << "successfully loaded!";
+            QWindow *qmlWindow = parent->window();
             QWindow *scrcpyWindow = QWindow::fromWinId(scrcpyWindowId);
-
-            scrcpyWindow->setParent(this);
-            scrcpyWindow->setGeometry(0, 0, this->width(), this->height());
+            scrcpyWindow->setParent(qmlWindow);
+            scrcpyWindow->setGeometry(parent->x(), parent->y(), parent->width(), parent->height());
             scrcpyWindow->show();
-            return true;
+            isloaded = true;
         }
+
     }
 
     Q_INVOKABLE void end(){
