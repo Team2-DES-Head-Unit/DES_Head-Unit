@@ -91,6 +91,16 @@ Window{
                 }
             }
 
+            Image {
+                id: display_selected
+                anchors.horizontalCenter: display.horizontalCenter
+                anchors.verticalCenter: display.verticalCenter
+                anchors.verticalCenterOffset: 6
+                fillMode: Image.PreserveAspectFit
+                visible: false
+                source: "/HU_Assets/Background/select_menu.png"
+            }
+
             Rectangle {
                 id: display
                 x: 42
@@ -108,6 +118,16 @@ Window{
                     anchors.left: display.left
                     source: "HU_Assets/Icons/display.png"
                     fillMode: Image.PreserveAspectFit
+                }
+                MouseArea{
+                    anchors.fill: parent
+                    onClicked: {
+                        lightQmlLoader.active = true;
+                        lightQmlLoader.item.visible = true;
+                        lightQmlLoader.item.x = setting_window.x + 200;
+                        lightQmlLoader.item.y = setting_window.y + 14;
+                        display_selected.visible = true;
+                    }
                 }
 
                 Text {
@@ -168,6 +188,17 @@ Window{
                 }
             }
 
+        }
+    }
+
+    Loader{
+        id: lightQmlLoader
+        asynchronous: false
+        source: "light_page.qml"
+        active: false
+        visible: true
+        onLoaded: {
+            lightQmlLoader.item.visible = false;
         }
     }
 

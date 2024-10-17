@@ -1001,16 +1001,16 @@ Window {
         visible: isBluetoothConnected  // 블루투스가 연결되면만 보이게 설정
     }
     // BluetoothManager와 연결
-    Connections {
-        target: btManager
-        // BluetoothManager에서 장치 연결 시 신호를 받음
-        onConnectedToDevice: {
-            isBluetoothConnected = true;  // 블루투스가 연결되면 이미지를 표시
-        }
-        onDisconnectedFromDevice: {
-            isBluetoothConnected = false;  // 블루투스가 연결 해제되면 이미지를 숨김
-        }
-    }
+//    Connections {
+//        target: btManager
+//        // BluetoothManager에서 장치 연결 시 신호를 받음
+//        onConnectedToDevice: {
+//            isBluetoothConnected = true;  // 블루투스가 연결되면 이미지를 표시
+//        }
+//        onDisconnectedFromDevice: {
+//            isBluetoothConnected = false;  // 블루투스가 연결 해제되면 이미지를 숨김
+//        }
+//    }
 
 }
 

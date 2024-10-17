@@ -41,5 +41,6 @@
         <file>bluetooth_page.qml</file>
         <file>HU_Assets/Background/select_menu.png</file>
         <file>HU_Assets/Icons/charm_bluetooth.png</file>
+        <file>light_page.qml</file>
     </qresource>
 </RCC>
