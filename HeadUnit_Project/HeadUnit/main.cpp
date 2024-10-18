@@ -4,7 +4,7 @@
 #include <QQmlContext>
 //#include <QWindow>
 //#include <QProcess>
-
+#include <QtwebEngine>
 #include "basic_func.h"
 #include "weather_provider.h"
 #include "music_player.h"
@@ -14,7 +14,7 @@
 int main(int argc, char *argv[])
 {
     QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
-
+    QtWebEngine::initialize();
     QGuiApplication app(argc, argv);
 
     QQmlApplicationEngine engine;
