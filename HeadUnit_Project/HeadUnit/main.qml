@@ -8,18 +8,11 @@ Window {
     visible: true
     width: 1024
     height: 600
+    visibility : Window.FullScreen
     color: "#1E1E1E"
     title: qsTr("Head Unit")
 //    flags: Qt.FramelessWindowHint
 //    visibility: Window.FullScreen
-
-    property bool isBluetoothConnected: false
-
-    Component.onCompleted: { // initial setting
-        weatherProvider.cityName = "Wolfsburg";
-        musicQmlLoader.active = true;
-    }
-
     Connections{
         target: musicPlayer
         onNextSongInfo:{
@@ -29,8 +22,6 @@ Window {
             song_title.text = title;
             singer_txt.text = artist;
             album_cover.source = coverPath;
-            play_button.visible = false;
-            stop_button.visible = true;
         }
 
         onMusicProgressChanged: {
@@ -39,16 +30,6 @@ Window {
             music_progress_fill.width = (parseFloat(musicPlayer.music_position() / musicPlayer.music_duration()) * music_progress_bar.width)
             music_start.text = formatTime(musicPlayer.music_position())
             music_end.text = formatTime(musicPlayer.music_duration())
-        }
-
-        onMusicPauseButton:{
-            play_button.visible = true;
-            stop_button.visible = false;
-        }
-
-        onMusicPlayButton:{
-            play_button.visible = false;
-            stop_button.visible = true;
         }
     }
 
@@ -488,9 +469,9 @@ Window {
         }
 
     }
-//    Component.onCompleted: { // initial setting
-//        weatherProvider.cityName = "Wolfsburg";
-//    }
+    Component.onCompleted: { // initial setting
+        weatherProvider.cityName = "Wolfsburg";
+    }
 
     ///////////////////////////////////////////////////////////////// calender_component
     Rectangle {
@@ -660,8 +641,8 @@ Window {
                     anchors.fill: parent
                     onClicked: {
                         musicPlayer.skipPrevious();
-//                        play_button.visible = false;
-//                        stop_button.visible = true;
+                        play_button.visible = false;
+                        stop_button.visible = true;
                     }
                 }
             }
@@ -699,8 +680,8 @@ Window {
                         onClicked: {
                             console.log("play button")
                             musicPlayer.playMusic(musicPath);
-//                            play_button.visible = false;
-//                            stop_button.visible = true;
+                            play_button.visible = false;
+                            stop_button.visible = true;
                             console.log("Current play state: " + musicPlayer.playState());
                         }
                     }
@@ -717,8 +698,8 @@ Window {
                         onClicked: {
                             console.log("stop button")
                             musicPlayer.pauseMusic();
-//                            stop_button.visible = false;
-//                            play_button.visible = true;
+                            stop_button.visible = false;
+                            play_button.visible = true;
                             console.log("Current play state: " + musicPlayer.playState());
                         }
                     }
@@ -741,8 +722,8 @@ Window {
                     anchors.fill: parent
                     onClicked: {
                         musicPlayer.skipNext();
-//                        play_button.visible = false;
-//                        stop_button.visible = true;
+                        play_button.visible = false;
+                        stop_button.visible = true;
                     }
                 }
             }
@@ -948,7 +929,7 @@ Window {
                         anchors.fill: parent
                         onClicked: {
                             icon_line.x = 213;
-//                            musicQmlLoader.active = true;
+                            musicQmlLoader.active = true;
                             musicQmlLoader.item.visible = true;
                             musicQmlLoader.item.x = main_window.x + 393;
                             musicQmlLoader.item.y = main_window.y + 40;
@@ -984,28 +965,6 @@ Window {
             }
         }
     }
-
-    Image {
-           id: bluetooth_connected_image
-           x: 843
-           y: 10
-           source: "/HU_Assets/Icons/charm_bluetooth.png"
-           fillMode: Image.PreserveAspectFit
-           visible: isBluetoothConnected
-       }
-
-       Connections {
-           target: btManager
-           onConnectedToDevice: {
-               isBluetoothConnected = true;
-           }
-           onConnectionLost: {
-               isBluetoothConnected = false;
-           }
-           onConnectionFailed: {
-               isBluetoothConnected = false;
-           }
-       }
 
     /////////////////////////////////////////////////////////////////////// dynamic load pages
     Loader{
