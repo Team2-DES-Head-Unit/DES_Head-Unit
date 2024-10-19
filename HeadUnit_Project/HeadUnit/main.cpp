@@ -81,5 +81,23 @@ int main(int argc, char *argv[])
     }, Qt::QueuedConnection);
     engine.load(url);
 
+
+
+    QList<QScreen*> screens = QGuiApplication::screens();
+    if (screens.size() > 1) {
+        qDebug() << "Second screen detected: " << screens.at(0)->name();
+        QWindow *window = qobject_cast<QWindow*>(object);
+        if (window) {
+            window->setScreen(screens.at(0));  // 두 번째 모니터 설정
+            window->showFullScreen();          // 전체 화면 모드로 실행
+        }
+    } else {
+        qDebug() << "Only one screen detected.";
+        QWindow *window = qobject_cast<QWindow*>(object);
+        if (window) {
+            window->setScreen(screens.at(0));  // 첫 번째 모니터 설정
+            window->showFullScreen();          // 전체 화면 모드로 실행
+        }
+    }
     return app.exec();
 }
