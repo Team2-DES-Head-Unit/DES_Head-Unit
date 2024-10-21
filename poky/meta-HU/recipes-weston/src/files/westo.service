@@ -1,0 +1,20 @@
+[Unit]
+Description=Weston service
+After=graphical.target
+
+[Service]
+ExecStart=/usr/bin/weston --tty=/dev/tty7 --backend=drm-backend.so --idle-time=0
+ExecStartPost=/usr/bin/hu/HeadUnit --platform wayland --no-sandbox
+ExecStartPost=/usr/bin/ic/IC_TEST --platform wayland
+StandardInput=tty
+TTYPath=/dev/tty7
+TTYReset=yes
+TTYVHangup=yes
+KillMode=process
+Type=simple
+
+
+
+[Install]
+WantedBy=graphical.target
+
