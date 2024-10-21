@@ -31,8 +31,9 @@ bitbake/lib/toaster/contrib/tts/backlog.txt
 bitbake/lib/toaster/contrib/tts/log/*
 bitbake/lib/toaster/contrib/tts/.cache/*
 bitbake/lib/bb/tests/runqueue-tests/bitbake-cookerdaemon.log\/poky/build
-/HU/
-!HU/conf
+/poky/HU
+!/poky/HU/conf
+
 /poky/sstate-cache
 /poky/source-mirrors
 /poky/.vscode
