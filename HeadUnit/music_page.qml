@@ -33,14 +33,14 @@ Window{
         id: base_window
         fillMode: Image.PreserveAspectFit
         anchors.fill: parent
-        source: "HU_Assets/Background/basic_window.png"
+        source: clickNotifier.clicked ? "HU_Assets/light/Background/basic_window_l.png" : "HU_Assets/Background/basic_window.png"
 
         Image {
             id: music_bar
             x: 15
             y: 12
             fillMode: Image.PreserveAspectFit
-            source: "HU_Assets/Background/music_bar.png"
+            source: clickNotifier.clicked ? "HU_Assets/light/Background/music_bar_l.png" : "HU_Assets/Background/music_bar.png"
 
 
             Rectangle {
@@ -54,7 +54,7 @@ Window{
                 Image {
                     id: music_icon
                     width: 28
-                    source: "HU_Assets/Icons/music.png"
+                    source: clickNotifier.clicked ? "HU_Assets/light/Icons/music_l.png" : "HU_Assets/Icons/music.png"
                     fillMode: Image.PreserveAspectFit
                     anchors{
                         verticalCenter: music.verticalCenter
@@ -70,7 +70,7 @@ Window{
                     height: 22
                     text: qsTr("Music")
                     font.pixelSize: 20
-                    color: "#ffffff"
+                    color: clickNotifier.clicked ? "#414141" : "#ffffff"
                     anchors{
                         verticalCenter: music.verticalCenter
                         right: music.right
@@ -106,7 +106,7 @@ Window{
                 text: musicPlayer.getTitleForSong(songTitle)
                 anchors.horizontalCenterOffset: 0
                 font.pixelSize: 18
-                color: "#ffffff"
+                color: clickNotifier.clicked ? "#414141" : "#ffffff"
             }
 
             Text {
@@ -129,7 +129,7 @@ Window{
                     id: skip_back
                     anchors.verticalCenter: music_menu.verticalCenter
                     fillMode: Image.PreserveAspectFit
-                    source: "HU_Assets/Components/Music/skip_back.png"
+                    source: clickNotifier.clicked ? "HU_Assets/light/Components/Music/skip_back_l.png" : "HU_Assets/Components/Music/skip_back.png"
                     MouseArea{
                         anchors.fill: parent
                         onClicked: {
@@ -151,7 +151,7 @@ Window{
                     id: music_button
                     anchors.verticalCenter: music_menu.verticalCenter
                     fillMode: Image.PreserveAspectFit
-                    source: "HU_Assets/Components/Music/music_button_ring.png"
+                    source: clickNotifier.clicked ? "HU_Assets/light/Components/Music/music_button_ring_l.png" : "HU_Assets/Components/Music/music_button_ring.png"
                     Component.onCompleted: {
                         musicPath = musicPlayer.getPathForSong(songTitle);
                         console.log("file path : " + musicPath);
@@ -174,7 +174,7 @@ Window{
                             horizontalCenter: music_button.horizontalCenter
                         }
                         fillMode: Image.PreserveAspectFit
-                        source: "HU_Assets/Components/Music/play.png"
+                        source: clickNotifier.clicked ? "HU_Assets/light/Components/Music/play_l.png" : "HU_Assets/Components/Music/play.png"
                         MouseArea{
                             anchors.fill: parent
                             onClicked: {
@@ -192,7 +192,7 @@ Window{
                         anchors.horizontalCenterOffset: 1
                         anchors.centerIn: music_button
                         fillMode: Image.PreserveAspectFit
-                        source: "HU_Assets/Components/Music/stop.png"
+                        source: clickNotifier.clicked ? "HU_Assets/light/Components/Music/stop_l.png" : "HU_Assets/Components/Music/stop.png"
                         MouseArea{
                             anchors.fill: parent
                             onClicked: {
@@ -217,7 +217,7 @@ Window{
                     id: skip_front
                     anchors.verticalCenter: music_menu.verticalCenter
                     fillMode: Image.PreserveAspectFit
-                    source: "HU_Assets/Components/Music/skip_front.png"
+                    source: clickNotifier.clicked ? "HU_Assets/light/Components/Music/skip_front_l.png" : "HU_Assets/Components/Music/skip_front.png"
                     MouseArea{
                         anchors.fill: parent
                         onClicked: {
@@ -252,7 +252,7 @@ Window{
                     verticalCenter: music_progress_bar.verticalCenter
                 }
                 radius: 3
-                color: "#58C7A4"
+                color: clickNotifier.clicked ? "#7788F2" : "#58C7A4"
             }
 
             Text {
@@ -346,7 +346,7 @@ Window{
                             leftMargin: 15
                         }
                         y: 10
-                        color: "#ffffff"
+                        color: clickNotifier.clicked ? "#414141" : "#ffffff"
                     }
                     Text {
                         id: singer_name
@@ -386,7 +386,7 @@ Window{
             y: 30
             text: "Track List"
             font.pixelSize: 25
-            color: "#ffffff"
+            color: clickNotifier.clicked ? "#414141" : "#ffffff"
         }
 
         Image {
@@ -394,7 +394,7 @@ Window{
             x: 349
             y: 65
             fillMode: Image.PreserveAspectFit
-            source: "HU_Assets/Components/Music/sequential.png"
+            source: clickNotifier.clicked ? "HU_Assets/light/Components/Music/sequential_l.png" : "HU_Assets/Components/Music/sequential.png"
         }
 
         Image {
@@ -413,7 +413,7 @@ Window{
         width: 50
         height: 50
         fillMode: Image.PreserveAspectFit
-        source: "HU_Assets/Icons/tap_close_button.png"
+        source: clickNotifier.clicked ? "HU_Assets/light/Icons/close_icon_l.png" : "HU_Assets/Icons/tap_close_button.png"
 
         MouseArea{
             anchors.fill: parent

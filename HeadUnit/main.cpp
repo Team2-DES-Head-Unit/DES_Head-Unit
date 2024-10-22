@@ -6,6 +6,7 @@
 #include "weather_provider.h"
 #include "music_player.h"
 #include "BluetoothManager.h"
+#include "ClickNotier.h"
 
 int main(int argc, char *argv[])
 {
@@ -22,14 +23,16 @@ int main(int argc, char *argv[])
     SpeedProvider speedProvider;
     WeatherProvider weatherProvider;
     MusicPlayer musicPlayer;
+    ClickNotifier clickNotifier;
 
     engine.rootContext()->setContextProperty("timeProvider", &timeProvider);
     engine.rootContext()->setContextProperty("speedProvider", &speedProvider);
     engine.rootContext()->setContextProperty("weatherProvider", &weatherProvider);
     engine.rootContext()->setContextProperty("musicPlayer", &musicPlayer);
+    engine.rootContext()->setContextProperty("clickNotifier", &clickNotifier);
 
-    BluetoothManager btManager;
-    engine.rootContext()->setContextProperty("btManager", &btManager);
+//    BluetoothManager btManager;
+//    engine.rootContext()->setContextProperty("btManager", &btManager);
 
 //    // music test
 //    QString songtitle = "Hanumankind-Big_Dawgs.mp3";

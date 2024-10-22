@@ -21,7 +21,7 @@ Window{
         width: 50
         height: 50
         fillMode: Image.PreserveAspectFit
-        source: "HU_Assets/Icons/tap_close_button.png"
+        source: clickNotifier.clicked ? "HU_Assets/light/Icons/close_icon_l.png" : "HU_Assets/Icons/tap_close_button.png"
 
         MouseArea{
             anchors.fill: parent
@@ -56,31 +56,31 @@ Window{
                 id: bluetoothd_txt
                 text: qsTr("Bluetooth Discovery")
                 font.pixelSize: 20
-                color: "white"
+                color: clickNotifier.clicked ? "#414141" : "white"
             }
             Button {
                 id: bdbutton_on
                 text: qsTr("On")
                 width: 50
                 height: 25
-                onClicked: {
-                    btManager.startDiscovery();
-                    isSearching = true;  // 검색 상태 시작
-                    isStopped = false;   // 검색 중지 상태 해제
-                    deviceModel.clear(); // 장치 목록 초기화
-                }
+//                onClicked: {
+//                    btManager.startDiscovery();
+//                    isSearching = true;  // 검색 상태 시작
+//                    isStopped = false;   // 검색 중지 상태 해제
+//                    deviceModel.clear(); // 장치 목록 초기화
+//                }
             }
             Button {
                 id: bdbutton_off
                 text: qsTr("Off")
                 width: 50
                 height: 25
-                onClicked: {
-                    btManager.stopDiscovery();
-                    isSearching = false;  // 검색 중지
-                    isStopped = true;     // 검색 중지 상태 설정
-                    deviceModel.clear(); // 장치 목록 초기화
-                }
+//                onClicked: {
+//                    btManager.stopDiscovery();
+//                    isSearching = false;  // 검색 중지
+//                    isStopped = true;     // 검색 중지 상태 설정
+//                    deviceModel.clear(); // 장치 목록 초기화
+//                }
             }
 
         }
@@ -101,7 +101,7 @@ Window{
             Text {
                 text: "Name"
                 font.bold: true
-                color: "white"
+                color: clickNotifier.clicked ? "#414141" : "white"
             }
 
             Item {
@@ -114,7 +114,7 @@ Window{
             Text {
                 text: "Type"
                 font.bold: true
-                color: "white"
+                color: clickNotifier.clicked ? "#414141" : "white"
             }
         }
         // 스크롤 가능한 ListView
@@ -146,27 +146,27 @@ Window{
                         Text {
                             text: model.deviceName
                             font.bold: true
-                            color: "white"  // 볼드체 흰색 글씨
+                            color: clickNotifier.clicked ? "#414141" : "white"  // 볼드체 흰색 글씨
                         }
 
                         Text {
                             text: "/"
-                            color: "white"
+                            color: clickNotifier.clicked ? "#414141" : "white"
                         }
 
                         Text {
                             text: model.deviceType  // 추가된 deviceType 표시
                             font.bold: true
-                            color: "white"  // 일반 흰색 글씨
+                            color: clickNotifier.clicked ? "#414141" : "white"  // 일반 흰색 글씨
                         }
                     }
-                    MouseArea {
-                        anchors.fill: parent
-                        onClicked: {
-                            // 선택된 장치 이름을 전달하여 연결 시도
-                            btManager.connectToDevice(model.deviceName);
-                        }
-                    }
+//                    MouseArea {
+//                        anchors.fill: parent
+//                        onClicked: {
+//                            // 선택된 장치 이름을 전달하여 연결 시도
+//                            btManager.connectToDevice(model.deviceName);
+//                        }
+//                    }
                 }
 
                 // 스크롤 동작을 최상단에 고정
@@ -187,7 +187,7 @@ Window{
                     anchors.top: parent.top  // 상단에 배치
                     anchors.horizontalCenter: parent.horizontalCenter  // 수평 가운데 정렬
                     anchors.topMargin: 10  // 상단 여백 설정 (필요에 따라 조정 가능)
-                    color: "white"
+                    color: clickNotifier.clicked ? "#414141" : "white"
                     font.pixelSize: 25
                     font.bold: true
                     text: {
@@ -209,18 +209,18 @@ Window{
             }
         }
 
-        Connections {
-            target: btManager
+//        Connections {
+//            target: btManager
 
-            onDeviceDiscovered: function(deviceName, deviceType) {
-                deviceModel.append({"deviceName": deviceName, "deviceType": deviceType});
-            }
+//            onDeviceDiscovered: function(deviceName, deviceType) {
+//                deviceModel.append({"deviceName": deviceName, "deviceType": deviceType});
+//            }
 
-            onDiscoveryFinished: {
-                console.log("Discovery finished.");
-                isSearching = false;  // 검색 상태 중지
-            }
-        }
+//            onDiscoveryFinished: {
+//                console.log("Discovery finished.");
+//                isSearching = false;  // 검색 상태 중지
+//            }
+//        }
     }
 
 }

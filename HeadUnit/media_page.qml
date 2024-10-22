@@ -13,7 +13,7 @@ Window{
         id: base_window
         fillMode: Image.PreserveAspectFit
         anchors.fill: parent
-        source: "HU_Assets/Background/basic_window.png"
+        source: clickNotifier.clicked ? "HU_Assets/light/Background/basic_window_l.png" : "HU_Assets/Background/basic_window.png"
     }
 
     Image {
@@ -23,7 +23,7 @@ Window{
         width: 50
         height: 50
         fillMode: Image.PreserveAspectFit
-        source: "HU_Assets/Icons/tap_close_button.png"
+        source: clickNotifier.clicked ? "HU_Assets/light/Icons/close_icon_l.png" : "HU_Assets/Icons/tap_close_button.png"
 
         MouseArea{
             anchors.fill: parent

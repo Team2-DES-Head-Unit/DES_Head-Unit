@@ -35,6 +35,7 @@ if(ANDROID)
       weather_provider.h
       music_player.h
       BluetoothManager.h
+      ClickNotier.h
 
       basic_func.cpp
       BluetoothManager.cpp
@@ -49,6 +50,7 @@ else()
       weather_provider.h
       music_player.h
       BluetoothManager.h
+      ClickNotier.h
 
       basic_func.cpp
       BluetoothManager.cpp
