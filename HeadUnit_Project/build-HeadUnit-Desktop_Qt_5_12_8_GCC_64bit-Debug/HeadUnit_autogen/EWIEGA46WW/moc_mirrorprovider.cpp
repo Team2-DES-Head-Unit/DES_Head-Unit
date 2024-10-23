@@ -21,8 +21,8 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_MirrorProvider_t {
-    QByteArrayData data[9];
-    char stringdata0[78];
+    QByteArrayData data[12];
+    char stringdata0[124];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -35,15 +35,20 @@ QT_MOC_LITERAL(0, 0, 14), // "MirrorProvider"
 QT_MOC_LITERAL(1, 15, 12), // "stateChanged"
 QT_MOC_LITERAL(2, 28, 0), // ""
 QT_MOC_LITERAL(3, 29, 11), // "getisLoaded"
-QT_MOC_LITERAL(4, 41, 4), // "init"
-QT_MOC_LITERAL(5, 46, 11), // "QQuickItem*"
-QT_MOC_LITERAL(6, 58, 6), // "parent"
-QT_MOC_LITERAL(7, 65, 3), // "end"
-QT_MOC_LITERAL(8, 69, 8) // "isLoaded"
+QT_MOC_LITERAL(4, 41, 11), // "changeState"
+QT_MOC_LITERAL(5, 53, 22), // "QProcess::ProcessState"
+QT_MOC_LITERAL(6, 76, 8), // "newState"
+QT_MOC_LITERAL(7, 85, 4), // "init"
+QT_MOC_LITERAL(8, 90, 13), // "QQuickWindow*"
+QT_MOC_LITERAL(9, 104, 6), // "parent"
+QT_MOC_LITERAL(10, 111, 3), // "end"
+QT_MOC_LITERAL(11, 115, 8) // "isLoaded"
 
     },
     "MirrorProvider\0stateChanged\0\0getisLoaded\0"
-    "init\0QQuickItem*\0parent\0end\0isLoaded"
+    "changeState\0QProcess::ProcessState\0"
+    "newState\0init\0QQuickWindow*\0parent\0"
+    "end\0isLoaded"
 };
 #undef QT_MOC_LITERAL
 
@@ -53,35 +58,37 @@ static const uint qt_meta_data_MirrorProvider[] = {
        8,       // revision
        0,       // classname
        0,    0, // classinfo
-       4,   14, // methods
-       1,   40, // properties
+       5,   14, // methods
+       1,   48, // properties
        0,    0, // enums/sets
        0,    0, // constructors
        0,       // flags
        1,       // signalCount
 
  // signals: name, argc, parameters, tag, flags
-       1,    0,   34,    2, 0x06 /* Public */,
+       1,    0,   39,    2, 0x06 /* Public */,
 
  // slots: name, argc, parameters, tag, flags
-       3,    0,   35,    2, 0x0a /* Public */,
+       3,    0,   40,    2, 0x0a /* Public */,
+       4,    1,   41,    2, 0x0a /* Public */,
 
  // methods: name, argc, parameters, tag, flags
-       4,    1,   36,    2, 0x02 /* Public */,
-       7,    0,   39,    2, 0x02 /* Public */,
+       7,    1,   44,    2, 0x02 /* Public */,
+      10,    0,   47,    2, 0x02 /* Public */,
 
  // signals: parameters
     QMetaType::Void,
 
  // slots: parameters
     QMetaType::Bool,
+    QMetaType::Void, 0x80000000 | 5,    6,
 
  // methods: parameters
-    QMetaType::Void, 0x80000000 | 5,    6,
+    QMetaType::Void, 0x80000000 | 8,    9,
     QMetaType::Void,
 
  // properties: name, type, flags
-       8, QMetaType::Bool, 0x00495001,
+      11, QMetaType::Bool, 0x00495001,
 
  // properties: notify_signal_id
        0,
@@ -98,18 +105,19 @@ void MirrorProvider::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _
         case 0: _t->stateChanged(); break;
         case 1: { bool _r = _t->getisLoaded();
             if (_a[0]) *reinterpret_cast< bool*>(_a[0]) = std::move(_r); }  break;
-        case 2: _t->init((*reinterpret_cast< QQuickItem*(*)>(_a[1]))); break;
-        case 3: _t->end(); break;
+        case 2: _t->changeState((*reinterpret_cast< QProcess::ProcessState(*)>(_a[1]))); break;
+        case 3: _t->init((*reinterpret_cast< QQuickWindow*(*)>(_a[1]))); break;
+        case 4: _t->end(); break;
         default: ;
         }
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
         switch (_id) {
         default: *reinterpret_cast<int*>(_a[0]) = -1; break;
-        case 2:
+        case 3:
             switch (*reinterpret_cast<int*>(_a[1])) {
             default: *reinterpret_cast<int*>(_a[0]) = -1; break;
             case 0:
-                *reinterpret_cast<int*>(_a[0]) = qRegisterMetaType< QQuickItem* >(); break;
+                *reinterpret_cast<int*>(_a[0]) = qRegisterMetaType< QQuickWindow* >(); break;
             }
             break;
         }
@@ -139,7 +147,7 @@ void MirrorProvider::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _
 }
 
 QT_INIT_METAOBJECT const QMetaObject MirrorProvider::staticMetaObject = { {
-    &QQuickView::staticMetaObject,
+    &QObject::staticMetaObject,
     qt_meta_stringdata_MirrorProvider.data,
     qt_meta_data_MirrorProvider,
     qt_static_metacall,
@@ -158,22 +166,22 @@ void *MirrorProvider::qt_metacast(const char *_clname)
     if (!_clname) return nullptr;
     if (!strcmp(_clname, qt_meta_stringdata_MirrorProvider.stringdata0))
         return static_cast<void*>(this);
-    return QQuickView::qt_metacast(_clname);
+    return QObject::qt_metacast(_clname);
 }
 
 int MirrorProvider::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 {
-    _id = QQuickView::qt_metacall(_c, _id, _a);
+    _id = QObject::qt_metacall(_c, _id, _a);
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 4)
+        if (_id < 5)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 4;
+        _id -= 5;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 4)
+        if (_id < 5)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 4;
+        _id -= 5;
     }
 #ifndef QT_NO_PROPERTIES
     else if (_c == QMetaObject::ReadProperty || _c == QMetaObject::WriteProperty

@@ -8,9 +8,19 @@
 #include <QWindow>
 #include <QQmlApplicationEngine>
 #include <QQuickView>
-#include <QQuickItem>
+#include <QQuickWindow>
+#include <QThread>
+#include <QTimer>
 
-class MirrorProvider : public QQuickView{
+enum MODE{
+    TEST, EXECUTION
+};
+
+enum STATE{
+    LOADING, UNCONNECTED, CONNECTED
+};
+
+class MirrorProvider : public QObject{
     Q_OBJECT
 
     Q_PROPERTY(bool isLoaded READ getisLoaded NOTIFY stateChanged)
@@ -18,58 +28,105 @@ class MirrorProvider : public QQuickView{
 private:
     QProcess * scrcpyProcess;
     QProcess * xwindowProcess;
-    QString window_title = "seungjuphone";
+    QString window_title = "Trash";
+    MODE mode = EXECUTION;
+
+    QWindow * scrcpyWindow;
     bool isloaded;
+    bool isInitialized = false;
 
 signals:
     void stateChanged();
 
-public slots:
-    bool getisLoaded(){return isloaded;}
+
 
 public:
-    explicit MirrorProvider(QQuickView *parent = nullptr):QQuickView(parent){
+    explicit MirrorProvider(QObject *parent = nullptr):QObject(parent), isloaded(false){
         scrcpyProcess = new QProcess();
         xwindowProcess = new QProcess();
-        qDebug() << "Constructor of Mirrorprivider";
+        window_title = (mode == TEST) ? "Trash" : "Seungjuphone";
     }
 
     ~MirrorProvider(){
         this->end();
     }
 
-    Q_INVOKABLE void init(QQuickItem* parent){
-        scrcpyProcess->start("scrcpy", QStringList() << "--window-title" << window_title);
-        xwindowProcess->start("xdotool", QStringList() << "search" <<"--name" << window_title);
-        xwindowProcess->waitForFinished();
-        QString output = xwindowProcess->readAllStandardOutput();
-        WId scrcpyWindowId = output.toULongLong();
+    Q_INVOKABLE void init(QQuickWindow * parent){
+        if (mode == EXECUTION){
+            scrcpyProcess->start("scrcpy", QStringList() << "--window-title" << window_title);
+        }
+        else if (mode == TEST){
+            scrcpyProcess->start("nautilus", QStringList() <<"trash:///");
+        }
 
-        emit stateChanged();
-
+        qDebug() << scrcpyProcess->waitForStarted();
         qDebug() << "init() function called";
 
-        if (scrcpyWindowId == 0){
+        WId scrcpyWindowId = 0;
+        bool windowOpened = false;
+        int i = 0;
+        int waituntil = 3;
+        while (!windowOpened && i < waituntil) {
+            xwindowProcess->start("xdotool", QStringList() << "search" << "--name" << window_title);
+            xwindowProcess->waitForFinished();
+            QString output = xwindowProcess->readAllStandardOutput();
+
+            if (!output.isEmpty()) {
+                windowOpened = true;
+                scrcpyWindowId = output.toULongLong();
+                qDebug() << "Window ID found: " << scrcpyWindowId;
+            }
+            else {
+                qDebug() << "Window not found, retrying...";
+                QThread::sleep(1);  // Wait 1 second before polling again
+                i++;
+            }
+        }
+
+        if (!windowOpened){
             qDebug() << "failed to load";
             isloaded = false;
         }
         else{
             qDebug() << "successfully loaded!";
-            QWindow *qmlWindow = parent->window();
-            QWindow *scrcpyWindow = QWindow::fromWinId(scrcpyWindowId);
-            scrcpyWindow->setParent(qmlWindow);
-            scrcpyWindow->setGeometry(parent->x(), parent->y(), parent->width(), parent->height());
-            scrcpyWindow->show();
+            qDebug() << parent;
+
+            QObject::connect(scrcpyProcess, &QProcess::stateChanged, this, &MirrorProvider::changeState);
+
+            scrcpyWindow = QWindow::fromWinId(scrcpyWindowId);
+            scrcpyWindow->setFlags(Qt::FramelessWindowHint | Qt::WindowStaysOnTopHint);
+            scrcpyWindow->setTransientParent(parent);
+            QTimer::singleShot(100, [this, parent]() {
+                qDebug() << parent->x() << parent->y() << parent->width() << parent->height();
+                scrcpyWindow->setGeometry(parent->x(), parent->y(), parent->width() - 150, parent->height());
+                scrcpyWindow->show();
+                scrcpyWindow->requestUpdate();
+           });
             isloaded = true;
         }
 
+        emit stateChanged();
     }
 
     Q_INVOKABLE void end(){
         scrcpyProcess->kill();
         xwindowProcess->kill();
+        qDebug() << "so long";
     }
 
+
+
+public slots:
+    bool getisLoaded(){return isloaded;}
+
+public slots:
+    void changeState(QProcess::ProcessState newState){
+        if (newState == QProcess::NotRunning){
+            qDebug() << "disconnected with state" << newState;
+            isloaded = false;
+            emit stateChanged();
+        }
+    }
 };
 
 #endif // MIRRORPROVIDER_H
