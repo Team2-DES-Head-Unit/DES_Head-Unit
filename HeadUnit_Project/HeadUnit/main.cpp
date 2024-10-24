@@ -60,6 +60,8 @@ int main(int argc, char *argv[])
     engine.rootContext()->setContextProperty("weatherProvider", &weatherProvider);
     engine.rootContext()->setContextProperty("musicPlayer", &musicPlayer);
 
+
+    //이거꼭바꿔 이거ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ
     qmlRegisterType<MirrorProvider>("QtQuick.mirroring", 1, 0, "MirrorProvider");
 
 //    // music test

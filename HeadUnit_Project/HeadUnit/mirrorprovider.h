@@ -53,7 +53,7 @@ public:
 
     Q_INVOKABLE void init(QQuickWindow * parent){
         if (mode == EXECUTION){
-            scrcpyProcess->start("scrcpy", QStringList() << "--window-title" << window_title);
+            scrcpyProcess->start("scrcpy", QStringList() << "--window-title" << window_title << "--lock-video-orientation=2");
         }
         else if (mode == TEST){
             scrcpyProcess->start("nautilus", QStringList() <<"trash:///");
@@ -65,7 +65,7 @@ public:
         WId scrcpyWindowId = 0;
         bool windowOpened = false;
         int i = 0;
-        int waituntil = 3;
+        int waituntil = 2;
         while (!windowOpened && i < waituntil) {
             xwindowProcess->start("xdotool", QStringList() << "search" << "--name" << window_title);
             xwindowProcess->waitForFinished();
@@ -86,26 +86,27 @@ public:
         if (!windowOpened){
             qDebug() << "failed to load";
             isloaded = false;
+            emit stateChanged();
         }
         else{
             qDebug() << "successfully loaded!";
-            qDebug() << parent;
 
-            QObject::connect(scrcpyProcess, &QProcess::stateChanged, this, &MirrorProvider::changeState);
+            if (mode == EXECUTION){
+                QObject::connect(scrcpyProcess, &QProcess::stateChanged, this, &MirrorProvider::changeState);
+            }
 
             scrcpyWindow = QWindow::fromWinId(scrcpyWindowId);
-            scrcpyWindow->setFlags(Qt::FramelessWindowHint | Qt::WindowStaysOnTopHint);
+            scrcpyWindow->setFlags(Qt::FramelessWindowHint);
             scrcpyWindow->setTransientParent(parent);
+
             QTimer::singleShot(100, [this, parent]() {
-                qDebug() << parent->x() << parent->y() << parent->width() << parent->height();
-                scrcpyWindow->setGeometry(parent->x(), parent->y(), parent->width() - 150, parent->height());
+                scrcpyWindow->setGeometry(parent->x(), parent->y(), parent->width(), parent->height());
                 scrcpyWindow->show();
-                scrcpyWindow->requestUpdate();
+                parent->raise();
            });
             isloaded = true;
+            emit stateChanged();
         }
-
-        emit stateChanged();
     }
 
     Q_INVOKABLE void end(){

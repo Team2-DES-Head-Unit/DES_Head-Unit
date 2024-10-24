@@ -22,6 +22,7 @@ Window{
             mirror_window.x = main_window.x + 393;
             mirror_window.y = main_window.y + 40;
             mirrorProvider.init(mirror_window); // Initialize mirrorProvider with baseItem
+            isInitialized = true;
         }
     }
 
@@ -30,6 +31,7 @@ Window{
         source: "HU_Assets/Background/basic_window.png"
         id: base_window
         z : 0
+        visible: !mirrorProvider.isLoaded
 
         MirrorProvider{
             id: mirrorProvider
@@ -37,7 +39,6 @@ Window{
         Rectangle{
             z: 1
             anchors.centerIn: parent
-            visible: !mirrorProvider.isLoaded
             color: "transparent"
             Column{
                 anchors.centerIn: parent
@@ -62,8 +63,9 @@ Window{
                     MouseArea{
                         anchors.fill: parent
                         onClicked: {
-                            mirrorProvider.end();
-                            mirrorProvider.init(mirror_window);
+                            mirror_window.visible = false;
+                            isInitialized = false;
+                            mirror_window.visible = true;
                         }
                     }
                 }
