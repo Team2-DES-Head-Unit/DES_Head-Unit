@@ -9,6 +9,15 @@ Window{
     height: 480
     color: "transparent"
     flags: Qt.FramelessWindowHint
+
+    onVisibleChanged: {
+        if (visible){
+            music_window.x = main_window.x + 393;
+            music_window.y = main_window.y + 40;
+        }
+    }
+
+
     Connections{
         target: musicPlayer
         onNextSongInfo:{

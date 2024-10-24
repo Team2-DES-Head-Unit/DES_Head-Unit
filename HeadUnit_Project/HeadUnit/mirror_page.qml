@@ -19,6 +19,8 @@ Window{
 
     onVisibleChanged: {
         if (!isInitialized && mirror_window.visible){
+            mirror_window.x = main_window.x + 393;
+            mirror_window.y = main_window.y + 40;
             mirrorProvider.init(mirror_window); // Initialize mirrorProvider with baseItem
         }
     }

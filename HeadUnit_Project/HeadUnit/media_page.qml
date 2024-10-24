@@ -10,6 +10,13 @@ Window{
     color: "transparent"
     flags: Qt.FramelessWindowHint
 
+    onVisibleChanged: {
+        if(visible){
+            media_window.x = main_window.x + 393;
+            media_window.y = main_window.y + 40;
+        }
+    }
+
     Image {
         id: base_window
         fillMode: Image.PreserveAspectFit

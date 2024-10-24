@@ -12,6 +12,13 @@ ApplicationWindow{
     color: "transparent"
     flags: Qt.FramelessWindowHint
 
+    onVisibleChanged: {
+        if (visible){
+            map_window.x = main_window.x + 393;
+            map_window.y = main_window.y + 40;
+        }
+    }
+
     Rectangle {
         id: base_window
         anchors.fill: parent

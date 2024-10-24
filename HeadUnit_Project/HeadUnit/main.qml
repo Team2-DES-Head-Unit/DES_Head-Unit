@@ -875,8 +875,6 @@ Window {
                             icon_line.x = -8;
                             settingQmlLoader.active = true;
                             settingQmlLoader.item.visible = true;
-                            settingQmlLoader.item.x = main_window.x + 393;
-                            settingQmlLoader.item.y = main_window.y + 40;
                         }
                     }
                 }
@@ -893,8 +891,6 @@ Window {
                             icon_line.x = 65;
                             mapQmlLoader.active = true;
                             mapQmlLoader.item.visible = true;
-                            mapQmlLoader.item.x = main_window.x + 393;
-                            mapQmlLoader.item.y = main_window.y + 40;
                         }
                     }
                 }
@@ -925,8 +921,6 @@ Window {
                             icon_line.x = 213;
                             musicQmlLoader.active = true;
                             musicQmlLoader.item.visible = true;
-                            musicQmlLoader.item.x = main_window.x + 393;
-                            musicQmlLoader.item.y = main_window.y + 40;
                         }
                     }
                 }
@@ -943,8 +937,6 @@ Window {
                             icon_line.x = 285;
                             mediaQmlLoader.active = true;
                             mediaQmlLoader.item.visible = true;
-                            mediaQmlLoader.item.x = main_window.x + 393;
-                            mediaQmlLoader.item.y = main_window.y + 40;
                         }
                     }
                 }
@@ -961,8 +953,6 @@ Window {
                             icon_line.x = 357;
                             mirrorQmlLoader.active = true;
                             mirrorQmlLoader.item.visible = true;
-                            mirrorQmlLoader.item.x = main_window.x + 393;
-                            mirrorQmlLoader.item.y = main_window.y + 40;
                         }
                     }
                 }
