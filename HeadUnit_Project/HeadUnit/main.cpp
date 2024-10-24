@@ -23,7 +23,6 @@ int main(int argc, char *argv[])
     QtWebEngine::initialize();
     QGuiApplication app(argc, argv);
     QWebEngineSettings::globalSettings()->setAttribute(QWebEngineSettings::WebGLEnabled, false);
-    QWebEngineSettings::globalSettings()->setAttribute(QWebEngineSettings::AcceleratedCompositingEnabled, false);
     QWebEngineSettings::globalSettings()->setAttribute(QWebEngineSettings::Accelerated2dCanvasEnabled, false);
     QWebEngineSettings::globalSettings()->setAttribute(QWebEngineSettings::PlaybackRequiresUserGesture, false);
     
