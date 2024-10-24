@@ -901,8 +901,9 @@ Window {
                             icon_line.x = -8;
                             settingQmlLoader.active = true;
                             settingQmlLoader.item.visible = true;
-                            settingQmlLoader.item.x = main_window.x + 393;
-                            settingQmlLoader.item.y = main_window.y + 40;
+                            //settingQmlLoader.item.x = main_window.x + 393;
+                            //settingQmlLoader.item.y = main_window.y + 40;
+                            mapQmlLoader.item.setPosition(main_window.x + 393, main_window.y + 40);
                         }
                     }
                 }
