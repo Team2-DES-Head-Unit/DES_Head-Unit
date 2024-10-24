@@ -13,10 +13,19 @@
 
 int main(int argc, char *argv[])
 {
-    QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
+    // GPU 가속 비활성화 관련 설정
+    qputenv("QTWEBENGINE_CHROMIUM_FLAGS", "--disable-gpu --disable-gpu-compositing --disable-gpu-rasterization");
+    qputenv("QMLSCENE_DEVICE", "softwarecontext");
+    qputenv("QT_QUICK_BACKEND", "software");
+    QCoreApplication::setAttribute(Qt::AA_DisableHighDpiScaling);
+    QCoreApplication::setAttribute(Qt::AA_UseSoftwareOpenGL);
     QtWebEngine::initialize();
     QGuiApplication app(argc, argv);
-
+    QWebEngineSettings::globalSettings()->setAttribute(QWebEngineSettings::WebGLEnabled, false);
+    QWebEngineSettings::globalSettings()->setAttribute(QWebEngineSettings::AcceleratedCompositingEnabled, false);
+    QWebEngineSettings::globalSettings()->setAttribute(QWebEngineSettings::Accelerated2dCanvasEnabled, false);
+    QWebEngineSettings::globalSettings()->setAttribute(QWebEngineSettings::PlaybackRequiresUserGesture, false);
+    
     QQmlApplicationEngine engine;
 
     // register TimeProvider class(set on basic_func) to use on Qml
