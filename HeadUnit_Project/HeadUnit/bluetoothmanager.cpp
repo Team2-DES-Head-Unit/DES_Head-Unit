@@ -11,7 +11,6 @@ BluetoothManager::BluetoothManager(QObject *parent) :
     localDevice(new QBluetoothLocalDevice),
     socket(new QBluetoothSocket(QBluetoothServiceInfo::RfcommProtocol, this))
 {
-
     connect(discoveryAgent, &QBluetoothDeviceDiscoveryAgent::deviceDiscovered,
             this, &BluetoothManager::deviceDiscoveredHandler);
     connect(discoveryAgent, &QBluetoothDeviceDiscoveryAgent::finished,
@@ -39,7 +38,22 @@ void BluetoothManager::startDiscovery()
 {
     if (localDevice->isValid()) {
         qDebug() << "Starting device discovery...";
+
+        // 발견된 장치 리스트 초기화
         discoveredDevices.clear();
+
+        // 이미 페어링된 장치 추가
+//        QList<QBluetoothAddress> pairedDevices = localDevice->pairedDevices();
+//        for (const QBluetoothAddress &address : pairedDevices) {
+//            QBluetoothDeviceInfo pairedDevice(address, QString(), 0);
+//            discoveredDevices.append(pairedDevice);  // 목록에 추가
+//            qDebug() << "Paired device found:" << address.toString();
+
+//            // UI에 표시하기 위해 시그널을 발생시킴
+//            emit deviceDiscovered(address.toString(), "Paired Device");
+//        }
+
+        // 장치 검색 시작
         discoveryAgent->start();
     }
 }
@@ -62,11 +76,9 @@ void BluetoothManager::connectToDevice(const QString &deviceName)
 
             QBluetoothLocalDevice::Pairing pairingStatus = localDevice->pairingStatus(deviceInfo.address());
             if (pairingStatus == QBluetoothLocalDevice::Unpaired) {
-
                 qDebug() << "Requesting pairing for device:" << deviceName;
                 localDevice->requestPairing(deviceInfo.address(), QBluetoothLocalDevice::Paired);
             } else {
-
                 qDebug() << "Device already paired. Connecting to service...";
                 socket->connectToService(deviceInfo.address(), QBluetoothUuid(QBluetoothUuid::SerialPort), QIODevice::ReadWrite);
             }

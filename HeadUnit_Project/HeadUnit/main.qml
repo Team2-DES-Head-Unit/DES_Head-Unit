@@ -649,7 +649,7 @@ Window {
             id: music_menu
             x: 303
             y: 21
-            spacing: 17
+            spacing: 55
 
             Image {
                 id: skip_back
@@ -666,12 +666,12 @@ Window {
                 }
             }
 
-            Image {
-                id: skip_back2
-                anchors.verticalCenter: music_menu.verticalCenter
-                fillMode: Image.PreserveAspectFit
-                source: "HU_Assets/Components/Music/skip_back2.png"
-            }
+//            Image {
+//                id: skip_back2
+//                anchors.verticalCenter: music_menu.verticalCenter
+//                fillMode: Image.PreserveAspectFit
+//                source: "HU_Assets/Components/Music/skip_back2.png"
+//            }
 
             Image {
                 id: music_button
@@ -725,12 +725,12 @@ Window {
                 }
             }
 
-            Image {
-                id: skip_front2
-                anchors.verticalCenter: music_menu.verticalCenter
-                fillMode: Image.PreserveAspectFit
-                source: "HU_Assets/Components/Music/skip_front2.png"
-            }
+//            Image {
+//                id: skip_front2
+//                anchors.verticalCenter: music_menu.verticalCenter
+//                fillMode: Image.PreserveAspectFit
+//                source: "HU_Assets/Components/Music/skip_front2.png"
+//            }
 
             Image {
                 id: skip_front

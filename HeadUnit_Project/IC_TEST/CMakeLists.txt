@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.5)
 
-project(HeadUnit LANGUAGES CXX)
+project(IC_TEST LANGUAGES CXX)
 
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
@@ -10,7 +10,7 @@ set(CMAKE_AUTORCC ON)
 
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
-#set(CMAKE_PREFIX_PATH "/usr/local/lib/cmake/vsomeip")
+set(CMAKE_PREFIX_PATH "/usr/local/lib/cmake/vsomeip")
 
 # QtCreator supports the following variables for Android, which are identical to qmake Android variables.
 # Check http://doc.qt.io/qt-5/deployment-android.html for more information.
@@ -25,50 +25,38 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 #    endif()
 #endif()
 
-find_package(Qt5 COMPONENTS Core Quick WebEngine Multimedia Bluetooth REQUIRED)
-find_package(Qt5 COMPONENTS Core Gui REQUIRED)
-
-set(CMAKE_PREFIX_PATH "/usr/local/lib/cmake/vsomeip")
+find_package(Qt5 COMPONENTS Core Quick REQUIRED)
+find_package(Qt5 COMPONENTS Core Gui OpenGL REQUIRED)
 find_package(vsomeip3 REQUIRED)
-#find_package(Wayland REQUIRED)
 
 if(ANDROID)
-    add_library(HeadUnit SHARED
+    add_library(IC_TEST SHARED
       main.cpp
-      basic_func.h
-      weather_provider.h
-      music_player.h
-      youtube_player.h
-      bluetoothmanager.h
-      client.h
-
-      basic_func.cpp
-      bluetoothmanager.cpp
-      client.cpp
+      Gauge.cpp
 
       qml.qrc
-      media_contents.qrc
     )
 else()
-    add_executable(HeadUnit
+    add_executable(IC_TEST
       main.cpp
-      basic_func.h
-      weather_provider.h
-      music_player.h
-      youtube_player.h
-      bluetoothmanager.h
-      client.h
-
-      basic_func.cpp
-      bluetoothmanager.cpp
-      client.cpp
+      Gauge.cpp
+      receiver.cpp
+      get_battery.cpp
+      server.cpp
 
       qml.qrc
-      media_contents.qrc
+
+      server.h
+      DateClock.h
+      receiver.h
+      Weather.h
+      Gauge.h
+      get_battery.h
+      DataProvider.h
     )
 endif()
 
-target_compile_definitions(HeadUnit
+target_compile_definitions(IC_TEST
   PRIVATE $<$<OR:$<CONFIG:Debug>,$<CONFIG:RelWithDebInfo>>:QT_QML_DEBUG>)
-target_link_libraries(HeadUnit
-  PRIVATE Qt5::Core Qt5::Quick Qt5::WebEngine Qt5::Multimedia Qt5::Bluetooth vsomeip3 pthread)
+target_link_libraries(IC_TEST
+  PRIVATE Qt5::Core Qt5::Quick vsomeip3 pthread)

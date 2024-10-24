@@ -52,6 +52,13 @@ Window{
                 onClicked: {
                     media_window.visible = false;
                     icon_line.x = 138;
+
+                    webView.runJavaScript("document.querySelector('iframe').contentWindow.postMessage('{\"event\":\"command\",\"func\":\"stopVideo\",\"args\":\"\"}', '*');");
+
+                    webView.url = "";
+                    webView.reload();
+
+                    webView.visible = false;
                 }
             }
         }
@@ -214,7 +221,9 @@ Window{
             height: 30
             anchors.fill: youtube_quit
             onClicked: {
+                webView.runJavaScript("document.querySelector('iframe').contentWindow.postMessage('{\"event\":\"command\",\"func\":\"stopVideo\",\"args\":\"\"}', '*');");
                 webView.url = "";
+                webView.reload();
                 youtubeListView.visible = true;
                 webView.visible = false;
                 youtube_quit.visible = false;
