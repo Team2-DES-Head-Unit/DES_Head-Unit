@@ -1,0 +1,7 @@
+/poky/build
+/HU/
+!/HU/conf
+/poky/sstate-cache
+/poky/source-mirrors
+/poky/.vscode
+/poky/.git
