@@ -5,6 +5,7 @@
 //#include <QWindow>
 //#include <QProcess>
 #include <QtWebEngine>
+#include <QtWebEngineWidgets/QWebEngineSettings>
 #include "basic_func.h"
 #include "weather_provider.h"
 #include "music_player.h"
