@@ -40,16 +40,17 @@ public:
     bool indicatorRight() const { return m_indicatorRight; }
 
     void updateGui(const ControlData &data) {
-//        m_gear = data.gear_P ? 1 : data.gear_D ? 2 : data.gear_R ? 3 : data.gear_N ? 4 : 0;
+        m_gear = data.gear_P ? 1 : data.gear_D ? 2 : data.gear_R ? 3 : data.gear_N ? 4 : 0;
         m_indicatorLeft = data.indicator_left;
         m_indicatorRight = data.indicator_right;
 
-        int newGear = data.gear_P ? 1 : data.gear_D ? 2 : data.gear_R ? 3 : data.gear_N ? 4 : 0;
-        if(newGear != m_gear){
-            m_gear = newGear;
-            emit gearChanged();
-        }
-//        emit gearChanged();
+//        int newGear = data.gear_P ? 1 : data.gear_D ? 2 : data.gear_R ? 3 : data.gear_N ? 4 : 0;
+//        if(newGear != m_gear){
+//            m_gear = newGear;
+//            emit gearChanged();
+//        }
+
+        emit gearChanged();
         emit indicatorLeftChanged();
         emit indicatorRightChanged();
     }

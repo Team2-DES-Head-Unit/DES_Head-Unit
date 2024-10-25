@@ -329,15 +329,15 @@ Window {
                     id: p
                     text: qsTr("P")
                     font.pixelSize: 30
-                    color: "#959595"
-                    //                        color: currentGear === "P" ? Qt.rgba(0.53, 0.95, 0.82, 1) : Qt.rgba(0.58, 0.58, 0.58, 1)
+//                    color: "#959595"
+                    color: client.gear === 1 ? "#87F1D0" : "#939395"
                 }
 
                 Text {
                     id: r
                     text: qsTr("R")
                     font.pixelSize: 30
-                    color: "#959595"
+                    color: client.gear === 3 ? "#87F1D0" : "#939395"
                     //                        color: currentGear === "R" ? "#87F1D0" : "#959595"
                 }
 
@@ -345,7 +345,7 @@ Window {
                     id: n
                     text: qsTr("N")
                     font.pixelSize: 30
-                    color: "#87F1D0"
+                    color: client.gear === 4 ? "#87F1D0" : "#939395"
                     //                        color: currentGear === "N" ? "#87F1D0" : "#959595"
                 }
 
@@ -353,7 +353,7 @@ Window {
                     id: d
                     text: qsTr("D")
                     font.pixelSize: 30
-                    color: "#959595"
+                    color: client.gear === 2 ? "#87F1D0" : "#939395"
                     //                        color: currentGear === "D" ? "#87F1D0" : "#959595"
                 }
             }

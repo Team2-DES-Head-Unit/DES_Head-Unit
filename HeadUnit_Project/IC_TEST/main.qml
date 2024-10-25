@@ -75,7 +75,7 @@ ApplicationWindow {
                 var centerX = width / 2;
                 var centerY = height / 2;
                 var startAngle = (116 * Math.PI) / 180;
-                var endAngle = ((116 + (randomValue * 3.08)) * Math.PI) / 180;  // 끝 각도 (바늘 각도에 따라 변함)
+                var endAngle = ((116 + (Receiver.speedKmh * 3.08)) * Math.PI) / 180;  // 끝 각도 (바늘 각도에 따라 변함)
 
                 // 게이지 호 그리기
                 ctx.beginPath();
@@ -93,7 +93,8 @@ ApplicationWindow {
             source: "/IC Assets/needle.png"
             fillMode: Image.PreserveAspectFit
             transformOrigin: Item.BottomRight
-            rotation: randomValue * 3.06 - 108 //(Receiver.speedKmh * 2.5 + 210)
+//            rotation: randomValue * 3.06 - 108 //(Receiver.speedKmh * 2.5 + 210)
+            rotation: (Receiver.speedKmh * 2.5 + 210)
 
             Behavior on rotation{
                 NumberAnimation{
@@ -114,7 +115,8 @@ ApplicationWindow {
         }
         Text {
             id: speed_text
-            text: randomValue //Receiver.speedKmh.toFixed(0)
+//            text: randomValue //Receiver.speedKmh.toFixed(0)
+            text: Receiver.speedKmh.toFixed(0)
             anchors.centerIn: speed_dial
             anchors.bottom: parent.bottom
             anchors.bottomMargin: 30
@@ -222,7 +224,8 @@ ApplicationWindow {
             source: "/IC Assets/needle.png"
             fillMode: Image.PreserveAspectFit
             transformOrigin: Item.BottomRight
-            rotation: randomValue * 3.06 - 108 //(((Receiver.speedKmh) / (2 * 3.14 * 3.3)) * 60)
+//            rotation: randomValue * 3.06 - 108 //(((Receiver.speedKmh) / (2 * 3.14 * 3.3)) * 60)
+            rotation: (((Receiver.speedKmh) / (2 * 3.14 * 3.3)) * 60)
             Behavior on rotation{
                 NumberAnimation{
                     duration: 50
@@ -242,7 +245,8 @@ ApplicationWindow {
         }
         Text {
             id: rpm_text
-            text: randomValue //(Receiver.speedKmh * 60) / (2 * 3.14 * 3.3)
+//            text: randomValue //(Receiver.speedKmh * 60) / (2 * 3.14 * 3.3)
+            text: (Receiver.speedKmh * 60) / (2 * 3.14 * 3.3)
             anchors.centerIn: rpm_dial
             anchors.bottom: parent.bottom
             anchors.bottomMargin: 30

@@ -3,13 +3,14 @@
 std::shared_ptr<vsomeip::application> app = vsomeip::runtime::get()->create_application("service-sample");
 
 Server server;
+ControlData received_data;
 
 void on_message_from_client_1(const std::shared_ptr<vsomeip::message> &_request) {
     std::cout << "SERVER: Request Received from Client 1!" << std::endl;
 
     std::shared_ptr<vsomeip::payload> its_payload = _request->get_payload();
     const vsomeip::byte_t* data_ptr = its_payload->get_data();
-    ControlData received_data;
+//    ControlData received_data;
     std::memcpy(&received_data, data_ptr, sizeof(ControlData));
 
     server.updateGui(received_data);
@@ -28,7 +29,7 @@ void on_request_from_client_2(const std::shared_ptr<vsomeip::message> &_request)
     std::shared_ptr<vsomeip::message> response_to_client_2 = vsomeip::runtime::get()->create_response(_request);
     std::shared_ptr<vsomeip::payload> response_payload = vsomeip::runtime::get()->create_payload();
 
-    ControlData received_data;
+//    ControlData received_data = {};
     std::vector<vsomeip::byte_t> payload_data(reinterpret_cast<vsomeip::byte_t*>(&received_data),
                                               reinterpret_cast<vsomeip::byte_t*>(&received_data) + sizeof(ControlData));
     response_payload->set_data(payload_data);

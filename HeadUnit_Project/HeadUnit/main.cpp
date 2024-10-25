@@ -10,6 +10,8 @@
 #include "music_player.h"
 #include "youtube_player.h"
 #include "bluetoothmanager.h"
+#include "client.h" // vsomeip
+#include "receiver.h" // socketCAN
 
 int main(int argc, char *argv[])
 {
@@ -28,6 +30,8 @@ int main(int argc, char *argv[])
     MusicPlayer musicPlayer;
     YoutubePlayer youtubePlayerProvider;
     BluetoothManager btManager;
+    Receiver receiver;
+    extern Client client;
 
 //    QCommandLineParser parser;
 //    parser.setApplicationDescription("Qt Wayland Application");
@@ -57,17 +61,22 @@ int main(int argc, char *argv[])
 //        }
 //    }
 
+    receiver.initialize();
+    receiver.start();
+
     engine.rootContext()->setContextProperty("timeProvider", &timeProvider);
     engine.rootContext()->setContextProperty("speedProvider", &speedProvider);
     engine.rootContext()->setContextProperty("weatherProvider", &weatherProvider);
     engine.rootContext()->setContextProperty("musicPlayer", &musicPlayer);
     engine.rootContext()->setContextProperty("youtubePlayerProvider", &youtubePlayerProvider);
     engine.rootContext()->setContextProperty("btManager", &btManager);
+    engine.rootContext()->setContextProperty("Receiver", &receiver);
+    engine.rootContext()->setContextProperty("client", &client);
     qmlRegisterType<YoutubePlayer>("youtubePlayer", 1, 0, "YoutubePlayer");
 
 //    // music test
-    QString songtitle = "Hanumankind-Big_Dawgs.mp3";
-    musicPlayer.playMusic(musicPlayer.getPathForSong(songtitle));
+//    QString songtitle = "Hanumankind-Big_Dawgs.mp3";
+//    musicPlayer.playMusic(musicPlayer.getPathForSong(songtitle));
 
 //    // playlist test
 //    QString songtitle = "Hanumankind-Big_Dawgs.mp3";
@@ -80,6 +89,9 @@ int main(int argc, char *argv[])
             QCoreApplication::exit(-1);
     }, Qt::QueuedConnection);
     engine.load(url);
+
+    std::thread client_thread(start_client);
+    client_thread.detach();
 
     return app.exec();
 }

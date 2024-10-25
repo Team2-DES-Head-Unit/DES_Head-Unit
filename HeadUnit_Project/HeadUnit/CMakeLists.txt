@@ -41,10 +41,12 @@ if(ANDROID)
       youtube_player.h
       bluetoothmanager.h
       client.h
+      receiver.h
 
       basic_func.cpp
       bluetoothmanager.cpp
       client.cpp
+      receiver.cpp
 
       qml.qrc
       media_contents.qrc
@@ -58,10 +60,12 @@ else()
       youtube_player.h
       bluetoothmanager.h
       client.h
+      receiver.h
 
       basic_func.cpp
       bluetoothmanager.cpp
       client.cpp
+      receiver.cpp
 
       qml.qrc
       media_contents.qrc

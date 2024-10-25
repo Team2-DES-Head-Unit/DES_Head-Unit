@@ -48,12 +48,15 @@ void send_request_to_server() {
 }
 
 void start_client(){
-    app->init();
-    app->register_message_handler(SAMPLE_SERVICE_ID, SAMPLE_INSTANCE_ID, SAMPLE_METHOD_ID, on_response);
+    try{
+        app->init();
+        app->register_message_handler(SAMPLE_SERVICE_ID, SAMPLE_INSTANCE_ID, SAMPLE_METHOD_ID, on_response);
 
-    std::thread request_thread(send_request_to_server);
+        std::thread request_thread(send_request_to_server);
 
-    app->start();
-    request_thread.join();
-
+        app->start();
+        request_thread.join();
+    } catch (const std::exception &e){
+        std::cerr << "exception occurs at start_client : " << e.what() << std::endl;
+    }
 }

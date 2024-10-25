@@ -41,8 +41,8 @@ int main(int argc, char *argv[])
     DateClock clock;
     DateClock date;
     Receiver receiver;
-    Server server;
     Weather weather;
+    extern Server server;
 
     receiver.initialize();
     receiver.start();
