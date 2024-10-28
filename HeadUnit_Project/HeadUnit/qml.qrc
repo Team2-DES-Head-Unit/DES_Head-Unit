@@ -6,11 +6,16 @@
         <file>music_page.qml</file>
         <file>media_page.qml</file>
         <file>media_page_youtube.qml</file>
+        <file>bluetooth_page.qml</file>
+        <file>light_page.qml</file>
+        <file>mirror_page.qml</file>
+        
         <file>HU_Assets/Background/car_status_background.png</file>
         <file>HU_Assets/Background/progress_bar.png</file>
         <file>HU_Assets/Background/main_control_bar.png</file>
         <file>HU_Assets/Background/basic_window.png</file>
         <file>HU_Assets/Background/menu_bar.png</file>
+        
         <file>HU_Assets/Icons/person.png</file>
         <file>HU_Assets/Icons/home.png</file>
         <file>HU_Assets/Icons/map.png</file>
@@ -21,12 +26,17 @@
         <file>HU_Assets/Icons/tap_close_button.png</file>
         <file>HU_Assets/Icons/close_icon.png</file>
         <file>HU_Assets/Icons/charm_bluetooth.png</file>
+        <file>HU_Assets/Icons/mirroring_icon.png</file>
+        
         <file>HU_Assets/Components/line.png</file>
         <file>HU_Assets/Components/battery.png</file>
+        
         <file>HU_Assets/Components/Weather/weather_bar.png</file>
         <file>HU_Assets/Components/Weather/climate_fan.png</file>
+        
         <file>HU_Assets/Components/Calender/calender_bar.png</file>
         <file>HU_Assets/Components/Calender/calender_component.png</file>
+        
         <file>HU_Assets/Components/Music/music_button_ring.png</file>
         <file>HU_Assets/Components/Music/play.png</file>
         <file>HU_Assets/Components/Music/skip_back.png</file>
@@ -40,9 +50,11 @@
         <file>HU_Assets/Icons/display.png</file>
         <file>HU_Assets/Icons/service.png</file>
         <file>HU_Assets/Icons/bluetooth.png</file>
+        
         <file>HU_Assets/Background/music_bar.png</file>
         <file>HU_Assets/Components/Music/sequential.png</file>
         <file>HU_Assets/Components/Music/shuffle.png</file>
+        
         <file>HU_Assets/Icons/library.png</file>
         <file>HU_Assets/Components/Video/play_icon.png</file>
         <file>HU_Assets/Components/Video/screen_off_icon.png</file>
@@ -53,7 +65,5 @@
         <file>HU_Assets/Components/Video/youtube_icon.png</file>
         <file>HU_Assets/Components/Video/reset_list_icon.png</file>
         <file>HU_Assets/Components/Video/back_icon.png</file>
-        <file>bluetooth_page.qml</file>
-        <file>light_page.qml</file>
     </qresource>
 </RCC>

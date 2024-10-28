@@ -986,8 +986,23 @@ Window {
     }
 
     Image {
+        id: mirroring_icon
+        x: 835
+        y: 10
+        fillMode: Image.PreserveAspectFit
+        source: "HU_Assets/Icons/mirroring_icon.png"
+        MouseArea{
+            anchors.fill: parent
+            onClicked: {
+                mirrorQmlLoader.active = true;
+                mirrorQmlLoader.item.visible = true;
+            }
+        }
+    }
+
+    Image {
            id: bluetooth_connected_image
-           x: 843
+           x: 830
            y: 10
            source: "/HU_Assets/Icons/charm_bluetooth.png"
            fillMode: Image.PreserveAspectFit
@@ -1055,6 +1070,16 @@ Window {
         visible: false
         onLoaded: {
             youtubeMediaQmlLoader.item.visible = false;
+        }
+    }
+
+    Loader{
+        id: mirrorQmlLoader
+        source: "mirror_page.qml"
+        active: false
+        visible: false
+        onLoaded: {
+            mirrorQmlLoader.item.visible = false;
         }
     }
 }

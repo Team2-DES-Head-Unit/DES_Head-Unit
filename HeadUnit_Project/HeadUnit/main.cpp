@@ -10,6 +10,8 @@
 #include "music_player.h"
 #include "youtube_player.h"
 #include "bluetoothmanager.h"
+#include "mirror_provider.h"
+
 #include "client.h" // vsomeip
 #include "receiver.h" // socketCAN
 
@@ -30,6 +32,7 @@ int main(int argc, char *argv[])
     MusicPlayer musicPlayer;
     YoutubePlayer youtubePlayerProvider;
     BluetoothManager btManager;
+    MirrorProvider mirrorProvider;
     Receiver receiver;
     extern Client client;
 
@@ -73,6 +76,7 @@ int main(int argc, char *argv[])
     engine.rootContext()->setContextProperty("Receiver", &receiver);
     engine.rootContext()->setContextProperty("client", &client);
     qmlRegisterType<YoutubePlayer>("youtubePlayer", 1, 0, "YoutubePlayer");
+    qmlRegisterType<MirrorProvider>("QtQuick.mirroring", 1, 0, "MirrorProvider");
 
 //    // music test
 //    QString songtitle = "Hanumankind-Big_Dawgs.mp3";

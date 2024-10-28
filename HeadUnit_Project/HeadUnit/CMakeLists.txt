@@ -42,6 +42,7 @@ if(ANDROID)
       bluetoothmanager.h
       client.h
       receiver.h
+      mirror_provider.h
 
       basic_func.cpp
       bluetoothmanager.cpp
@@ -61,6 +62,7 @@ else()
       bluetoothmanager.h
       client.h
       receiver.h
+      mirror_provider.h
 
       basic_func.cpp
       bluetoothmanager.cpp
