@@ -11,6 +11,7 @@
 #include "youtube_player.h"
 #include "bluetoothmanager.h"
 #include "mirror_provider.h"
+#include "clicknotier.h"
 
 #include "client.h" // vsomeip
 #include "receiver.h" // socketCAN
@@ -33,6 +34,7 @@ int main(int argc, char *argv[])
     YoutubePlayer youtubePlayerProvider;
     BluetoothManager btManager;
     MirrorProvider mirrorProvider;
+    ClickNotifier clickNotifier;
     Receiver receiver;
     extern Client client;
 
@@ -75,6 +77,7 @@ int main(int argc, char *argv[])
     engine.rootContext()->setContextProperty("btManager", &btManager);
     engine.rootContext()->setContextProperty("Receiver", &receiver);
     engine.rootContext()->setContextProperty("client", &client);
+    engine.rootContext()->setContextProperty("clickNotifier", &clickNotifier);
     qmlRegisterType<YoutubePlayer>("youtubePlayer", 1, 0, "YoutubePlayer");
     qmlRegisterType<MirrorProvider>("QtQuick.mirroring", 1, 0, "MirrorProvider");
 

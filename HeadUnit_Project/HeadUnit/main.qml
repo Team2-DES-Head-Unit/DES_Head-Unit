@@ -8,7 +8,8 @@ Window {
     visible: true
     width: 1024
     height: 600
-    color: "#1E1E1E"
+//    color: "#1E1E1E"
+    color: clickNotifier.clicked ? "#FCFCFC" : "#1E1E1E"
     title: qsTr("Head Unit")
 //    flags: Qt.FramelessWindowHint
 //    visibility: Window.FullScreen
@@ -58,14 +59,16 @@ Window {
         x: 0
         y: 0
         fillMode: Image.PreserveAspectFit
-        source: "HU_Assets/Background/car_status_background.png"
+//        source: "HU_Assets/Background/car_status_background.png"
+        source: clickNotifier.clicked ? "HU_Assets/light/Background/car_status_background_l.png" : "HU_Assets/Background/car_status_background.png"
 
         Image {
             id: progress_bar
             x: 60
             y: 42
             fillMode: Image.PreserveAspectFit
-            source: "HU_Assets/Background/progress_bar.png"
+//            source: "HU_Assets/Background/progress_bar.png"
+            source: clickNotifier.clicked ? "HU_Assets/light/Background/progress_bar_l.png" : "HU_Assets/Background/progress_bar.png"
 
             Rectangle {
                 id: speed_info
@@ -81,7 +84,8 @@ Window {
                     width: 70
                     height: 50
                     font.pixelSize: 48
-                    color: "#ffffff"
+//                    color: "#ffffff"
+                    color: clickNotifier.clicked ? "#414141" : "#ffffff"
                     text: speedProvider.currentSpeed    //qsTr("75")
                     anchors.verticalCenterOffset: -10
                     anchors.horizontalCenterOffset: 0
@@ -97,7 +101,8 @@ Window {
                     height: 20
                     text: qsTr("km/h")
                     font.pixelSize: 20
-                    color: "#ffffff"
+//                    color: "#ffffff"
+                    color: clickNotifier.clicked ? "#414141" : "#ffffff"
                 }
             }
         }
@@ -129,7 +134,8 @@ Window {
                     width: 48
                     height: 23
                     text: qsTr("128")
-                    color: "#ffffff"
+//                    color: "#ffffff"
+                    color: clickNotifier.clicked ? "#414141" : "#ffffff"
                     font.pixelSize: 20
                     horizontalAlignment: Text.AlignHCenter
                     anchors{
@@ -143,7 +149,8 @@ Window {
                     width: 48
                     height: 15
                     text: qsTr("km/h")
-                    color: "#ffffff"
+//                    color: "#ffffff"
+                    color: clickNotifier.clicked ? "#414141" : "#ffffff"
                     font.pixelSize: 9
                     horizontalAlignment: Text.AlignHCenter
                     anchors{
@@ -156,7 +163,8 @@ Window {
                 Text {
                     id: text_speed
                     text: qsTr("Speed")
-                    color: "#ffffff"
+//                    color: "#ffffff"
+                    color: clickNotifier.clicked ? "#414141" : "#ffffff"
                     font.pixelSize: 10
                     horizontalAlignment: Text.AlignRight
                     anchors{
@@ -169,7 +177,8 @@ Window {
                 Text {
                     id: text_average
                     text: qsTr("Average")
-                    color: "#ffffff"
+//                    color: "#ffffff"
+                    color: clickNotifier.clicked ? "#414141" : "#ffffff"
                     font.pixelSize: 11
                     horizontalAlignment: Text.AlignRight
                     anchors{
@@ -193,7 +202,8 @@ Window {
                     id: m_value
                     width: 48
                     height: 23
-                    color: "#ffffff"
+//                    color: "#ffffff"
+                    color: clickNotifier.clicked ? "#414141" : "#ffffff"
                     text: qsTr("36.56")
                     font.pixelSize: 18
                     anchors.top: mileage.top
@@ -205,7 +215,8 @@ Window {
                     id: m_scale
                     width: 48
                     height: 15
-                    color: "#ffffff"
+//                    color: "#ffffff"
+                    color: clickNotifier.clicked ? "#414141" : "#ffffff"
                     text: qsTr("km")
                     anchors.bottom: mileage.bottom
                     font.pixelSize: 9
@@ -216,7 +227,8 @@ Window {
 
                 Text {
                     id: text_remaining
-                    color: "#ffffff"
+//                    color: "#ffffff"
+                    color: clickNotifier.clicked ? "#414141" : "#ffffff"
                     text: qsTr("Remaining")
                     anchors.topMargin: 5
                     font.pixelSize: 9
@@ -227,7 +239,8 @@ Window {
 
                 Text {
                     id: text_mileage
-                    color: "#ffffff"
+//                    color: "#ffffff"
+                    color: clickNotifier.clicked ? "#414141" : "#ffffff"
                     text: qsTr("Mileage")
                     anchors.bottom: mileage.bottom
                     font.pixelSize: 11
@@ -249,7 +262,8 @@ Window {
                     id: t_value
                     width: 48
                     height: 23
-                    color: "#ffffff"
+//                    color: "#ffffff"
+                    color: clickNotifier.clicked ? "#414141" : "#ffffff"
                     text: qsTr("20")
                     font.pixelSize: 18
                     anchors.top: time.top
@@ -261,7 +275,8 @@ Window {
                     id: t_scale
                     width: 48
                     height: 15
-                    color: "#ffffff"
+//                    color: "#ffffff"
+                    color: clickNotifier.clicked ? "#414141" : "#ffffff"
                     text: qsTr("hour")
                     anchors.bottom: time.bottom
                     anchors.bottomMargin: -2
@@ -272,7 +287,8 @@ Window {
 
                 Text {
                     id: text_remaining1
-                    color: "#ffffff"
+//                    color: "#ffffff"
+                    color: clickNotifier.clicked ? "#414141" : "#ffffff"
                     text: qsTr("Remaining")
                     anchors.topMargin: 5
                     font.pixelSize: 9
@@ -283,7 +299,8 @@ Window {
 
                 Text {
                     id: text_time
-                    color: "#ffffff"
+//                    color: "#ffffff"
+                    color: clickNotifier.clicked ? "#414141" : "#ffffff"
                     text: qsTr("Time")
                     anchors.bottom: time.bottom
                     font.pixelSize: 11
@@ -297,7 +314,8 @@ Window {
                 x: 111
                 y: -3
                 fillMode: Image.PreserveAspectFit
-                source: "HU_Assets/Components/line.png"
+//                source: "HU_Assets/Components/line.png"
+                source: clickNotifier.clicked ? "HU_Assets/light/Components/line_l.png" : "HU_Assets/Components/line.png"
             }
 
             Image {
@@ -305,7 +323,8 @@ Window {
                 x: 228
                 y: -3
                 fillMode: Image.PreserveAspectFit
-                source: "HU_Assets/Components/line.png"
+//                source: "HU_Assets/Components/line.png"
+                source: clickNotifier.clicked ? "HU_Assets/light/Components/line_l.png" : "HU_Assets/Components/line.png"
             }
         }
 
@@ -380,7 +399,8 @@ Window {
                 id: battery_value
                 text: qsTr("90%")
                 font.pixelSize: 12
-                color: "#ffffff"
+//                color: "#ffffff"
+                color: clickNotifier.clicked ? "#414141" : "#ffffff"
                 anchors.left: battery_component.left
             }
         }
@@ -396,7 +416,8 @@ Window {
         width: 240
         height: 220
         radius: 15
-        color: "#323232"
+//        color: "#323232"
+        color: clickNotifier.clicked ? "#F2F2F2" : "#323232"
 
         Text {
             id: climate
@@ -404,7 +425,8 @@ Window {
             y: 18
             text: qsTr("Climate")
             font.pixelSize: 23
-            color: "#ffffff"
+//            color: "#ffffff"
+            color: clickNotifier.clicked ? "#414141" : "#ffffff"
         }
 
         Text {
@@ -414,7 +436,8 @@ Window {
             text: weatherProvider.temperature
             horizontalAlignment: Text.AlignLeft
             font.pixelSize: 35
-            color: "#ffffff"
+//            color: "#ffffff"
+            color: clickNotifier.clicked ? "#414141" : "#ffffff"
         }
 
         Text {
@@ -424,7 +447,8 @@ Window {
             text: weatherProvider.cityName
             horizontalAlignment: Text.AlignLeft
             font.pixelSize: 20
-            color: "#ffffff"
+//            color: "#ffffff"
+            color: clickNotifier.clicked ? "#414141" : "#ffffff"
         }
 
         Rectangle {
@@ -441,13 +465,15 @@ Window {
                 y:0
                 width: 200
                 height: 5
-                color: "#ffffff"
+//                color: "#ffffff"
+                color: clickNotifier.clicked ? "#414141" : "#ffffff"
                 radius: 10
             }
 
             Rectangle {
                 id: temp_bar
-                color: "#03A49A"
+//                color: "#03A49A"
+                color: clickNotifier.clicked ? "#7788F2" : "#03A49A"
                 width: (weatherProvider.temperature.toDouble() + 20) / 60 * parent.width // range : -20 ~ 40
                 height: parent.height
                 radius: 10
@@ -457,7 +483,8 @@ Window {
                 id: temp_fan
                 x: temp_bar.width - 12.5
                 y: temp_bar.y - 9
-                source: "HU_Assets/Components/Weather/climate_fan.png"
+//                source: "HU_Assets/Components/Weather/climate_fan.png"
+                source: clickNotifier.clicked ? "HU_Assets/light/Components/Weather/climate_fan_l.png" : "HU_Assets/Components/Weather/climate_fan.png"
                 fillMode: Image.PreserveAspectFit
             }
 
@@ -500,7 +527,8 @@ Window {
         width: 240
         height: 220
         radius: 15
-        color: "#323232"
+//        color: "#323232"
+        color: clickNotifier.clicked ? "#F2F2F2" : "#323232"
 
         Text {
             id: calender
@@ -508,7 +536,8 @@ Window {
             y: 18
             text: qsTr("My Calender")
             font.pixelSize: 23
-            color: "#ffffff"
+//            color: "#ffffff"
+            color: clickNotifier.clicked ? "#414141" : "#ffffff"
         }
         Text {
             id: day
@@ -553,7 +582,8 @@ Window {
             id: calender_comp
             x: 54
             y: 94
-            source: "HU_Assets/Components/Calender/calender_component.png"
+//            source: "HU_Assets/Components/Calender/calender_component.png"
+            source: clickNotifier.clicked ? "HU_Assets/light/Components/Calender/calender_component_l.png" : "HU_Assets/Components/Calender/calender_component.png"
             fillMode: Image.PreserveAspectFit
 
             Text {
@@ -562,7 +592,8 @@ Window {
                 y: 10
                 text: "Meeting with staffs"
                 font.pixelSize: 15
-                color: "#ffffff"
+//                color: "#ffffff"
+                color: clickNotifier.clicked ? "#414141" : "#ffffff"
             }
             Text {
                 id: schedule_time
@@ -578,7 +609,8 @@ Window {
             id: calender_bar
             x: 0
             y: 70
-            source: "HU_Assets/Components/Calender/calender_bar.png"
+//            source: "HU_Assets/Components/Calender/calender_bar.png"
+            source: clickNotifier.clicked ? "HU_Assets/light/Components/Calender/calender_bar_l.png" : "HU_Assets/Components/Calender/calender_bar.png"
             fillMode: Image.PreserveAspectFit
         }
 
@@ -602,7 +634,8 @@ Window {
         width: 526
         height: 116
         radius: 15
-        color: "#323232"
+//        color: "#323232"
+        color: clickNotifier.clicked ? "#F2F2F2" : "#323232"
 
         Rectangle {
             id: cover
@@ -610,7 +643,8 @@ Window {
             y: 17
             width: 82
             height: 82
-            color: "#ffffff"
+//            color: "#ffffff"
+            color: clickNotifier.clicked ? "#414141" : "#ffffff"
             radius: 15
             clip: true
             Image {
@@ -632,7 +666,8 @@ Window {
             y: 23
             text: musicPlayer.getTitleForSong(songTitle)
             font.pixelSize: 17
-            color: "#ffffff"
+//            color: "#ffffff"
+            color: clickNotifier.clicked ? "#414141" : "#ffffff"
             Component.onCompleted: console.log("current song title: " + songTitle)
         }
         Text {
@@ -655,7 +690,8 @@ Window {
                 id: skip_back
                 anchors.verticalCenter: music_menu.verticalCenter
                 fillMode: Image.PreserveAspectFit
-                source: "HU_Assets/Components/Music/skip_back.png"
+//                source: "HU_Assets/Components/Music/skip_back.png"
+                source: clickNotifier.clicked ? "HU_Assets/light/Components/Music/skip_back_l.png" : "HU_Assets/Components/Music/skip_back.png"
                 MouseArea{
                     anchors.fill: parent
                     onClicked: {
@@ -677,7 +713,8 @@ Window {
                 id: music_button
                 anchors.verticalCenter: music_menu.verticalCenter
                 fillMode: Image.PreserveAspectFit
-                source: "HU_Assets/Components/Music/music_button_ring.png"
+//                source: "HU_Assets/Components/Music/music_button_ring.png"
+                source: clickNotifier.clicked ? "HU_Assets/light/Components/Music/music_button_ring_l.png" : "HU_Assets/Components/Music/music_button_ring.png"
                 Component.onCompleted: {
                     musicPath = musicPlayer.getPathForSong(songTitle);
                     console.log("file path : " + musicPath);
@@ -693,7 +730,8 @@ Window {
                         horizontalCenter: music_button.horizontalCenter
                     }
                     fillMode: Image.PreserveAspectFit
-                    source: "HU_Assets/Components/Music/play.png"
+//                    source: "HU_Assets/Components/Music/play.png"
+                    source: clickNotifier.clicked ? "HU_Assets/light/Components/Music/play_l.png" : "HU_Assets/Components/Music/play.png"
                     MouseArea{
                         anchors.fill: parent
                         onClicked: {
@@ -711,7 +749,8 @@ Window {
                     anchors.horizontalCenterOffset: 1
                     anchors.centerIn: music_button
                     fillMode: Image.PreserveAspectFit
-                    source: "HU_Assets/Components/Music/stop.png"
+//                    source: "HU_Assets/Components/Music/stop.png"
+                    source: clickNotifier.clicked ? "HU_Assets/light/Components/Music/stop_l.png" : "HU_Assets/Components/Music/stop.png"
                     MouseArea{
                         anchors.fill: parent
                         onClicked: {
@@ -736,7 +775,8 @@ Window {
                 id: skip_front
                 anchors.verticalCenter: music_menu.verticalCenter
                 fillMode: Image.PreserveAspectFit
-                source: "HU_Assets/Components/Music/skip_front.png"
+//                source: "HU_Assets/Components/Music/skip_front.png"
+                source: clickNotifier.clicked ? "HU_Assets/light/Components/Music/skip_front_l.png" : "HU_Assets/Components/Music/skip_front.png"
                 MouseArea{
                     anchors.fill: parent
                     onClicked: {
@@ -771,7 +811,8 @@ Window {
                 verticalCenter: music_progress_bar.verticalCenter
             }
             radius: 3
-            color: "#87F1D0"
+//            color: "#87F1D0"
+            color: clickNotifier.clicked ? "#7788F2" : "#87F1D0"
         }
 
         Text {
@@ -779,7 +820,8 @@ Window {
             x: 303
             y: 64
             text: formatTime(musicPlayer.music_position()) // "0:00"
-            color: "#ffffff"
+//            color: "#ffffff"
+            color: clickNotifier.clicked ? "#414141" : "#ffffff"
             font.pixelSize: 12
         }
         Text {
@@ -787,7 +829,8 @@ Window {
             x: 475
             y: 64
             text: formatTime(musicPlayer.music_duration())
-            color: "#ffffff"
+//            color: "#ffffff"
+            color: clickNotifier.clicked ? "#414141" : "#ffffff"
             font.pixelSize: 12
         }
 //        Connections {
@@ -801,13 +844,13 @@ Window {
 //            }
 //        }
 
-        Image {
-            id: share_img
-            x: 499
-            y: 10
-            fillMode: Image.PreserveAspectFit
-            source: "HU_Assets/Icons/bluetooth.png"
-        }
+//        Image {
+//            id: share_img
+//            x: 499
+//            y: 10
+//            fillMode: Image.PreserveAspectFit
+//            source: "HU_Assets/Icons/bluetooth.png"
+//        }
     }
 
     Text {
@@ -816,7 +859,8 @@ Window {
         y: 10
         text: timeProvider.currentTime
         font.pixelSize: 15
-        color: "#ffffff"
+//        color: "#ffffff"
+        color: clickNotifier.clicked ? "#414141" : "#ffffff"
     }
 
     Connections { // when timeChanged occurs, update time
@@ -840,7 +884,8 @@ Window {
                 topMargin: 2
             }
             fillMode: Image.PreserveAspectFit
-            source: "HU_Assets/Icons/person.png"
+//            source: "HU_Assets/Icons/person.png"
+            source: clickNotifier.clicked ? "HU_Assets/light/Icons/person_l.png" : "HU_Assets/Icons/person.png"
         }
 
         Text {
@@ -851,7 +896,8 @@ Window {
                 leftMargin: 5
             }
             text: qsTr("Team02")
-            color: "#ffffff"
+//            color: "#ffffff"
+            color: clickNotifier.clicked ? "#414141" : "#ffffff"
             font.pixelSize: 15
         }
     }
@@ -864,7 +910,8 @@ Window {
         width: 1024
         height: 65
         fillMode: Image.PreserveAspectFit
-        source: "HU_Assets/Background/main_control_bar.png"
+//        source: "HU_Assets/Background/main_control_bar.png"
+        source: clickNotifier.clicked ? "HU_Assets/light/Background/main_control_bar_l.png" : "HU_Assets/Background/main_control_bar.png"
 
         Rectangle{
             id: icon_list
@@ -878,7 +925,8 @@ Window {
             Image {
                 id: icon_line
                 fillMode: Image.PreserveAspectFit
-                source: "HU_Assets/Icons/icon_line.png"
+//                source: "HU_Assets/Icons/icon_line.png"
+                source: clickNotifier.clicked ? "HU_Assets/light/Icons/icon_line_l.png" : "HU_Assets/Icons/icon_line.png"
                 x: 138
                 y: 40
             }
@@ -891,7 +939,8 @@ Window {
                 Image {
                     id: setting_icon
                     fillMode: Image.PreserveAspectFit
-                    source: "HU_Assets/Icons/settings.png"
+//                    source: "HU_Assets/Icons/settings.png"
+                    source: clickNotifier.clicked ? "HU_Assets/light/Icons/settings_l.png" : "HU_Assets/Icons/settings.png"
                     width: 36
                     height: 36
                     MouseArea{
@@ -909,7 +958,8 @@ Window {
                 Image {
                     id: map_icon
                     fillMode: Image.PreserveAspectFit
-                    source: "HU_Assets/Icons/map.png"
+//                    source: "HU_Assets/Icons/map.png"
+                    source: clickNotifier.clicked ? "HU_Assets/light/Icons/map_l.png" : "HU_Assets/Icons/map.png"
                     width: 36
                     height: 36
                     MouseArea{
@@ -927,7 +977,8 @@ Window {
                 Image {
                     id: home_icon
                     fillMode: Image.PreserveAspectFit
-                    source: "HU_Assets/Icons/home.png"
+//                    source: "HU_Assets/Icons/home.png"
+                    source: clickNotifier.clicked ? "HU_Assets/light/Icons/home_l.png" : "HU_Assets/Icons/home.png"
                     width: 36
                     height: 36
                     MouseArea{
@@ -941,7 +992,8 @@ Window {
                 Image {
                     id: music_icon
                     fillMode: Image.PreserveAspectFit
-                    source: "HU_Assets/Icons/music.png"
+//                    source: "HU_Assets/Icons/music.png"
+                    source: clickNotifier.clicked ? "HU_Assets/light/Icons/music_l.png" : "HU_Assets/Icons/music.png"
                     width: 36
                     height: 36
                     MouseArea{
@@ -959,7 +1011,8 @@ Window {
                 Image {
                     id: media_icon
                     fillMode: Image.PreserveAspectFit
-                    source: "HU_Assets/Icons/media.png"
+//                    source: "HU_Assets/Icons/media.png"
+                    source: clickNotifier.clicked ? "HU_Assets/light/Icons/media_l.png" : "HU_Assets/Icons/media.png"
                     width: 36
                     height: 36
                     MouseArea{
@@ -990,7 +1043,7 @@ Window {
         x: 835
         y: 10
         fillMode: Image.PreserveAspectFit
-        source: "HU_Assets/Icons/mirroring_icon.png"
+        source: clickNotifier.clicked ? "HU_Assets/light/Icons/mirroring_icon_l.png" : "HU_Assets/Icons/mirroring_icon.png"
         MouseArea{
             anchors.fill: parent
             onClicked: {

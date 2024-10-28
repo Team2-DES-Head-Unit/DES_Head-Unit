@@ -17,6 +17,13 @@ Window{
         youtube_quit.visible = false;
     }
 
+    onActiveFocusItemChanged: {
+        if(!activeFocusItem){
+            visible = false;
+            icon_line.x = 138;
+        }
+    }
+
     YoutubePlayer{
         id: youtubeFetcher
         onVideoFetched: {
@@ -36,7 +43,8 @@ Window{
         id: base_window
         fillMode: Image.PreserveAspectFit
         anchors.fill: parent
-        source: "HU_Assets/Background/basic_window.png"
+//        source: "HU_Assets/Background/basic_window.png"
+        source: clickNotifier.clicked ? "HU_Assets/light/Background/basic_window_l.png" : "HU_Assets/Background/basic_window.png"
 
         Image {
             id: window_close_button
@@ -45,7 +53,8 @@ Window{
             width: 35
             height: 35
             fillMode: Image.PreserveAspectFit
-            source: "HU_Assets/Icons/close_icon.png"
+//            source: "HU_Assets/Icons/close_icon.png"
+            source: clickNotifier.clicked ? "HU_Assets/light/Icons/close_icon_l.png" : "HU_Assets/Icons/close_icon.png"
 
             MouseArea{
                 anchors.fill: parent
@@ -76,7 +85,8 @@ Window{
                 width: 28
                 anchors.verticalCenterOffset: 1
                 anchors.leftMargin: -1
-                source: "HU_Assets/Components/Video/youtube_icon.png"
+//                source: "HU_Assets/Components/Video/youtube_icon.png"
+                source: clickNotifier.clicked ? "HU_Assets/light/Components/Video/youtube_icon_l.png" : "HU_Assets/Components/Video/youtube_icon.png"
                 fillMode: Image.PreserveAspectFit
                 anchors{
                     verticalCenter: youtube.verticalCenter
@@ -93,7 +103,8 @@ Window{
                 anchors.bottomMargin: -1
                 anchors.rightMargin: -61
                 font.pixelSize: 23
-                color: "#ffffff"
+//                color: "#ffffff"
+                color: clickNotifier.clicked ? "#414141" : "#ffffff"
                 anchors{
                     verticalCenter: youtube.verticalCenter
                     right: youtube.right
@@ -153,7 +164,8 @@ Window{
                     Text {
                         id: youtube_title
                         text: model.title
-                        color: "#ffffff"
+//                        color: "#ffffff"
+                        color: clickNotifier.clicked ? "#414141" : "#ffffff"
                         font.pixelSize: 16
                         font.bold: true
                         anchors{
@@ -175,7 +187,8 @@ Window{
                     Text {
                         id: youtube_channel
                         text: model.channel
-                        color: "#ffffff"
+//                        color: "#ffffff"
+                        color: clickNotifier.clicked ? "#414141" : "#ffffff"
                         font.pixelSize: 12
                         font.italic: true
                         anchors{
@@ -213,7 +226,8 @@ Window{
         id: youtube_quit
         x: 467
         y: 34
-        source: "HU_Assets/Components/Video/back_icon.png"
+//        source: "HU_Assets/Components/Video/back_icon.png"
+        source: clickNotifier.clicked ? "HU_Assets/light/Components/Video/back_icon_l.png" : "HU_Assets/Components/Video/back_icon.png"
         width: 26
         height: 26
         MouseArea {
@@ -235,7 +249,8 @@ Window{
         id: reset_list
         x: 510
         y: 35
-        source: "HU_Assets/Components/Video/reset_list_icon.png"
+//        source: "HU_Assets/Components/Video/reset_list_icon.png"
+        source: clickNotifier.clicked ? "HU_Assets/light/Components/Video/reset_list_icon_l.png" : "HU_Assets/Components/Video/reset_list_icon.png"
         fillMode: Image.PreserveAspectFit
         MouseArea{
             width: 30

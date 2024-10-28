@@ -12,11 +12,11 @@
 #include <receiver.h>
 #include <Weather.h>
 //#include <Gauge.h>
-#include <get_battery.h>
+//#include <get_battery.h>
 #include <DataProvider.h>
 #include <server.h>
 
-int i2c_fd;
+//int i2c_fd;
 
 int main(int argc, char *argv[])
 {

@@ -12,17 +12,26 @@ Window{
     color: "transparent"
     flags: Qt.FramelessWindowHint
 
+//    onActiveFocusItemChanged: {
+//        if(!activeFocusItem){
+//            visible = false;
+//            icon_line.x = 138;
+//        }
+//    }
+
     Image {
         id: base_window
         fillMode: Image.PreserveAspectFit
         anchors.fill: parent
-        source: "HU_Assets/Background/basic_window.png"
+//        source: "HU_Assets/Background/basic_window.png"
+        source: clickNotifier.clicked ? "HU_Assets/light/Background/basic_window_l.png" : "HU_Assets/Background/basic_window.png"
 
         Image {
             id: menu_bar
             x: 15
             y: 10
-            source: "HU_Assets/Background/menu_bar.png"
+//            source: "HU_Assets/Background/menu_bar.png"
+            source: clickNotifier.clicked ? "HU_Assets/light/Background/menu_bar_l.png" : "HU_Assets/Background/menu_bar.png"
             fillMode: Image.PreserveAspectFit
 
             Rectangle {
@@ -36,7 +45,8 @@ Window{
                 Image {
                     id: setting_icon
                     width: 28
-                    source: "HU_Assets/Icons/settings.png"
+//                    source: "HU_Assets/Icons/settings.png"
+                    source: clickNotifier.clicked ? "HU_Assets/light/Icons/settings_l.png" : "HU_Assets/Icons/settings.png"
                     fillMode: Image.PreserveAspectFit
                     anchors{
                         verticalCenter: setting.verticalCenter
@@ -51,7 +61,8 @@ Window{
                     height: 22
                     text: qsTr("Setting")
                     font.pixelSize: 20
-                    color: "#ffffff"
+//                    color: "#ffffff"
+                    color: clickNotifier.clicked ? "#414141" : "#ffffff"
                     anchors{
                         verticalCenter: setting.verticalCenter
                         right: setting.right
@@ -71,7 +82,8 @@ Window{
                     id: user_info_icon
                     x: 0
                     y: 0
-                    source: "HU_Assets/Icons/user_phone.png"
+//                    source: "HU_Assets/Icons/user_phone.png"
+                    source: clickNotifier.clicked ? "HU_Assets/light/Icons/user_phone_l.png" : "HU_Assets/Icons/user_phone.png"
                     fillMode: Image.PreserveAspectFit
                     anchors{
                         verticalCenter: user_info.verticalCenter
@@ -83,7 +95,8 @@ Window{
                     id: user_info_text
                     text: qsTr("User Info")
                     font.pixelSize: 17
-                    color: "#ffffff"
+//                    color: "#ffffff"
+                    color: clickNotifier.clicked ? "#414141" : "#ffffff"
                     anchors{
                         verticalCenter: user_info.verticalCenter
                         right: user_info.right
@@ -98,7 +111,8 @@ Window{
                 anchors.verticalCenterOffset: 6
                 fillMode: Image.PreserveAspectFit
                 visible: false
-                source: "/HU_Assets/Background/select_menu.png"
+//                source: "/HU_Assets/Background/select_menu.png"
+                source: clickNotifier.clicked ? "HU_Assets/light/Background/select_menu_l.png" : "HU_Assets/Background/select_menu.png"
             }
 
             Rectangle {
@@ -116,7 +130,8 @@ Window{
                     height: 22
                     anchors.verticalCenter: display.verticalCenter
                     anchors.left: display.left
-                    source: "HU_Assets/Icons/display.png"
+//                    source: "HU_Assets/Icons/display.png"
+                    source: clickNotifier.clicked ? "HU_Assets/light/Icons/display_l.png" : "HU_Assets/Icons/display.png"
                     fillMode: Image.PreserveAspectFit
                 }
                 MouseArea{
@@ -132,7 +147,8 @@ Window{
 
                 Text {
                     id: display_text
-                    color: "#ffffff"
+//                    color: "#ffffff"
+                    color: clickNotifier.clicked ? "#414141" : "#ffffff"
                     text: qsTr("Display")
                     anchors.right: display.right
                     anchors.verticalCenter: display.verticalCenter
@@ -147,7 +163,8 @@ Window{
                 anchors.verticalCenterOffset: 6
                 fillMode: Image.PreserveAspectFit
                 visible: false
-                source: "/HU_Assets/Background/select_menu.png"
+//                source: "/HU_Assets/Background/select_menu.png"
+                source: clickNotifier.clicked ? "HU_Assets/light/Background/select_menu_l.png" : "HU_Assets/Background/select_menu.png"
             }
 
             Rectangle {
@@ -164,13 +181,15 @@ Window{
                     y: 0
                     anchors.verticalCenter: services.verticalCenter
                     anchors.left: services.left
-                    source: "HU_Assets/Icons/service.png"
+//                    source: "HU_Assets/Icons/service.png"
+                    source: clickNotifier.clicked ? "HU_Assets/light/Icons/service_l.png" : "HU_Assets/Icons/service.png"
                     fillMode: Image.PreserveAspectFit
                 }
 
                 Text {
                     id: service_text
-                    color: "#ffffff"
+//                    color: "#ffffff"
+                    color: clickNotifier.clicked ? "#414141" : "#ffffff"
                     text: qsTr("Services")
                     anchors.right: services.right
                     anchors.verticalCenter: services.verticalCenter
@@ -220,7 +239,8 @@ Window{
         width: 50
         height: 50
         fillMode: Image.PreserveAspectFit
-        source: "HU_Assets/Icons/tap_close_button.png"
+//        source: "HU_Assets/Icons/tap_close_button.png"
+        source: clickNotifier.clicked ? "HU_Assets/light/Icons/close_icon_l.png" : "HU_Assets/Icons/tap_close_button.png"
 
         MouseArea{
             anchors.fill: parent

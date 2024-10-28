@@ -12,6 +12,13 @@ ApplicationWindow{
     color: "transparent"
     flags: Qt.FramelessWindowHint
 
+    onActiveFocusItemChanged: {
+        if(!activeFocusItem){
+            visible = false;
+            icon_line.x = 138;
+        }
+    }
+
     Rectangle {
         id: base_window
         anchors.fill: parent

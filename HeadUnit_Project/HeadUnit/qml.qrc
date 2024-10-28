@@ -30,7 +30,6 @@
         
         <file>HU_Assets/Components/line.png</file>
         <file>HU_Assets/Components/battery.png</file>
-        
         <file>HU_Assets/Components/Weather/weather_bar.png</file>
         <file>HU_Assets/Components/Weather/climate_fan.png</file>
         
@@ -65,5 +64,51 @@
         <file>HU_Assets/Components/Video/youtube_icon.png</file>
         <file>HU_Assets/Components/Video/reset_list_icon.png</file>
         <file>HU_Assets/Components/Video/back_icon.png</file>
+        
+        <file>HU_Assets/light/Background/basic_window_l.png</file>
+        <file>HU_Assets/light/Background/car_status_background_l.png</file>
+        <file>HU_Assets/light/Background/main_control_bar_l.png</file>
+        <file>HU_Assets/light/Background/menu_bar_l.png</file>
+        <file>HU_Assets/light/Background/music_bar_l.png</file>
+        <file>HU_Assets/light/Background/progress_bar_l.png</file>
+        <file>HU_Assets/light/Background/select_menu_l.png</file>
+        
+        <file>HU_Assets/light/Components/Calender/calender_bar_l.png</file>
+        <file>HU_Assets/light/Components/Calender/calender_component_l.png</file>
+        
+        <file>HU_Assets/light/Components/Music/music_button_ring_l.png</file>
+        <file>HU_Assets/light/Components/Music/play_l.png</file>
+        <file>HU_Assets/light/Components/Music/sequential_l.png</file>
+        <file>HU_Assets/light/Components/Music/skip_back_l.png</file>
+        <file>HU_Assets/light/Components/Music/skip_front_l.png</file>
+        <file>HU_Assets/light/Components/Music/stop_l.png</file>
+        
+        <file>HU_Assets/light/Components/Video/back_icon_l.png</file>
+        <file>HU_Assets/light/Components/Video/play_icon_l.png</file>
+        <file>HU_Assets/light/Components/Video/reset_list_icon_l.png</file>
+        <file>HU_Assets/light/Components/Video/screen_off_icon_l.png</file>
+        <file>HU_Assets/light/Components/Video/skip_next_icon_l.png</file>
+        <file>HU_Assets/light/Components/Video/skip_prev_icon_l.png</file>
+        <file>HU_Assets/light/Components/Video/sound_icon_l.png</file>
+        <file>HU_Assets/light/Components/Video/stop_icon_l.png</file>
+        <file>HU_Assets/light/Components/Video/youtube_icon_l.png</file>
+        
+        <file>HU_Assets/light/Components/Weather/climate_fan_l.png</file>
+        <file>HU_Assets/light/Components/line_l.png</file>
+        
+        <file>HU_Assets/light/Icons/charm_bluetooth_l.png</file>
+        <file>HU_Assets/light/Icons/close_icon_l.png</file>
+        <file>HU_Assets/light/Icons/display_l.png</file>
+        <file>HU_Assets/light/Icons/home_l.png</file>
+        <file>HU_Assets/light/Icons/icon_line_l.png</file>
+        <file>HU_Assets/light/Icons/library_l.png</file>
+        <file>HU_Assets/light/Icons/map_l.png</file>
+        <file>HU_Assets/light/Icons/media_l.png</file>
+        <file>HU_Assets/light/Icons/music_l.png</file>
+        <file>HU_Assets/light/Icons/person_l.png</file>
+        <file>HU_Assets/light/Icons/service_l.png</file>
+        <file>HU_Assets/light/Icons/settings_l.png</file>
+        <file>HU_Assets/light/Icons/user_phone_l.png</file>
+        <file>HU_Assets/light/Icons/mirroring_icon_l.png</file>
     </qresource>
 </RCC>

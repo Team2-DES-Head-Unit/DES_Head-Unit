@@ -14,6 +14,16 @@ Window{
     property bool isSearching: false
     property bool isStopped: true
 
+    onActiveFocusItemChanged: {
+        if(!activeFocusItem){
+            visible = false;
+            service_selected.visible = false;
+        }
+    }
+    Connections{
+        target: service_selected
+    }
+
     Image {
         id: bluetooth_close_button
         x: 350
@@ -21,7 +31,8 @@ Window{
         width: 50
         height: 50
         fillMode: Image.PreserveAspectFit
-        source: "HU_Assets/Icons/tap_close_button.png"
+//        source: "HU_Assets/Icons/tap_close_button.png"
+        source: clickNotifier.clicked ? "HU_Assets/light/Icons/close_icon_l.png" : "HU_Assets/Icons/tap_close_button.png"
 
         MouseArea{
             anchors.fill: parent
@@ -56,7 +67,8 @@ Window{
                 id: bluetoothd_txt
                 text: qsTr("Bluetooth Discovery")
                 font.pixelSize: 20
-                color: "white"
+//                color: "white"
+                color: clickNotifier.clicked ? "#414141" : "white"
             }
             Button {
                 id: bdbutton_on
@@ -99,7 +111,8 @@ Window{
             Text {
                 text: "Name"
                 font.bold: true
-                color: "white"
+//                color: "white"
+                color: clickNotifier.clicked ? "#414141" : "white"
             }
 
             Item {
@@ -111,7 +124,8 @@ Window{
             Text {
                 text: "Type"
                 font.bold: true
-                color: "white"
+//                color: "white"
+                color: clickNotifier.clicked ? "#414141" : "white"
             }
         }
 
@@ -142,18 +156,21 @@ Window{
                         Text {
                             text: model.deviceName
                             font.bold: true
-                            color: "white"
+//                            color: "white"
+                            color: clickNotifier.clicked ? "#414141" : "white"
                         }
 
                         Text {
                             text: "/"
-                            color: "white"
+//                            color: "white"
+                            color: clickNotifier.clicked ? "#414141" : "white"
                         }
 
                         Text {
                             text: model.deviceType
                             font.bold: true
-                            color: "white"
+//                            color: "white"
+                            color: clickNotifier.clicked ? "#414141" : "white"
                         }
                     }
                     MouseArea {

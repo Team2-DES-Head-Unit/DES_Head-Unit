@@ -13,6 +13,12 @@ Window{
 
     property bool isInitialized: false
 
+    onActiveFocusItemChanged: {
+        if(!activeFocusItem){
+            visible = false;
+        }
+    }
+
     Component.onDestruction: {
         mirrorProvider.end();
     }
@@ -28,7 +34,8 @@ Window{
 
     Image {
         fillMode: Image.PreserveAspectFit
-        source: "HU_Assets/Background/basic_window.png"
+//        source: "HU_Assets/Background/basic_window.png"
+        source: clickNotifier.clicked ? "HU_Assets/light/Background/basic_window_l.png" : "HU_Assets/Background/basic_window.png"
         id: base_window
         z : 0
         visible: !mirrorProvider.isLoaded
@@ -44,12 +51,13 @@ Window{
                 anchors.centerIn: parent
                 Text{
                     text: "Not Connected"
-                    color: "white"
+//                    color: "white"
+                    color: clickNotifier.clicked ? "#414141" : "#ffffff"
                     font.pointSize: 25
                 }
                 Text{
                     text: "Please check the connection or \n check if it is connected properly."
-                    color: "white"
+                    color: clickNotifier.clicked ? "#414141" : "#ffffff"
                 }
                 Rectangle{
                     width: 120

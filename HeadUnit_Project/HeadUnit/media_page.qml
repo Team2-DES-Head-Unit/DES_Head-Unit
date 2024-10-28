@@ -16,17 +16,26 @@ Window{
         video_controls.visible = true;
     }
 
+    onActiveFocusItemChanged: {
+        if(!activeFocusItem){
+            visible = false;
+            icon_line.x = 138;
+        }
+    }
+
     Image {
         id: base_window
         fillMode: Image.PreserveAspectFit
         anchors.fill: parent
-        source: "HU_Assets/Background/basic_window.png"
+//        source: "HU_Assets/Background/basic_window.png"
+        source: clickNotifier.clicked ? "HU_Assets/light/Background/basic_window_l.png" : "HU_Assets/Background/basic_window.png"
 
         Rectangle{
             id: select_video
             x: 10
             y: 17
-            color: "#323232"
+//            color: "#323232"
+            color: clickNotifier.clicked ? "#00000000" : "#323232"
             width: 600
             height: 450
 
@@ -38,6 +47,8 @@ Window{
                 height: 50
                 fillMode: Image.PreserveAspectFit
                 source: "HU_Assets/Icons/tap_close_button.png"
+//                source: clickNotifier.clicked ? "HU_Assets/light/Icons/close_icon_l.png" : "HU_Assets/Icons/close_icon.png"
+
 
                 MouseArea{
                     anchors.fill: parent
@@ -61,7 +72,8 @@ Window{
                     width: 28
                     anchors.verticalCenterOffset: 1
                     anchors.leftMargin: -1
-                    source: "HU_Assets/Icons/library.png"
+//                    source: "HU_Assets/Icons/library.png"
+                    source: clickNotifier.clicked ? "HU_Assets/light/Icons/library_l.png" : "HU_Assets/Icons/library.png"
                     fillMode: Image.PreserveAspectFit
                     anchors{
                         verticalCenter: library.verticalCenter
@@ -75,7 +87,8 @@ Window{
                     height: 22
                     text: qsTr("Your Library")
                     font.pixelSize: 23
-                    color: "#ffffff"
+//                    color: "#ffffff"
+                    color: clickNotifier.clicked ? "#414141" : "#ffffff"
                     anchors{
                         verticalCenter: library.verticalCenter
                         right: library.right
@@ -119,7 +132,8 @@ Window{
                     Text {
                         id: video1_title
                         text: qsTr("Pomeranian Grooming Teddy bear style")
-                        color: "#ffffff"
+//                        color: "#ffffff"
+                        color: clickNotifier.clicked ? "#414141" : "#ffffff"
                         font.pixelSize: 13
                         anchors{
                             bottom: video_1.bottom
@@ -163,7 +177,8 @@ Window{
 
                     Text {
                         id: video2_title
-                        color: "#ffffff"
+//                        color: "#ffffff"
+                        color: clickNotifier.clicked ? "#414141" : "#ffffff"
                         text: qsTr("Once upon a time there was one cutest kitten")
                         anchors.bottomMargin: 16
                         font.pixelSize: 13
@@ -205,7 +220,8 @@ Window{
 
                     Text {
                         id: video3_title
-                        color: "#ffffff"
+//                        color: "#ffffff"
+                        color: clickNotifier.clicked ? "#414141" : "#ffffff"
                         text: qsTr("World_premiere-The_all_new_Tayron")
                         anchors.bottomMargin: 16
                         font.pixelSize: 13
@@ -238,7 +254,8 @@ Window{
             id: selected_video_display
             x: 10
             y: 17
-            color: "#323232"
+//            color: "#323232"
+            color: clickNotifier.clicked ? "#ffffff" : "#323232"
             width: 600
             height: 450
 
@@ -309,7 +326,8 @@ Window{
                     }
 
                     Image {
-                        source: "HU_Assets/Components/Video/skip_prev_icon.png"
+//                        source: "HU_Assets/Components/Video/skip_prev_icon.png"
+                        source: clickNotifier.clicked ? "HU_Assets/light/Components/Video/skip_prev_icon_l.png" : "HU_Assets/Components/Video/skip_prev_icon.png"
                         width: 30
                         height: 30
                         MouseArea {
@@ -323,7 +341,8 @@ Window{
                     }
 
                     Image {
-                        source: "HU_Assets/Components/Video/skip_next_icon.png"
+//                        source: "HU_Assets/Components/Video/skip_next_icon.png"
+                        source: clickNotifier.clicked ? "HU_Assets/light/Components/Video/skip_next_icon_l.png" : "HU_Assets/Components/Video/skip_next_icon.png"
                         width: 30
                         height: 30
                         MouseArea {
@@ -349,7 +368,8 @@ Window{
                         color: "transparent"
 
                         Image {
-                            source: "HU_Assets/Components/Video/sound_icon.png"
+//                            source: "HU_Assets/Components/Video/sound_icon.png"
+                            source: clickNotifier.clicked ? "HU_Assets/light/Components/Video/sound_icon_l.png" : "HU_Assets/Components/Video/sound_icon.png"
                             width: 30
                             height: 30
                             anchors{
@@ -385,7 +405,7 @@ Window{
                                 Rectangle {
                                     width: volume_slider.visualPosition * parent.width
                                     height: parent.height
-                                    color: "#ffffff"
+                                    color: clickNotifier.clicked ? "#414141" : "#ffffff"
                                     radius: 2
                                 }
                             }
@@ -403,7 +423,8 @@ Window{
                     }
 
                     Image {
-                        source: "HU_Assets/Components/Video/screen_off_icon.png"
+//                        source: "HU_Assets/Components/Video/screen_off_icon.png"
+                        source: clickNotifier.clicked ? "HU_Assets/light/Components/Video/screen_off_icon_l.png" : "HU_Assets/Components/Video/screen_off_icon.png"
                         width: 30
                         height: 30
                         anchors.top: parent.top
