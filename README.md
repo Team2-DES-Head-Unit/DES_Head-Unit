@@ -97,6 +97,7 @@ Here are the divided technical requirements for composing the Head Unit:
 
 ## Contributors
 
+<center>
 <table>
   <tr>
     <td align="center">
@@ -163,3 +164,4 @@ Here are the divided technical requirements for composing the Head Unit:
     </td>
   </tr>
 </table>
+</center>
