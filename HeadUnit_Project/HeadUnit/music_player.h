@@ -27,11 +27,11 @@ public:
     }
 
     QStringList getCovers() {
-        return getAlbums("/home/llj/catkin_ws/src/DES_Head-Unit/HeadUnit_Project/HeadUnit/Cover", "*.jpeg");
+        return getAlbums("/usr/bin/hu/MusicImage", "*.jpeg");
     }
 
     Q_INVOKABLE QStringList getMusics() {
-        return getAlbums("/media/llj/SanDisk/Music/", "*.mp3");
+        return getAlbums("/usr/bin/hu/mp3", "*.mp3");
     }
 
     // songTitle : ex)"Hanumankind-Big_Dawgs.mp3"
