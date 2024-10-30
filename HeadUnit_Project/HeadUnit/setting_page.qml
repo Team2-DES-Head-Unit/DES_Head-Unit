@@ -2,7 +2,7 @@ import QtQuick 2.12
 import QtQuick.Window 2.12
 
 
-Window{
+Rectangle{
     id: setting_window
     visible: true
     //    x: 565
@@ -10,7 +10,7 @@ Window{
     width: 618
     height: 480
     color: "transparent"
-    flags: Qt.FramelessWindowHint
+    //flags: Qt.FramelessWindowHint
 
     Image {
         id: base_window
@@ -179,10 +179,11 @@ Window{
                 MouseArea{
                     anchors.fill: parent
                     onClicked: {
-                        bluetoothQmlLoader.active = true;
+                        //bluetoothQmlLoader.active = true;
                         bluetoothQmlLoader.item.visible = true;
-                        bluetoothQmlLoader.item.x = setting_window.x + 200;
-                        bluetoothQmlLoader.item.y = setting_window.y + 14;
+                        bluetoothQmlLoader.visible = true;
+                        bluetoothQmlLoader.item.x = 200;
+                        bluetoothQmlLoader.item.y = 14;
                         service_selected.visible = true;
                     }
                 }

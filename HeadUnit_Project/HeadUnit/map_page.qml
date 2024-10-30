@@ -4,13 +4,13 @@ import QtQuick.Controls 2.12
 import QtLocation 5.12
 import QtPositioning 5.12
 
-ApplicationWindow{
+Rectangle{
     id: map_window
     visible: true
     width: 618
     height: 480
     color: "transparent"
-    flags: Qt.FramelessWindowHint
+    //flags: Qt.FramelessWindowHint
 
     Rectangle {
         id: base_window

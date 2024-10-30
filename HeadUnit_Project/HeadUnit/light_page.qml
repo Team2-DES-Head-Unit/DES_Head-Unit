@@ -3,13 +3,13 @@ import QtQuick.Window 2.12
 import QtQuick.Controls 2.12
 
 
-Window{
+Rectangle{
     id: light_window
     visible: true
     width: 413
     height: 445
     color: "transparent"
-    flags: Qt.FramelessWindowHint
+    //flags: Qt.FramelessWindowHint
 
 
     Image {

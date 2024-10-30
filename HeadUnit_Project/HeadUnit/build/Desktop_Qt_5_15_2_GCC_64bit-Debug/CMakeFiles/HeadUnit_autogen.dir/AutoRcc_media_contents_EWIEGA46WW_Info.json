@@ -1,0 +1,36 @@
+{
+	"BUILD_DIR" : "/home/seame/Minam/DES_Head-Unit/HeadUnit_Project/HeadUnit/build/Desktop_Qt_5_15_2_GCC_64bit-Debug/HeadUnit_autogen",
+	"CMAKE_BINARY_DIR" : "/home/seame/Minam/DES_Head-Unit/HeadUnit_Project/HeadUnit/build/Desktop_Qt_5_15_2_GCC_64bit-Debug",
+	"CMAKE_CURRENT_BINARY_DIR" : "/home/seame/Minam/DES_Head-Unit/HeadUnit_Project/HeadUnit/build/Desktop_Qt_5_15_2_GCC_64bit-Debug",
+	"CMAKE_CURRENT_SOURCE_DIR" : "/home/seame/Minam/DES_Head-Unit/HeadUnit_Project/HeadUnit",
+	"CMAKE_SOURCE_DIR" : "/home/seame/Minam/DES_Head-Unit/HeadUnit_Project/HeadUnit",
+	"CROSS_CONFIG" : false,
+	"GENERATOR" : "Ninja",
+	"INCLUDE_DIR" : "/home/seame/Minam/DES_Head-Unit/HeadUnit_Project/HeadUnit/build/Desktop_Qt_5_15_2_GCC_64bit-Debug/HeadUnit_autogen/include",
+	"INPUTS" : 
+	[
+		"/home/seame/Minam/DES_Head-Unit/HeadUnit_Project/HeadUnit/Thumbnail/Pomeranian_Grooming_Teddy_bear_style.png",
+		"/home/seame/Minam/DES_Head-Unit/HeadUnit_Project/HeadUnit/Thumbnail/World_premiere-The_all_new_Tayron.png",
+		"/home/seame/Minam/DES_Head-Unit/HeadUnit_Project/HeadUnit/Thumbnail/Once_upon_a_time_there_was_one_cutest_kitten.png",
+		"/home/seame/Minam/DES_Head-Unit/HeadUnit_Project/HeadUnit/Cover/AlainaCastillo-cover.jpeg",
+		"/home/seame/Minam/DES_Head-Unit/HeadUnit_Project/HeadUnit/Cover/WaveToEarth-cover.jpeg",
+		"/home/seame/Minam/DES_Head-Unit/HeadUnit_Project/HeadUnit/Cover/Hanumankind-cover.jpeg",
+		"/home/seame/Minam/DES_Head-Unit/HeadUnit_Project/HeadUnit/Cover/AimeeCarty-cover.jpeg",
+		"/home/seame/Minam/DES_Head-Unit/HeadUnit_Project/HeadUnit/Cover/M\u00e5neskin-cover.jpeg",
+		"/home/seame/Minam/DES_Head-Unit/HeadUnit_Project/HeadUnit/Cover/SOLOMON-cover.jpeg",
+		"/home/seame/Minam/DES_Head-Unit/HeadUnit_Project/HeadUnit/Cover/JVKE-cover.jpeg",
+		"/home/seame/Minam/DES_Head-Unit/HeadUnit_Project/HeadUnit/Cover/DAY6-cover.jpeg",
+		"/home/seame/Minam/DES_Head-Unit/HeadUnit_Project/HeadUnit/Cover/BrenJoy-cover.jpeg"
+	],
+	"LOCK_FILE" : "/home/seame/Minam/DES_Head-Unit/HeadUnit_Project/HeadUnit/build/Desktop_Qt_5_15_2_GCC_64bit-Debug/CMakeFiles/HeadUnit_autogen.dir/AutoRcc_media_contents_EWIEGA46WW_Lock.lock",
+	"MULTI_CONFIG" : false,
+	"OPTIONS" : [ "-name", "media_contents" ],
+	"OUTPUT_CHECKSUM" : "EWIEGA46WW",
+	"OUTPUT_NAME" : "qrc_media_contents.cpp",
+	"RCC_EXECUTABLE" : "/home/seame/Qt/5.15.2/gcc_64/bin/rcc",
+	"RCC_LIST_OPTIONS" : [ "--list" ],
+	"SETTINGS_FILE" : "/home/seame/Minam/DES_Head-Unit/HeadUnit_Project/HeadUnit/build/Desktop_Qt_5_15_2_GCC_64bit-Debug/CMakeFiles/HeadUnit_autogen.dir/AutoRcc_media_contents_EWIEGA46WW_Used.txt",
+	"SOURCE" : "/home/seame/Minam/DES_Head-Unit/HeadUnit_Project/HeadUnit/media_contents.qrc",
+	"USE_BETTER_GRAPH" : false,
+	"VERBOSITY" : 0
+}

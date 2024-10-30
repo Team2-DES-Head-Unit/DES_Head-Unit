@@ -1,0 +1,78 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"jsonFile" : "directory-.-Debug-f5ebdc15457944623624.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.5"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "HeadUnit",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "HeadUnit::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-HeadUnit-Debug-547965abf8d98245af61.json",
+					"name" : "HeadUnit",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "HeadUnit_autogen::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-HeadUnit_autogen-Debug-05ac02f21f20987ddcdf.json",
+					"name" : "HeadUnit_autogen",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "HeadUnit_autogen_timestamp_deps::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-HeadUnit_autogen_timestamp_deps-Debug-57b095feabab91f10a4f.json",
+					"name" : "HeadUnit_autogen_timestamp_deps",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "/home/seame/Minam/DES_Head-Unit/HeadUnit_Project/HeadUnit/build/Desktop_Qt_5_15_2_GCC_64bit-Debug",
+		"source" : "/home/seame/Minam/DES_Head-Unit/HeadUnit_Project/HeadUnit"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 7
+	}
+}

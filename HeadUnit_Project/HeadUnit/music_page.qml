@@ -2,13 +2,13 @@ import QtQuick 2.12
 import QtQuick.Window 2.12
 import QtQuick.Controls 2.12
 
-Window{
+Rectangle{
     id: music_window
     visible: true
     width: 618
     height: 480
     color: "transparent"
-    flags: Qt.FramelessWindowHint
+    //flags: Qt.FramelessWindowHint
     Connections{
         target: musicPlayer
         onNextSongInfo:{

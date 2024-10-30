@@ -1,3 +1,4 @@
+
 /poky/build
 /HU/
 !/HU/conf
@@ -5,3 +6,5 @@
 /poky/source-mirrors
 /poky/.vscode
 /poky/.git
+CMakeLists.txt.*
+CMakeLists.txt.user

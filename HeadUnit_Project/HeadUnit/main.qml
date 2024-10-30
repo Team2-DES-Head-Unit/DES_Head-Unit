@@ -899,11 +899,12 @@ Window {
                         anchors.fill: parent
                         onClicked: {
                             icon_line.x = -8;
-                            settingQmlLoader.active = true;
+                            //settingQmlLoader.active = true;
+                            settingQmlLoader.visible = true;
                             settingQmlLoader.item.visible = true;
-                            //settingQmlLoader.item.x = main_window.x + 393;
-                            //settingQmlLoader.item.y = main_window.y + 40;
-                            mapQmlLoader.item.setPosition(main_window.x + 393, main_window.y + 40);
+                            settingQmlLoader.item.x = 393;
+                            settingQmlLoader.item.y = 40;
+                            
                         }
                     }
                 }
@@ -918,10 +919,11 @@ Window {
                         anchors.fill: parent
                         onClicked: {
                             icon_line.x = 65;
-                            mapQmlLoader.active = true;
+                            mapQmlLoader.visible = true;
+                            //mapQmlLoader.active = true;
                             mapQmlLoader.item.visible = true;
-                            mapQmlLoader.item.x = main_window.x + 393;
-                            mapQmlLoader.item.y = main_window.y + 40;
+                            mapQmlLoader.item.x = 393;
+                            mapQmlLoader.item.y = 40;
                         }
                     }
                 }
@@ -950,10 +952,11 @@ Window {
                         anchors.fill: parent
                         onClicked: {
                             icon_line.x = 213;
-//                            musicQmlLoader.active = true;
+//                            //musicQmlLoader.active = true;
+                            musicQmlLoader.visible = true;
                             musicQmlLoader.item.visible = true;
-                            musicQmlLoader.item.x = main_window.x + 393;
-                            musicQmlLoader.item.y = main_window.y + 40;
+                            musicQmlLoader.item.x = 393;
+                            musicQmlLoader.item.y = 40;
                         }
                     }
                 }
@@ -976,10 +979,11 @@ Window {
 //                            mediaQmlLoader.item.y = main_window.y + 40;
 
                             // media qml with youtube
-                            youtubeMediaQmlLoader.active = true;
+                            //youtubeMediaQmlLoader.active = true;
+                            youtubeMediaQmlLoader.visible = true;
                             youtubeMediaQmlLoader.item.visible = true;
-                            youtubeMediaQmlLoader.item.x = main_window.x + 393;
-                            youtubeMediaQmlLoader.item.y = main_window.y + 40;
+                            youtubeMediaQmlLoader.item.x = 393;
+                            youtubeMediaQmlLoader.item.y = 40;
                         }
                     }
                 }
