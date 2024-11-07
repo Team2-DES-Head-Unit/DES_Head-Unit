@@ -1,0 +1,15 @@
+
+### Shell environment set up for builds. ###
+
+Welcome! This is my DES-TEAM2-PROJECT. 
+
+You can now run 'bitbake <target>'
+
+Common targets are:
+
+    minam-image
+    
+
+
+
+
