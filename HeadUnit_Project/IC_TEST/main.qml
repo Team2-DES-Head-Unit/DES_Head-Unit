@@ -145,7 +145,7 @@ ApplicationWindow {
          Connections{
                 target: Receiver
                 onSpeedChanged: {
-                    speed_text.targetSpeed = Receiver.speedKmh
+                    speed_text.targetSpeed = Receiver.speedKmh.toFixed(0)
                     speedAnimation.start()
                 }
          }
@@ -283,7 +283,7 @@ ApplicationWindow {
          Connections{
                 target: Receiver
                 onValueChanged: {
-                    rpm_text.targetrpm = Receiver.speedKmh * 2.895
+                    rpm_text.targetrpm = (Receiver.speedKmh * 2.895).toFixed(0)
                     rpmAnimation.start()
                 }
          }
