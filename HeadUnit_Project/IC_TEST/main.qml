@@ -15,7 +15,7 @@ ApplicationWindow {
     title: qsTr("Instrument Cluster")
 //    flags: Qt.FramelessWindowHint
 
-    property int randomValue: Math.random() * 100 // 0부터 100까지의 랜덤 값
+//    property int randomValue: Math.random() * 100 // 0부터 100까지의 랜덤 값
 
     property int angle: 0
     property int currentSpeed: 0
@@ -79,14 +79,13 @@ ApplicationWindow {
                 var centerX = width / 2;
                 var centerY = height / 2;
                 var startAngle = (116 * Math.PI) / 180;
-                var endAngle = ((116 + (Receiver.speedKmh * 3.08)) * Math.PI) / 180;  // 끝 각도 (바늘 각도에 따라 변함)
+                var endAngle = ((116 + (Receiver.speedKmh * 2.05)) * Math.PI) / 180;  // 끝 각도 (바늘 각도에 따라 변함)
 
                 // 게이지 호 그리기
                 ctx.beginPath();
                 ctx.arc(centerX, centerY, 113, startAngle, endAngle, false);  // 원호 그리기
                 ctx.lineWidth = 38;
 //                ctx.strokeStyle = "#87F1D0";  // 게이지 색상
-//                ctx.strokeStyle = x === 0 ? "#7788F2" : "#87F1D0";
                 ctx.strokeStyle = Server.mode === 1 ? "#7788F2" : "#87F1D0"
                 ctx.stroke();
 
@@ -101,7 +100,7 @@ ApplicationWindow {
             fillMode: Image.PreserveAspectFit
             transformOrigin: Item.BottomRight
 //            rotation: randomValue * 3.06 - 108 //(Receiver.speedKmh * 2.5 + 210)
-            rotation: (Receiver.speedKmh * 2.5 + 210)
+            rotation: (Receiver.speedKmh * 2.04 - 108)
 
             Behavior on rotation{
                 NumberAnimation{
@@ -111,14 +110,14 @@ ApplicationWindow {
             }
              Connections{
                  target: Receiver
-                 onSpeedChanged: speed_needle.angle = (Receiver.speedKmh * 2.5 + 210)
+                 onSpeedChanged: speed_needle.angle = (Receiver.speedKmh * 2.04 - 108)
              }
         }
         Image{
             id: speed_inner
             anchors.centerIn: speed_dial
-//            source: "/IC Assets/inner_circle.png"
-            source: Server.mode === 1 ? "/IC Assets/light/inner_circle_l.png" : "/IC Assets/inner_circle.png"
+            source: "/IC Assets/inner_circle.png"
+//            source: Server.mode === 1 ? "/IC Assets/light/inner_circle_l.png" : "/IC Assets/inner_circle.png"
             fillMode: Image.PreserveAspectFit
         }
         Text {
@@ -218,7 +217,7 @@ ApplicationWindow {
                 var centerX = width / 2;
                 var centerY = height / 2;
                 var startAngle = (116 * Math.PI) / 180;
-                var endAngle = ((116 + (randomValue * 3.08)) * Math.PI) / 180;  // 끝 각도 (바늘 각도에 따라 변함)
+                var endAngle = ((116 + ((Receiver.speedKmh * 2.895) * 0.77)) * Math.PI) / 180;  // 끝 각도 (바늘 각도에 따라 변함)
 
                 // 게이지 호 그리기
                 ctx.beginPath();
@@ -239,7 +238,7 @@ ApplicationWindow {
             fillMode: Image.PreserveAspectFit
             transformOrigin: Item.BottomRight
 //            rotation: randomValue * 3.06 - 108 //(((Receiver.speedKmh) / (2 * 3.14 * 3.3)) * 60)
-            rotation: (((Receiver.speedKmh) / (2 * 3.14 * 3.3)) * 60)
+            rotation: ((((Receiver.speedKmh) *2.895) * 0.765) - 108)
             Behavior on rotation{
                 NumberAnimation{
                     duration: 50
@@ -248,7 +247,7 @@ ApplicationWindow {
             }
              Connections{
                  target: Receiver
-                 onSpeedChanged: rpm_needle.angle = (((Receiver.speedKmh) / (2 * 3.14 * 3.3)) * 60)
+                 onSpeedChanged: rpm_needle.angle = ((((Receiver.speedKmh) * 2.895) * 0.765) - 108)
              }
         }
         Image{
@@ -261,7 +260,8 @@ ApplicationWindow {
         Text {
             id: rpm_text
 //            text: randomValue //(Receiver.speedKmh * 60) / (2 * 3.14 * 3.3)
-            text: (Receiver.speedKmh * 60) / (2 * 3.14 * 3.3)
+//            text: (Receiver.speedKmh * 60) / (2 * 3.14 * 3.3)
+            text: (Receiver.speedKmh * 2.895).toFixed(0)
             anchors.centerIn: rpm_dial
             anchors.bottom: parent.bottom
             anchors.bottomMargin: 30
@@ -283,7 +283,7 @@ ApplicationWindow {
          Connections{
                 target: Receiver
                 onValueChanged: {
-                    rpm_text.targetrpm = (Receiver.speedKmh * 60) / (2 * 3.14 * 3.3)
+                    rpm_text.targetrpm = Receiver.speedKmh * 2.895
                     rpmAnimation.start()
                 }
          }

@@ -54,6 +54,28 @@ Window {
     }
 
     /////////////////////////////////////////////////////////////////////// car status
+    Item {
+        id: root
+
+        property double totalDistance: 0
+        property int elapsedTime: 0
+        property double averageSpeed: 0
+
+        Timer{
+            id: updateTimer
+            interval: 1000
+            repeat: true
+            running: true
+            onTriggered: {
+                if (Receiver.speedKmh > 0){
+                    root.elapsedTime += 1;
+                    root.totalDistance += Receiver.speedKmh / 3600;
+                    root.averageSpeed = root.totalDistance / (root.elapsedTime / 3600);
+                }
+            }
+        }
+    }
+
     Image {
         id: car_status_background
         x: 0
@@ -86,7 +108,8 @@ Window {
                     font.pixelSize: 48
 //                    color: "#ffffff"
                     color: clickNotifier.clicked ? "#414141" : "#ffffff"
-                    text: speedProvider.currentSpeed    //qsTr("75")
+//                    text: speedProvider.currentSpeed    //qsTr("75")
+                    text: Receiver.speedKmh.toFixed(0)
                     anchors.verticalCenterOffset: -10
                     anchors.horizontalCenterOffset: 0
                 }
@@ -107,9 +130,13 @@ Window {
             }
         }
         Connections{
-            target: speedProvider
+//            target: speedProvider
+//            onSpeedChanged: {
+//                speed_value.text = speedProvider.currentSpeed
+//            }
+            target: Receiver
             onSpeedChanged: {
-                speed_value.text = speedProvider.currentSpeed
+                speed_value.text = Receiver.speedKmh
             }
         }
 
@@ -133,7 +160,8 @@ Window {
                     id: sa_value
                     width: 48
                     height: 23
-                    text: qsTr("128")
+//                    text: qsTr("128")
+                    text: root.averageSpeed.toFixed(2)
 //                    color: "#ffffff"
                     color: clickNotifier.clicked ? "#414141" : "#ffffff"
                     font.pixelSize: 20
@@ -204,7 +232,8 @@ Window {
                     height: 23
 //                    color: "#ffffff"
                     color: clickNotifier.clicked ? "#414141" : "#ffffff"
-                    text: qsTr("36.56")
+//                    text: qsTr("36.56")
+                    text: root.totalDistance.toFixed(2)
                     font.pixelSize: 18
                     anchors.top: mileage.top
                     horizontalAlignment: Text.AlignHCenter
@@ -264,7 +293,8 @@ Window {
                     height: 23
 //                    color: "#ffffff"
                     color: clickNotifier.clicked ? "#414141" : "#ffffff"
-                    text: qsTr("20")
+//                    text: qsTr("20")
+                    text: root.elapsedTime & 60
                     font.pixelSize: 18
                     anchors.top: time.top
                     horizontalAlignment: Text.AlignHCenter

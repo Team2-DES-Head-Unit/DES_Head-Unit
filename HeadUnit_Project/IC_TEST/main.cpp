@@ -7,6 +7,8 @@
 #include <QCoreApplication>
 #include <QPropertyAnimation>
 #include <deque>
+#include <QWindow>
+#include <QScreen>
 
 #include <DateClock.h>
 #include <receiver.h>
@@ -70,6 +72,22 @@ int main(int argc, char *argv[])
     std::thread server_thread(start_server);
     server_thread.detach();
 
+//    QList<QScreen*> screens = QGuiApplication::screens();
+//    if (screens.size() > 1) {
+//        qDebug() << "Second screen detected: " << screens.at(1)->name();
+//        QWindow *window = qobject_cast<QWindow*>(object);
+//        if (window) {
+//            window->setScreen(screens.at(1));
+//            window->showFullScreen();
+//        }
+//    } else {
+//        qDebug() << "Only one screen detected.";
+//        QWindow *window = qobject_cast<QWindow*>(object);
+//        if (window) {
+//            window->setScreen(screens.at(0));
+//            window->showFullScreen();
+//        }
+//    }
 
     /*///////////////////////////////////////////////////////// test Battery gauge with random value */
 //    qreal battery = 0.0;
