@@ -10,7 +10,8 @@ ApplicationWindow {
     width: 1280
 //    visibility: Window.FullScreen
     height:400
-    color: "#28282c"
+//    color: "#28282c"
+    color: Server.mode === 1 ? "#fcfcfc" : "#28282c"
     title: qsTr("Instrument Cluster")
 //    flags: Qt.FramelessWindowHint
 
@@ -22,12 +23,14 @@ ApplicationWindow {
     property int currentrpm: 0
     property int targetrpm: 0
 
+
     Image{
         id: bg_car
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.verticalCenter: parent.verticalCenter
         anchors.topMargin: 30
-        source: "/IC Assets/background_car.png"
+//        source: "/IC Assets/background_car.png"
+        source: Server.mode === 1 ? "IC Assets/light/background_car_l.png" : "/IC Assets/background_car.png"
         fillMode: Image.PreserveAspectFit
     }
     Rectangle {
@@ -43,7 +46,8 @@ ApplicationWindow {
             id: speed_dial
             anchors.left: parent.left
             anchors.verticalCenter: parent.verticalCenter
-            source: "/IC Assets/speedometer.png"
+//            source: "/IC Assets/speedometer.png"
+            source: Server.mode === 1 ? "/IC Assets/light/speedometer_l.png" : "/IC Assets/speedometer.png"
             fillMode: Image.PreserveAspectFit
         }
 //        SpeedGauge {
@@ -81,7 +85,9 @@ ApplicationWindow {
                 ctx.beginPath();
                 ctx.arc(centerX, centerY, 113, startAngle, endAngle, false);  // 원호 그리기
                 ctx.lineWidth = 38;
-                ctx.strokeStyle = "#87F1D0";  // 게이지 색상
+//                ctx.strokeStyle = "#87F1D0";  // 게이지 색상
+//                ctx.strokeStyle = x === 0 ? "#7788F2" : "#87F1D0";
+                ctx.strokeStyle = Server.mode === 1 ? "#7788F2" : "#87F1D0"
                 ctx.stroke();
 
             }
@@ -90,7 +96,8 @@ ApplicationWindow {
             id: speed_needle
             anchors.right: speed_dial.horizontalCenter
             anchors.bottom: speed_dial.verticalCenter
-            source: "/IC Assets/needle.png"
+//            source: "/IC Assets/needle.png"
+            source: Server.mode === 1 ? "/IC Assets/light/needle_l.png" : "/IC Assets/needle.png"
             fillMode: Image.PreserveAspectFit
             transformOrigin: Item.BottomRight
 //            rotation: randomValue * 3.06 - 108 //(Receiver.speedKmh * 2.5 + 210)
@@ -110,7 +117,8 @@ ApplicationWindow {
         Image{
             id: speed_inner
             anchors.centerIn: speed_dial
-            source: "/IC Assets/inner_circle.png"
+//            source: "/IC Assets/inner_circle.png"
+            source: Server.mode === 1 ? "/IC Assets/light/inner_circle_l.png" : "/IC Assets/inner_circle.png"
             fillMode: Image.PreserveAspectFit
         }
         Text {
@@ -121,7 +129,9 @@ ApplicationWindow {
             anchors.bottom: parent.bottom
             anchors.bottomMargin: 30
             font.pixelSize: 30
-            color: "white"
+//            color: "white"
+//            color: Server.mode === 1 ? "#414141" : "#ffffff"
+            color: "#ffffff"
             font.bold: true
 
              NumberAnimation{
@@ -156,7 +166,8 @@ ApplicationWindow {
              anchors.bottom: parent.bottom
              anchors.bottomMargin: 50
              font.pixelSize: 25
-             color: "#87F1D0"
+//             color: "#87F1D0"
+             color: Server.mode === 1 ? "#7788F2" : "#87F1D0"
          }
     }
 
@@ -173,7 +184,8 @@ ApplicationWindow {
             id: rpm_dial
             anchors.right: parent.right
             anchors.verticalCenter: parent.verticalCenter
-            source: "/IC Assets/speedometer.png"
+//            source: "/IC Assets/speedometer.png"
+            source: Server.mode === 1 ? "/IC Assets/light/speedometer_l.png" : "/IC Assets/speedometer.png"
             fillMode: Image.PreserveAspectFit
         }
 //        RpmGauge {
@@ -212,7 +224,8 @@ ApplicationWindow {
                 ctx.beginPath();
                 ctx.arc(centerX, centerY, 113, startAngle, endAngle, false);  // 원호 그리기
                 ctx.lineWidth = 38;
-                ctx.strokeStyle = "#87F1D0";  // 게이지 색상
+//                ctx.strokeStyle = "#87F1D0";  // 게이지 색상
+                ctx.strokeStyle = Server.mode === 1 ? "#7788F2" : "#87F1D0";
                 ctx.stroke();
             }
         }
@@ -221,7 +234,8 @@ ApplicationWindow {
             id: rpm_needle
             anchors.right: rpm_dial.horizontalCenter
             anchors.bottom: rpm_dial.verticalCenter
-            source: "/IC Assets/needle.png"
+//            source: "/IC Assets/needle.png"
+            source: Server.mode === 1 ? "/IC Assets/light/needle_l.png" : "/IC Assets/needle.png"
             fillMode: Image.PreserveAspectFit
             transformOrigin: Item.BottomRight
 //            rotation: randomValue * 3.06 - 108 //(((Receiver.speedKmh) / (2 * 3.14 * 3.3)) * 60)
@@ -241,6 +255,7 @@ ApplicationWindow {
             id: rpm_inner
             anchors.centerIn: rpm_dial
             source: "/IC Assets/inner_circle.png"
+//            source: Server.mode === 1 ? "/IC Assets/light/inner_circle_l.png" : "/IC Assets/inner_circle.png"
             fillMode: Image.PreserveAspectFit
         }
         Text {
@@ -251,7 +266,9 @@ ApplicationWindow {
             anchors.bottom: parent.bottom
             anchors.bottomMargin: 30
             font.pixelSize: 30
-            color: "white"
+//            color: "white"
+//            color: Server.mode === 1 ? "#414141" : "#ffffff"
+            color: "#ffffff"
             font.bold: true
 
              NumberAnimation{
@@ -332,7 +349,8 @@ ApplicationWindow {
         id: topbar
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.top: parent.top
-        source: "/IC Assets/top_bar.png"
+//        source: "/IC Assets/top_bar.png"
+        source: Server.mode === 1 ? "/IC Assets/light/top_bar_l.png" : "/IC Assets/top_bar.png"
         fillMode: Image.PreserveAspectFit
     }
 
@@ -340,7 +358,8 @@ ApplicationWindow {
         id: topbar_menu
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.top: parent.top
-        source: "/IC Assets/top_bar_menu.png"
+//        source: "/IC Assets/top_bar_menu.png"
+        source: Server.mode === 1 ? "/IC Assets/light/top_bar_menu_l.png" : "/IC Assets/top_bar_menu.png"
         fillMode: Image.PreserveAspectFit
     }
 
@@ -362,8 +381,8 @@ ApplicationWindow {
         anchors.bottom: parent.verticalCenter
         anchors.leftMargin: 96
         anchors.bottomMargin:65
-//        source: "/IC Assets/right_dark.png"
-        source: Server.indicatorRight ? "/IC Assets/right_bright.png" : "/IC Assets/right_dark.png"
+        source: "/IC Assets/right_dark.png"
+//        source: Server.indicatorRight ? "/IC Assets/right_bright.png" : "/IC Assets/right_dark.png"
         fillMode: Image.PreserveAspectFit
     }
 
@@ -388,14 +407,16 @@ ApplicationWindow {
         anchors.top: parent.top
         anchors.topMargin: 2
         font.pixelSize: 11
-        color: "white"
+//        color: "white"
+        color: Server.mode === 1 ? "#414141" : "#ffffff"
     }
 
     Image{
         id: bottombar
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.bottom: parent.bottom
-        source: "/IC Assets/bottom_bar.png"
+//        source: "/IC Assets/bottom_bar.png"
+        source: Server.mode === 1 ? "/IC Assets/light/bottom_bar_l.png" : "/IC Assets/bottom_bar.png"
         fillMode: Image.PreserveAspectFit
     }
 
@@ -406,7 +427,8 @@ ApplicationWindow {
         anchors.bottom: parent.bottom
         anchors.bottomMargin: 55
         font.pixelSize: 25
-        color: "white"
+//        color: "white"
+        color: Server.mode === 1 ? "#414141" : "#ffffff"
         font.bold: true
     }
      Connections{

@@ -28,7 +28,8 @@ Window{
         width: 50
         height: 50
         fillMode: Image.PreserveAspectFit
-        source: clickNotifier.clicked ? "HU_Assets/light/Icons/close_icon_l.png" : "HU_Assets/Icons/tap_close_button.png"
+        source: "HU_Assets/Icons/tap_close_button.png"
+//        source: clickNotifier.clicked ? "HU_Assets/light/Icons/close_icon_l.png" : "HU_Assets/Icons/tap_close_button.png"
 
         MouseArea{
             anchors.fill: parent
@@ -44,54 +45,87 @@ Window{
 
     Rectangle {
         id: light_mode
-        width: parent.width / 2
-        height: 380
+        width: parent.width / 2 - 30
+        height: 300
         anchors.top: parent.top
-        anchors.topMargin: 60
+        anchors.topMargin: 80
         anchors.left: parent.left
-        color: "blue"
+        anchors.leftMargin: 27
+        color: "#f6f6f6"
+//        color: "transparent"
+
+        Image {
+            id: light_mode_img
+            source: "HU_Assets/Background/light_mode.png"
+            width: 176
+            height: 256
+            anchors.top: parent.top
+        }
 
         Text {
             id: light_txt
             font.bold: true
             anchors.bottom: parent.bottom
-            anchors.bottomMargin: 40
+            anchors.bottomMargin: 20
             anchors.horizontalCenter: parent.horizontalCenter
             text: qsTr("Light")
-            color: "red"
+            color: "#7788F2"
+//            color: "#1B03A4"
         }
         MouseArea {
             anchors.fill: parent
             onClicked: {
-                clickNotifier.setTrue() // 첫 번째 MouseArea에서 true 설정
+                clickNotifier.setTrue()
+                check_mode.x = 102;
+                client.send_mode_to_server(1);
             }
         }
 
     }
     Rectangle {
         id: dark_mode
-        width: parent.width / 2
-        height: 380
+        width: parent.width / 2 - 30
+        height: 300
         anchors.top: parent.top
-        anchors.topMargin: 60
+        anchors.topMargin: 80
         anchors.right: parent.right
-        color: "red"
+        anchors.rightMargin: 17
+//        color: "transparent"
+        color: "#2b2b2b"
+
+        Image {
+            id: dark_mode_img
+            source: "HU_Assets/Background/dark_mode.png"
+            width: 176
+            height: 256
+            anchors.top: parent.top
+        }
 
         Text {
             id: dark_txt
             font.bold: true
             anchors.bottom: parent.bottom
-            anchors.bottomMargin: 40
+            anchors.bottomMargin: 20
             anchors.horizontalCenter: parent.horizontalCenter
             text: qsTr("Dark")
-            color: "blue"
+            color: "#87F1D0"
         }
         MouseArea {
             anchors.fill: parent
             onClicked: {
-                clickNotifier.setFalse() // 두 번째 MouseArea에서 false 설정
+                clickNotifier.setFalse()
+                check_mode.x = 295
+                client.send_mode_to_server(0);
             }
         }
+    }
+
+    Image {
+        id: check_mode
+        x: 295
+        y: 386
+        fillMode: Image.PreserveAspectFit
+        source: "HU_Assets/Background/check.png"
     }
 
 }

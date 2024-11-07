@@ -24,7 +24,6 @@ void on_response(const std::shared_ptr<vsomeip::message> &_response) {
               << ", N: " << static_cast<int>(received_data.gear_N) << std::endl;
     std::cout << "Indicator Left: " << static_cast<int>(received_data.indicator_left)
               << ", Right: " << static_cast<int>(received_data.indicator_right) << std::endl;
-
 }
 
 void send_request_to_server() {
@@ -45,6 +44,22 @@ void send_request_to_server() {
 
         std::this_thread::sleep_for(std::chrono::milliseconds(200));
     }
+}
+
+void Client::send_mode_to_server(int mode) {
+    std::shared_ptr<vsomeip::message> mode_request = vsomeip::runtime::get()->create_request();
+    mode_request->set_service(SAMPLE_SERVICE_ID);
+    mode_request->set_instance(SAMPLE_INSTANCE_ID);
+    mode_request->set_method(SAMPLE_MODE_METHOD_ID);
+
+    std::shared_ptr<vsomeip::payload> mode_payload = vsomeip::runtime::get()->create_payload();
+    std::vector<vsomeip::byte_t> payload_data = { mode };
+    mode_payload->set_data(payload_data);
+    mode_request->set_payload(mode_payload);
+
+    app->send(mode_request);
+
+    std::cout << "CLIENT: Mode " << static_cast<int>(mode) << " sent to Server." << std::endl;
 }
 
 void start_client(){

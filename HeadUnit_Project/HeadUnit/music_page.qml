@@ -108,7 +108,8 @@ Window{
                 text: "Now Playing"
                 anchors.horizontalCenterOffset: 0
                 font.pixelSize: 17
-                color: "#B0B0B0"
+//                color: "#B0B0B0"
+                color: "#939395"
             }
 
             Image {
@@ -140,7 +141,8 @@ Window{
                 text: musicPlayer.getArtistForSong(songTitle)
                 anchors.horizontalCenterOffset: 0
                 font.pixelSize: 16
-                color: "#B0B0B0"
+//                color: "#B0B0B0"
+                color: "#939395"
             }
 
             Row{
@@ -326,7 +328,8 @@ Window{
                 id: playing_next
                 text: "Playing Next"
                 font.pixelSize: 15
-                color: "#CBC8C8"
+//                color: "#CBC8C8"
+                color: "#939395"
             }
 
             ListView{
@@ -390,7 +393,8 @@ Window{
                             leftMargin: 15
                         }
                         y: 30
-                        color: "#CBC8C8"
+//                        color: "#CBC8C8"
+                        color: "#939395"
                     }
                     MouseArea{
                         anchors.fill: parent
@@ -453,8 +457,8 @@ Window{
         width: 50
         height: 50
         fillMode: Image.PreserveAspectFit
-//        source: "HU_Assets/Icons/tap_close_button.png"
-        source: clickNotifier.clicked ? "HU_Assets/light/Icons/close_icon_l.png" : "HU_Assets/Icons/tap_close_button.png"
+        source: "HU_Assets/Icons/tap_close_button.png"
+//        source: clickNotifier.clicked ? "HU_Assets/light/Icons/close_icon_l.png" : "HU_Assets/Icons/tap_close_button.png"
 
         MouseArea{
             anchors.fill: parent

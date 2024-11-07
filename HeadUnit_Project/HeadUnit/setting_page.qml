@@ -108,7 +108,8 @@ Window{
                 id: display_selected
                 anchors.horizontalCenter: display.horizontalCenter
                 anchors.verticalCenter: display.verticalCenter
-                anchors.verticalCenterOffset: 6
+                anchors.verticalCenterOffset: 5.5
+                anchors.horizontalCenterOffset: 6.5
                 fillMode: Image.PreserveAspectFit
                 visible: false
 //                source: "/HU_Assets/Background/select_menu.png"
@@ -160,7 +161,8 @@ Window{
                 id: service_selected
                 anchors.horizontalCenter: services.horizontalCenter
                 anchors.verticalCenter: services.verticalCenter
-                anchors.verticalCenterOffset: 6
+                anchors.verticalCenterOffset: 5.5
+                anchors.horizontalCenterOffset: 5.5
                 fillMode: Image.PreserveAspectFit
                 visible: false
 //                source: "/HU_Assets/Background/select_menu.png"
@@ -239,8 +241,9 @@ Window{
         width: 50
         height: 50
         fillMode: Image.PreserveAspectFit
-//        source: "HU_Assets/Icons/tap_close_button.png"
-        source: clickNotifier.clicked ? "HU_Assets/light/Icons/close_icon_l.png" : "HU_Assets/Icons/tap_close_button.png"
+        source: "HU_Assets/Icons/tap_close_button.png"
+//        source: "HU_Assets/Icons/back.png"
+//        source: clickNotifier.clicked ? "HU_Assets/light/Icons/close_icon_l.png" : "HU_Assets/Icons/tap_close_button.png"
 
         MouseArea{
             anchors.fill: parent
