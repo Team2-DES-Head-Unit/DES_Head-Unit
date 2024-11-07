@@ -1,0 +1,12 @@
+[Unit]
+Description=My Application
+After=network.target
+
+[Service]
+ExecStart=/usr/bin/HelloWorldClient
+WorkingDirectory=/usr/bin
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
+
