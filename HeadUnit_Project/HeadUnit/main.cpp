@@ -4,11 +4,14 @@
 #include <QQmlContext>
 //#include <QWindow>
 //#include <QProcess>
+#include <QMediaPlayer>
+#include <QTimer>
 
 #include "basic_func.h"
 #include "weather_provider.h"
 #include "music_player.h"
 #include "mirrorprovider.h"
+
 
 int main(int argc, char *argv[])
 {
@@ -25,7 +28,6 @@ int main(int argc, char *argv[])
     SpeedProvider speedProvider;
     WeatherProvider weatherProvider;
     MusicPlayer musicPlayer;
-    MirrorProvider mirrorProvider;
 
 //    QCommandLineParser parser;
 //    parser.setApplicationDescription("Qt Wayland Application");
@@ -62,6 +64,14 @@ int main(int argc, char *argv[])
 
 
     //이거꼭바꿔 이거ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ
+    QMediaPlayer *mediaPlayer = new QMediaPlayer;
+    mediaPlayer->setMedia(QUrl("udp://127.0.0.1:1234"));  // Set UDP stream URL
+    engine.rootContext()->setContextProperty("mediaPlayer", mediaPlayer);
+    QObject::connect(&engine, &QQmlApplicationEngine::objectCreated, [&]() {
+        QTimer::singleShot(0, mediaPlayer, &QMediaPlayer::play);
+    });
+
+
     qmlRegisterType<MirrorProvider>("QtQuick.mirroring", 1, 0, "MirrorProvider");
 
 //    // music test

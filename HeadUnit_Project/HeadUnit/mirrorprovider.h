@@ -4,129 +4,130 @@
 #include <QObject>
 #include <QDebug>
 #include <QProcess>
-#include <QLocale>
 #include <QWindow>
 #include <QQmlApplicationEngine>
-#include <QQuickView>
 #include <QQuickWindow>
-#include <QThread>
-#include <QTimer>
 
-enum MODE{
-    TEST, EXECUTION
-};
-
-enum STATE{
+enum STATE {
     LOADING, UNCONNECTED, CONNECTED
 };
 
-class MirrorProvider : public QObject{
+enum MODE{
+    TEST, EXECUTE
+};
+
+class MirrorProvider : public QObject {
     Q_OBJECT
 
-    Q_PROPERTY(bool isLoaded READ getisLoaded NOTIFY stateChanged)
+    Q_PROPERTY(int state READ getState NOTIFY mirroringStateChanged)
 
 private:
-    QProcess * scrcpyProcess;
-    QProcess * xwindowProcess;
-    QString window_title = "Trash";
-    MODE mode = EXECUTION;
-
-    QWindow * scrcpyWindow;
-    bool isloaded;
-    bool isInitialized = false;
+    QProcess *scrcpyProcess;
+    QProcess *ffmpegProcess;
+    STATE state = LOADING;
+    MODE mode = EXECUTE;
 
 signals:
-    void stateChanged();
-
-
+    void mirroringStateChanged();
 
 public:
-    explicit MirrorProvider(QObject *parent = nullptr):QObject(parent), isloaded(false){
-        scrcpyProcess = new QProcess();
-        xwindowProcess = new QProcess();
-        window_title = (mode == TEST) ? "Trash" : "Seungjuphone";
+    explicit MirrorProvider(QObject *parent = nullptr) : QObject(parent) {
+        scrcpyProcess = new QProcess(this);
+        ffmpegProcess = new QProcess(this);
+
+        // Connect signals to capture standard output and errors asynchronously
+        connect(scrcpyProcess, &QProcess::readyReadStandardError, this, &MirrorProvider::handleScrcpyError);
+        connect(scrcpyProcess, &QProcess::readyReadStandardOutput, this, &MirrorProvider::handleScrcpyOutput);
+        connect(scrcpyProcess, QOverload<int, QProcess::ExitStatus>::of(&QProcess::finished), this, &MirrorProvider::processFinished);
+
+        connect(ffmpegProcess, &QProcess::readyReadStandardError, this, &MirrorProvider::handleFfmpegError);
+        connect(ffmpegProcess, &QProcess::readyReadStandardOutput, this, &MirrorProvider::handleFfmpegOutput);
+        connect(ffmpegProcess, QOverload<int, QProcess::ExitStatus>::of(&QProcess::finished), this, &MirrorProvider::processFinished);
     }
 
-    ~MirrorProvider(){
-        this->end();
+    ~MirrorProvider() {
+        end();
     }
 
-    Q_INVOKABLE void init(QQuickWindow * parent){
-        if (mode == EXECUTION){
-            scrcpyProcess->start("scrcpy", QStringList() << "--window-title" << window_title << "--lock-video-orientation=2");
+    Q_INVOKABLE void init(QQuickWindow *parent) {
+        state = LOADING;
+        emit mirroringStateChanged();
+
+        if (mode == EXECUTE){
+            // Start scrcpy and capture the output into a pipe
+            scrcpyProcess->setProgram("scrcpy");
+            scrcpyProcess->setArguments(QStringList() << "--no-display" << "--no-clipboard-autosync" << "--record" << "-" << "--record-format" << "mkv");
+            scrcpyProcess->setStandardOutputProcess(ffmpegProcess);  // Pipe scrcpy output to ffmpeg input
+
+            // Start ffmpeg to capture scrcpy’s output from the pipe and stream it over UDP
+            ffmpegProcess->setProgram("ffmpeg");
+            ffmpegProcess->setArguments(QStringList() << "-re" << "-f" <<  "lavfi" << "-i" << "-" << "-f" << "mpegts" << "udp://127.0.0.1:1234");
+
+            // Start both processes
+            scrcpyProcess->start();
+            ffmpegProcess->start();
         }
-        else if (mode == TEST){
-            scrcpyProcess->start("nautilus", QStringList() <<"trash:///");
-        }
-
-        qDebug() << scrcpyProcess->waitForStarted();
-        qDebug() << "init() function called";
-
-        WId scrcpyWindowId = 0;
-        bool windowOpened = false;
-        int i = 0;
-        int waituntil = 2;
-        while (!windowOpened && i < waituntil) {
-            xwindowProcess->start("xdotool", QStringList() << "search" << "--name" << window_title);
-            xwindowProcess->waitForFinished();
-            QString output = xwindowProcess->readAllStandardOutput();
-
-            if (!output.isEmpty()) {
-                windowOpened = true;
-                scrcpyWindowId = output.toULongLong();
-                qDebug() << "Window ID found: " << scrcpyWindowId;
-            }
-            else {
-                qDebug() << "Window not found, retrying...";
-                QThread::sleep(1);  // Wait 1 second before polling again
-                i++;
-            }
-        }
-
-        if (!windowOpened){
-            qDebug() << "failed to load";
-            isloaded = false;
-            emit stateChanged();
-        }
-        else{
-            qDebug() << "successfully loaded!";
-
-            if (mode == EXECUTION){
-                QObject::connect(scrcpyProcess, &QProcess::stateChanged, this, &MirrorProvider::changeState);
-            }
-
-            scrcpyWindow = QWindow::fromWinId(scrcpyWindowId);
-            scrcpyWindow->setFlags(Qt::FramelessWindowHint);
-            scrcpyWindow->setTransientParent(parent);
-
-            QTimer::singleShot(100, [this, parent]() {
-                scrcpyWindow->setGeometry(parent->x(), parent->y(), parent->width(), parent->height());
-                scrcpyWindow->show();
-                parent->raise();
-           });
-            isloaded = true;
-            emit stateChanged();
+        else if(mode == TEST){
+            scrcpyProcess->setProgram("ffmpeg");
+            scrcpyProcess->setArguments(QStringList() << "-re" << "-f" <<  "lavfi" << "-i" << "testsrc=size=640x480:rate=30" <<  "-f" <<  "mpegts" <<  "udp://127.0.0.1:1234" );
+            scrcpyProcess->start();
         }
     }
 
-    Q_INVOKABLE void end(){
-        scrcpyProcess->kill();
-        xwindowProcess->kill();
-        qDebug() << "so long";
+    Q_INVOKABLE void end() {
+        if (scrcpyProcess->state() != QProcess::NotRunning) {
+            scrcpyProcess->kill();
+            scrcpyProcess->waitForFinished();
+        }
+        if (ffmpegProcess->state() != QProcess::NotRunning) {
+            ffmpegProcess->kill();
+            ffmpegProcess->waitForFinished();
+        }
+        state = UNCONNECTED;
+        emit mirroringStateChanged();
     }
 
+    STATE getState() const {
+        return state;
+    }
 
+private slots:
+    void handleScrcpyOutput() {
+        QByteArray output = scrcpyProcess->readAllStandardOutput();
+        qDebug() << "scrcpy Output:" << output;
+    }
 
-public slots:
-    bool getisLoaded(){return isloaded;}
+    void handleScrcpyError() {
+        QByteArray error = scrcpyProcess->readAllStandardError();
+        qDebug() << "scrcpy Error:" << error;
 
-public slots:
-    void changeState(QProcess::ProcessState newState){
-        if (newState == QProcess::NotRunning){
-            qDebug() << "disconnected with state" << newState;
-            isloaded = false;
-            emit stateChanged();
+        if (scrcpyProcess->state() == QProcess::Running && state != CONNECTED) {
+              state = CONNECTED;
+              emit mirroringStateChanged();
+              qDebug() << "connected";
         }
+    }
+
+    void handleFfmpegOutput() {
+        QByteArray output = ffmpegProcess->readAllStandardOutput();
+        qDebug() << "ffmpeg Output:" << output;
+    }
+
+    void handleFfmpegError() {
+        QByteArray error = ffmpegProcess->readAllStandardError();
+        qDebug() << "ffmpeg Error:" << error;
+    }
+
+    void processFinished(int exitCode, QProcess::ExitStatus exitStatus) {
+        if (exitStatus == QProcess::CrashExit) {
+            qDebug() << "Process crashed with exit code:" << exitCode;
+            state = UNCONNECTED;
+        }
+        else {
+            qDebug() << "Process finished with errors, exit code:" << exitCode;
+            state = UNCONNECTED;
+        }
+        emit mirroringStateChanged();
     }
 };
 
