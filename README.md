@@ -28,6 +28,7 @@ Here are the divided technical requirements for composing the Head Unit:
 #### Dashboard
 
 #### Mirroring
+The device includes the function of mirroring the screen of mobile device, which is formally aimed to Android decive connected by USB port of RaspberryPi. (iPhone is functionally impossible.) The installed linux command `scrcpy` is automotically executed by methods of header `QProcess` whenever mirroring is turned on. Whenever processing, it checks the status of the process if the command successfully run or failed to find devices, and when the device is not found, the error window is shown.
 
 #### Youtube Player
 
