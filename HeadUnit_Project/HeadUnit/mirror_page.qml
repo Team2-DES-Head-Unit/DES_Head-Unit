@@ -11,6 +11,7 @@ Window{
     height: 480
     flags: Qt.FramelessWindowHint
 
+    property bool isConnected: false
     property bool isInitialized: false
 
     Component.onDestruction: {
@@ -27,9 +28,14 @@ Window{
     MirrorProvider{
         id: mirrorProvider
         onMirroringStateChanged: {
-            if (isInitialized && mirrorProvider.state === 1){
-                isInitialized = false;
+            if (isConnected && mirrorProvider.state === 1){
+                isConnected = false;
                 mirror_window.visible = false;
+                console.log("unconnected");
+            }
+            else if (mirrorProvider.state === 2){
+                isConnected = true;
+                console.log("connected");
             }
         }
     }

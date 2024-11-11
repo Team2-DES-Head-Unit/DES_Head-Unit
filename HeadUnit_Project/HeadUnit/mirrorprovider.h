@@ -7,6 +7,7 @@
 #include <QWindow>
 #include <QQmlApplicationEngine>
 #include <QQuickWindow>
+#include <QTimer>
 
 enum STATE {
     LOADING, UNCONNECTED, CONNECTED
@@ -57,8 +58,7 @@ public:
             // Start scrcpy and capture the output into a pipe
             scrcpyProcess->setProgram("scrcpy");
             scrcpyProcess->setArguments(QStringList() << "-f");
-            // Start both processes
-
+            scrcpyProcess->start();
         }
         else if(mode == TEST){
             scrcpyProcess->setProgram("ffmpeg");
@@ -94,11 +94,14 @@ private slots:
         QByteArray error = scrcpyProcess->readAllStandardError();
         qDebug() << "scrcpy Error:" << error;
 
-        if (scrcpyProcess->state() == QProcess::Running && state != CONNECTED) {
-              state = CONNECTED;
-              emit mirroringStateChanged();
-              qDebug() << "connected";
-        }
+        // Check again after a short delay to ensure all error output is complete
+        QTimer::singleShot(200, this, [this]() {
+            if (scrcpyProcess->state() == QProcess::Running && state != CONNECTED) {
+                state = CONNECTED;
+                emit mirroringStateChanged();
+                qDebug() << "connected";
+            }
+        });
     }
 
     void handleFfmpegOutput() {
