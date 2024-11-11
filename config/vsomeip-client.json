@@ -1,5 +1,6 @@
 {
     "unicast": "192.168.1.100",
+    "interface" : "eth0",
     "logging": {
         "level": "debug",
         "console": "true",
@@ -20,8 +21,7 @@
         "enable": "true",
         "multicast": "224.224.224.225",
         "port": "30490",
-        "protocol": "udp",
-	    "interface" : "eth0"
+        "protocol": "udp"
     }
 }
 
