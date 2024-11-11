@@ -2,7 +2,7 @@ import QtQuick 2.12
 import QtQuick.Window 2.12
 
 
-Window{
+Rectangle{
     id: setting_window
     visible: true
     //    x: 565
@@ -10,7 +10,7 @@ Window{
     width: 618
     height: 480
     color: "transparent"
-    flags: Qt.FramelessWindowHint
+//    flags: Qt.FramelessWindowHint
 
 //    onActiveFocusItemChanged: {
 //        if(!activeFocusItem){
@@ -139,9 +139,12 @@ Window{
                     anchors.fill: parent
                     onClicked: {
                         lightQmlLoader.active = true;
-                        lightQmlLoader.item.visible = true;
-                        lightQmlLoader.item.x = setting_window.x + 200;
-                        lightQmlLoader.item.y = setting_window.y + 14;
+//                        lightQmlLoader.item.visible = true;
+//                        lightQmlLoader.item.x = setting_window.x + 200;
+//                        lightQmlLoader.item.y = setting_window.y + 14;
+                        lightQmlLoader.visible = true;
+                        lightQmlLoader.x = setting_window.x + 200;
+                        lightQmlLoader.y = setting_window.y + 14;
                         display_selected.visible = true;
                     }
                 }
@@ -201,9 +204,12 @@ Window{
                     anchors.fill: parent
                     onClicked: {
                         bluetoothQmlLoader.active = true;
-                        bluetoothQmlLoader.item.visible = true;
-                        bluetoothQmlLoader.item.x = setting_window.x + 200;
-                        bluetoothQmlLoader.item.y = setting_window.y + 14;
+//                        bluetoothQmlLoader.item.visible = true;
+//                        bluetoothQmlLoader.item.x = setting_window.x + 200;
+//                        bluetoothQmlLoader.item.y = setting_window.y + 14;
+                        bluetoothQmlLoader.visible = true;
+                        bluetoothQmlLoader.x = setting_window.x + 200;
+                        bluetoothQmlLoader.y = setting_window.y + 14;
                         service_selected.visible = true;
                     }
                 }
@@ -219,7 +225,8 @@ Window{
         active: false
         visible: true
         onLoaded: {
-            lightQmlLoader.item.visible = false;
+//            lightQmlLoader.item.visible = false;
+            lightQmlLoader.visible = false;
         }
     }
 
@@ -230,7 +237,8 @@ Window{
         active: false
         visible: true
         onLoaded: {
-            bluetoothQmlLoader.item.visible = false;
+//            bluetoothQmlLoader.item.visible = false;
+            bluetoothQmlLoader.visible = false;
         }
     }
 

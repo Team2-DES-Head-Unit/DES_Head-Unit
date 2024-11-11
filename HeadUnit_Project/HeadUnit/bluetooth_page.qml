@@ -3,23 +3,24 @@ import QtQuick.Window 2.12
 import QtQuick.Controls 2.12
 
 
-Window{
+Rectangle{
     id: bluetooth_window
     visible: true
     width: 413
     height: 445
     color: "transparent"
-    flags: Qt.FramelessWindowHint
+//    flags: Qt.FramelessWindowHint
 
     property bool isSearching: false
     property bool isStopped: true
 
-    onActiveFocusItemChanged: {
-        if(!activeFocusItem){
-            visible = false;
-            service_selected.visible = false;
-        }
-    }
+//    onActiveFocusItemChanged: {
+//        if(!activeFocusItem){
+//            visible = false;
+//            service_selected.visible = false;
+//        }
+//    }
+
     Connections{
         target: service_selected
     }

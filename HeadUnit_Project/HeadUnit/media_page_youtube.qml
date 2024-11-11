@@ -6,23 +6,23 @@ import QtQuick.Layouts 1.12
 import QtWebEngine 1.0
 import youtubePlayer 1.0
 
-Window{
+Rectangle{
     id: media_window
     visible: true
     width: 618
     height: 480
     color: "transparent"
-    flags: Qt.FramelessWindowHint
+//    flags: Qt.FramelessWindowHint
     Component.onCompleted: {
         youtube_quit.visible = false;
     }
 
-    onActiveFocusItemChanged: {
-        if(!activeFocusItem){
-            visible = false;
-            icon_line.x = 138;
-        }
-    }
+//    onActiveFocusItemChanged: {
+//        if(!activeFocusItem){
+//            visible = false;
+//            icon_line.x = 138;
+//        }
+//    }
 
     YoutubePlayer{
         id: youtubeFetcher

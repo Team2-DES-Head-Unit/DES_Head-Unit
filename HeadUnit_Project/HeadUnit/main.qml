@@ -12,7 +12,7 @@ Window {
     color: clickNotifier.clicked ? "#FCFCFC" : "#1E1E1E"
     title: qsTr("Head Unit")
 //    flags: Qt.FramelessWindowHint
-//    visibility: Window.FullScreen
+    visibility: Window.FullScreen
 
     property bool isBluetoothConnected: false
 
@@ -409,31 +409,31 @@ Window {
         }
 
         ///////////////////////////////////////////////////////////////// battery
-        Rectangle {
-            id: battery_component
-            x: 303
-            y: 15
-            width: 61
-            height: 13
-            color: "transparent"
+//        Rectangle {
+//            id: battery_component
+//            x: 303
+//            y: 15
+//            width: 61
+//            height: 13
+//            color: "transparent"
 
-            Image {
-                id: battery_img
-                width: 30
-                fillMode: Image.PreserveAspectFit
-                source: "HU_Assets/Components/battery.png"
-                anchors.right: battery_component.right
-            }
+//            Image {
+//                id: battery_img
+//                width: 30
+//                fillMode: Image.PreserveAspectFit
+//                source: "HU_Assets/Components/battery.png"
+//                anchors.right: battery_component.right
+//            }
 
-            Text {
-                id: battery_value
-                text: qsTr("90%")
-                font.pixelSize: 12
-//                color: "#ffffff"
-                color: clickNotifier.clicked ? "#414141" : "#ffffff"
-                anchors.left: battery_component.left
-            }
-        }
+//            Text {
+//                id: battery_value
+//                text: qsTr("90%")
+//                font.pixelSize: 12
+////                color: "#ffffff"
+//                color: clickNotifier.clicked ? "#414141" : "#ffffff"
+//                anchors.left: battery_component.left
+//            }
+//        }
     }
 
     /////////////////////////////////////////////////////////////////////// basic page
@@ -978,9 +978,12 @@ Window {
                         onClicked: {
                             icon_line.x = -8;
                             settingQmlLoader.active = true;
-                            settingQmlLoader.item.visible = true;
-                            settingQmlLoader.item.x = main_window.x + 393;
-                            settingQmlLoader.item.y = main_window.y + 40;
+//                            settingQmlLoader.item.visible = true;
+//                            settingQmlLoader.item.x = main_window.x + 393;
+//                            settingQmlLoader.item.y = main_window.y + 40;
+                            settingQmlLoader.visible = true;
+                            settingQmlLoader.x = main_window.x + 393;
+                            settingQmlLoader.y = main_window.y + 40;
                         }
                     }
                 }
@@ -997,9 +1000,12 @@ Window {
                         onClicked: {
                             icon_line.x = 65;
                             mapQmlLoader.active = true;
-                            mapQmlLoader.item.visible = true;
-                            mapQmlLoader.item.x = main_window.x + 393;
-                            mapQmlLoader.item.y = main_window.y + 40;
+//                            mapQmlLoader.item.visible = true;
+//                            mapQmlLoader.item.x = main_window.x + 393;
+//                            mapQmlLoader.item.y = main_window.y + 40;
+                            mapQmlLoader.visible = true;
+                            mapQmlLoader.x = main_window.x + 393;
+                            mapQmlLoader.y = main_window.y + 40;
                         }
                     }
                 }
@@ -1031,9 +1037,12 @@ Window {
                         onClicked: {
                             icon_line.x = 213;
 //                            musicQmlLoader.active = true;
-                            musicQmlLoader.item.visible = true;
-                            musicQmlLoader.item.x = main_window.x + 393;
-                            musicQmlLoader.item.y = main_window.y + 40;
+//                            musicQmlLoader.item.visible = true;
+//                            musicQmlLoader.item.x = main_window.x + 393;
+//                            musicQmlLoader.item.y = main_window.y + 40;
+                            musicQmlLoader.visible = true;
+                            musicQmlLoader.x = main_window.x + 393;
+                            musicQmlLoader.y = main_window.y + 40;
                         }
                     }
                 }
@@ -1058,9 +1067,12 @@ Window {
 
                             // media qml with youtube
                             youtubeMediaQmlLoader.active = true;
-                            youtubeMediaQmlLoader.item.visible = true;
-                            youtubeMediaQmlLoader.item.x = main_window.x + 393;
-                            youtubeMediaQmlLoader.item.y = main_window.y + 40;
+//                            youtubeMediaQmlLoader.item.visible = true;
+//                            youtubeMediaQmlLoader.item.x = main_window.x + 393;
+//                            youtubeMediaQmlLoader.item.y = main_window.y + 40;
+                            youtubeMediaQmlLoader.visible = true;
+                            youtubeMediaQmlLoader.x = main_window.x + 393;
+                            youtubeMediaQmlLoader.y = main_window.y + 40;
                         }
                     }
                 }
@@ -1112,7 +1124,8 @@ Window {
         active: false
         visible: false
         onLoaded: {
-            settingQmlLoader.item.visible = false;
+//            settingQmlLoader.item.visible = false;
+            settingQmlLoader.visible = false;
         }
     }
 
@@ -1122,7 +1135,8 @@ Window {
         active: false
         visible: false
         onLoaded: {
-            mapQmlLoader.item.visible = false;
+//            mapQmlLoader.item.visible = false;
+            mapQmlLoader.visible = false;
         }
     }
 
@@ -1132,7 +1146,8 @@ Window {
         active: false
         visible: false
         onLoaded: {
-            musicQmlLoader.item.visible = false;
+//            musicQmlLoader.item.visible = false;
+            musicQmlLoader.visible = false;
         }
     }
 
@@ -1142,7 +1157,8 @@ Window {
         active: false
         visible: false
         onLoaded: {
-            mediaQmlLoader.item.visible = false;
+//            mediaQmlLoader.item.visible = false;
+            mediaQmlLoader.visible = false;
         }
     }
 
@@ -1152,7 +1168,8 @@ Window {
         active: false
         visible: false
         onLoaded: {
-            youtubeMediaQmlLoader.item.visible = false;
+//            youtubeMediaQmlLoader.item.visible = false;
+            youtubeMediaQmlLoader.visible = false;
         }
     }
 
@@ -1162,7 +1179,8 @@ Window {
         active: false
         visible: false
         onLoaded: {
-            mirrorQmlLoader.item.visible = false;
+//            mirrorQmlLoader.item.visible = false;
+            mirrorQmlLoader.visible = false;
         }
     }
 }

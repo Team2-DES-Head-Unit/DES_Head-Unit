@@ -3,21 +3,21 @@ import QtQuick.Window 2.12
 import QtMultimedia 5.12
 import QtQuick.mirroring 1.0
 
-Window{
+Rectangle{
     id: mirror_window
     visible: true
     color: "transparent"
     width: 618
     height: 480
-    flags: Qt.FramelessWindowHint
+//    flags: Qt.FramelessWindowHint
 
     property bool isInitialized: false
 
-    onActiveFocusItemChanged: {
-        if(!activeFocusItem){
-            visible = false;
-        }
-    }
+//    onActiveFocusItemChanged: {
+//        if(!activeFocusItem){
+//            visible = false;
+//        }
+//    }
 
     Component.onDestruction: {
         mirrorProvider.end();

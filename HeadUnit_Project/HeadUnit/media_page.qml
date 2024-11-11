@@ -3,25 +3,25 @@ import QtQuick.Controls 2.12
 import QtQuick.Window 2.12
 import QtMultimedia 5.12
 
-Window{
+Rectangle{
     id: media_window
     visible: true
     width: 618
     height: 480
     color: "transparent"
-    flags: Qt.FramelessWindowHint
+//    flags: Qt.FramelessWindowHint
     Component.onCompleted: {
         select_video.visible = true;
         selected_video_display.visible = false;
         video_controls.visible = true;
     }
 
-    onActiveFocusItemChanged: {
-        if(!activeFocusItem){
-            visible = false;
-            icon_line.x = 138;
-        }
-    }
+//    onActiveFocusItemChanged: {
+//        if(!activeFocusItem){
+//            visible = false;
+//            icon_line.x = 138;
+//        }
+//    }
 
     Image {
         id: base_window

@@ -388,28 +388,28 @@ ApplicationWindow {
 
 
 
-    Image{
-        id: battery
-        anchors.right: parent.right
-        anchors.rightMargin: 20
-        anchors.top: parent.top
-        width: 20
-        height: 20
-        source: "/IC Assets/battery.png"
-        fillMode: Image.PreserveAspectFit
-    }
+//    Image{
+//        id: battery
+//        anchors.right: parent.right
+//        anchors.rightMargin: 20
+//        anchors.top: parent.top
+//        width: 20
+//        height: 20
+//        source: "/IC Assets/battery.png"
+//        fillMode: Image.PreserveAspectFit
+//    }
 
-    Text {
-        id: battery_text
-        text: qsTr("90%") /*battery_value + "%"*/
-        anchors.right: battery.left
-        anchors.rightMargin: 5
-        anchors.top: parent.top
-        anchors.topMargin: 2
-        font.pixelSize: 11
-//        color: "white"
-        color: Server.mode === 1 ? "#414141" : "#ffffff"
-    }
+//    Text {
+//        id: battery_text
+//        text: qsTr("90%") /*battery_value + "%"*/
+//        anchors.right: battery.left
+//        anchors.rightMargin: 5
+//        anchors.top: parent.top
+//        anchors.topMargin: 2
+//        font.pixelSize: 11
+////        color: "white"
+//        color: Server.mode === 1 ? "#414141" : "#ffffff"
+//    }
 
     Image{
         id: bottombar
