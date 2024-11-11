@@ -56,16 +56,9 @@ public:
         if (mode == EXECUTE){
             // Start scrcpy and capture the output into a pipe
             scrcpyProcess->setProgram("scrcpy");
-            scrcpyProcess->setArguments(QStringList() << "--no-display" << "--no-clipboard-autosync" << "--record" << "-" << "--record-format" << "mkv");
-            scrcpyProcess->setStandardOutputProcess(ffmpegProcess);  // Pipe scrcpy output to ffmpeg input
-
-            // Start ffmpeg to capture scrcpy’s output from the pipe and stream it over UDP
-            ffmpegProcess->setProgram("ffmpeg");
-            ffmpegProcess->setArguments(QStringList() << "-re" << "-f" <<  "lavfi" << "-i" << "-" << "-f" << "mpegts" << "udp://127.0.0.1:1234");
-
+            scrcpyProcess->setArguments(QStringList() << "-f");
             // Start both processes
-            scrcpyProcess->start();
-            ffmpegProcess->start();
+
         }
         else if(mode == TEST){
             scrcpyProcess->setProgram("ffmpeg");

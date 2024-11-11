@@ -63,15 +63,6 @@ int main(int argc, char *argv[])
     engine.rootContext()->setContextProperty("musicPlayer", &musicPlayer);
 
 
-    //이거꼭바꿔 이거ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ
-    QMediaPlayer *mediaPlayer = new QMediaPlayer;
-    mediaPlayer->setMedia(QUrl("udp://127.0.0.1:1234"));  // Set UDP stream URL
-    engine.rootContext()->setContextProperty("mediaPlayer", mediaPlayer);
-    QObject::connect(&engine, &QQmlApplicationEngine::objectCreated, [&]() {
-        QTimer::singleShot(0, mediaPlayer, &QMediaPlayer::play);
-    });
-
-
     qmlRegisterType<MirrorProvider>("QtQuick.mirroring", 1, 0, "MirrorProvider");
 
 //    // music test

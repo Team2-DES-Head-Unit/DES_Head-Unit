@@ -5,7 +5,7 @@ import QtQuick.mirroring 1.0
 
 Window{
     id: mirror_window
-    visible: true
+    visible: mirrorProvider.state !== 2
     color: "transparent"
     width: 618
     height: 480
@@ -24,16 +24,13 @@ Window{
         }
     }
 
-    MediaPlayer {
-        id: mediaPlayer
-        autoPlay: false
-
-        onStatusChanged: {
-            console.log("MediaPlayer status: ", status)
-        }
-
-        onErrorChanged: {
-            console.error("MediaPlayer error:", errorString)
+    MirrorProvider{
+        id: mirrorProvider
+        onMirroringStateChanged: {
+            if (isInitialized && mirrorProvider.state === 1){
+                isInitialized = false;
+                mirror_window.visible = false;
+            }
         }
     }
 
@@ -42,17 +39,6 @@ Window{
         source: "HU_Assets/Background/basic_window.png"
         id: base_window
         z : 0
-
-        MirrorProvider{
-            id: mirrorProvider
-            onMirroringStateChanged: {
-                if (mirrorProvider.state === 2) {
-                    mediaPlayer.source = "udp://127.0.0.1:1234";  // Set the source when connected
-                    mediaPlayer.play();  // Start playback
-                    console.log("Running");
-                }
-            }
-        }
 
         //LOADING
         Rectangle{
@@ -63,15 +49,6 @@ Window{
                 color: "white"
                 font.pointSize: 25
             }
-        }
-
-        //CONNECTED
-        VideoOutput {
-            id: videoOutput
-            z :1
-            visible: mirrorProvider.state === 2
-            anchors.fill: parent
-            source: mediaPlayer
         }
 
         //UNCONNECTED
