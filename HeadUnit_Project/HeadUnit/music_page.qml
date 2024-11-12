@@ -2,7 +2,7 @@ import QtQuick 2.12
 import QtQuick.Window 2.12
 import QtQuick.Controls 2.12
 
-Rectangle{
+Rectangle{ //Rectangle
     id: music_window
     visible: true
     width: 618
@@ -28,6 +28,12 @@ Rectangle{
             album_cover.source = coverPath;
             play_button.visible = false;
             stop_button.visible = true;
+
+//            main_window.currentSong = currentSong;
+//            main_window.currentSinger = currentSinger;
+//            main_window.currentAlbumcover = currentAlbumcover;
+//            console.log("current song " + currentSong);
+//            console.log("main window current song " + main_window.currentSong);
         }
 
         onMusicProgressChanged: {
@@ -464,6 +470,7 @@ Rectangle{
             anchors.fill: parent
             onClicked: {
                 music_window.visible = false;
+//                musicQmlLoader.active = false;
                 icon_line.x = 138;
             }
         }

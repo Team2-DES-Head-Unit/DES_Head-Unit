@@ -54,6 +54,7 @@ Rectangle{
                     anchors.fill: parent
                     onClicked: {
                         media_window.visible = false;
+                        mediaQmlLoader.active = false;
                         icon_line.x = 138;
                     }
                 }

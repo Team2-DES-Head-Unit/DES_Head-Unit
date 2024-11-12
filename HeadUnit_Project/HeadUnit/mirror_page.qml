@@ -98,6 +98,7 @@ Rectangle{
                 mirrorProvider.end();
                 isInitialized = false;
                 mirror_window.visible = false;
+                mirrorQmlLoader.active = false;
                 icon_line.x = 138;
             }
         }

@@ -27,7 +27,9 @@ public:
     }
 
     QStringList getCovers() {
-        return getAlbums("/home/llj/catkin_ws/src/DES_Head-Unit/HeadUnit_Project/HeadUnit/Cover", "*.jpeg");
+//        return getAlbums("/home/llj/catkin_ws/src/DES_Head-Unit/HeadUnit_Project/HeadUnit/Cover", "*.jpeg");
+        // "/usr/bin/Cover"
+        return getAlbums("/usr/bin/Cover", "*jpeg");
     }
 
     Q_INVOKABLE QStringList getMusics() {

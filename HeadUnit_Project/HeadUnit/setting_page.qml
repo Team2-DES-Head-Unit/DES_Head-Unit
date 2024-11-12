@@ -138,14 +138,22 @@ Rectangle{
                 MouseArea{
                     anchors.fill: parent
                     onClicked: {
-                        lightQmlLoader.active = true;
+//                        lightQmlLoader.active = true;
+
 //                        lightQmlLoader.item.visible = true;
 //                        lightQmlLoader.item.x = setting_window.x + 200;
 //                        lightQmlLoader.item.y = setting_window.y + 14;
-                        lightQmlLoader.visible = true;
-                        lightQmlLoader.x = setting_window.x + 200;
-                        lightQmlLoader.y = setting_window.y + 14;
+
+//                        lightQmlLoader.visible = true;
+//                        lightQmlLoader.x = setting_window.x + 200;
+//                        lightQmlLoader.y = setting_window.y + 14;
                         display_selected.visible = true;
+
+                        if (lightQmlLoader.item){
+                            lightQmlLoader.item.visible = !lightQmlLoader.item.visible;
+                            lightQmlLoader.item.x = setting_window.x + 200;
+                            lightQmlLoader.item.y = setting_window.y + 14;
+                        }
                     }
                 }
 
@@ -222,11 +230,16 @@ Rectangle{
         id: lightQmlLoader
         asynchronous: false
         source: "light_page.qml"
-        active: false
+        active: true
         visible: true
         onLoaded: {
 //            lightQmlLoader.item.visible = false;
-            lightQmlLoader.visible = false;
+
+//            lightQmlLoader.visible = false;
+
+            if (item){
+                item.visible = false;
+            }
         }
     }
 
@@ -257,6 +270,7 @@ Rectangle{
             anchors.fill: parent
             onClicked: {
                 setting_window.visible = false;
+                settingQmlLoader.active = false;
                 icon_line.x = 138;
             }
         }

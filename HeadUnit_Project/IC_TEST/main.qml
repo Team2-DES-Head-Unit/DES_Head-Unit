@@ -23,6 +23,7 @@ ApplicationWindow {
     property int currentrpm: 0
     property int targetrpm: 0
 
+    property color gaugeColor: (Server.mode === 1) ? "#7788f2" : "#87f1d0"
 
     Image{
         id: bg_car
@@ -86,10 +87,17 @@ ApplicationWindow {
                 ctx.arc(centerX, centerY, 113, startAngle, endAngle, false);  // 원호 그리기
                 ctx.lineWidth = 38;
 //                ctx.strokeStyle = "#87F1D0";  // 게이지 색상
-                ctx.strokeStyle = Server.mode === 1 ? "#7788F2" : "#87F1D0"
+//                ctx.strokeStyle = Server.mode === 1 ? "#7788F2" : "#87F1D0"
+                ctx.strokeStyle = gaugeColor;
                 ctx.stroke();
-
             }
+            Connections{
+                target: Server
+                onModeChanged:{
+                    bg_window.gaugeColor = (Server.mode === 1) ? "#7788f2" : "#87f1d0"
+                }
+            }
+
         }
         Image{
             id: speed_needle
@@ -160,7 +168,7 @@ ApplicationWindow {
          }
          Text {
              id: distance_text
-             text: qsTr("36.56 km")
+             text: qsTr("0 km")
              anchors.horizontalCenter: speed_dial.horizontalCenter
              anchors.bottom: parent.bottom
              anchors.bottomMargin: 50
@@ -224,8 +232,15 @@ ApplicationWindow {
                 ctx.arc(centerX, centerY, 113, startAngle, endAngle, false);  // 원호 그리기
                 ctx.lineWidth = 38;
 //                ctx.strokeStyle = "#87F1D0";  // 게이지 색상
-                ctx.strokeStyle = Server.mode === 1 ? "#7788F2" : "#87F1D0";
+//                ctx.strokeStyle = Server.mode === 1 ? "#7788F2" : "#87F1D0";
+                ctx.strokeStyle = gaugeColor;
                 ctx.stroke();
+            }
+            Connections{
+                target: Server
+                onModeChanged:{
+                    bg_window.gaugeColor = (Server.mode === 1) ? "#7788f2" : "#87f1d0"
+                }
             }
         }
 
@@ -306,7 +321,23 @@ ApplicationWindow {
             anchors.bottom: parent.bottom
             anchors.bottomMargin: 50
             font.pixelSize: 30
-            color: Server.gear === 1 ? "#87F1D0" : "#939395"
+//            color: Server.gear === 1 ? "#87F1D0" : "#939395"
+            color: {
+                if (Server.mode === 1){
+                    if(Server.gear === 1){
+                        return "#7788f2"
+                    }else{
+                        return "#939395"
+                    }
+                } else{
+                    if(Server.gear === 1){
+                        return "#87f1d0"
+                    }else{
+                        return "#939395"
+                    }
+                }
+            }
+
             font.bold: true
         }
         Text {
@@ -317,7 +348,22 @@ ApplicationWindow {
             anchors.bottom: parent.bottom
             anchors.bottomMargin: 50
             font.pixelSize: 30
-            color: Server.gear === 3 ? "#87F1D0" : "#939395"
+//            color: Server.gear === 3 ? "#87F1D0" : "#939395"
+            color: {
+                if (Server.mode === 1){
+                    if(Server.gear === 3){
+                        return "#7788f2"
+                    }else{
+                        return "#939395"
+                    }
+                } else{
+                    if(Server.gear === 3){
+                        return "#87f1d0"
+                    }else{
+                        return "#939395"
+                    }
+                }
+            }
             font.bold: true
         }
         Text {
@@ -328,7 +374,22 @@ ApplicationWindow {
             anchors.bottom: parent.bottom
             anchors.bottomMargin: 50
             font.pixelSize: 30
-            color: Server.gear === 4 ? "#87F1D0" : "#939395"
+//            color: Server.gear === 4 ? "#87F1D0" : "#939395"
+            color: {
+                if (Server.mode === 1){
+                    if(Server.gear === 4){
+                        return "#7788f2"
+                    }else{
+                        return "#939395"
+                    }
+                } else{
+                    if(Server.gear === 4){
+                        return "#87f1d0"
+                    }else{
+                        return "#939395"
+                    }
+                }
+            }
             font.bold: true
         }
         Text {
@@ -339,7 +400,22 @@ ApplicationWindow {
             anchors.bottom: parent.bottom
             anchors.bottomMargin: 50
             font.pixelSize: 30
-            color: Server.gear === 2 ? "#87F1D0" : "#939395"
+//            color: Server.gear === 2 ? "#87F1D0" : "#939395"
+            color: {
+                if (Server.mode === 1){
+                    if(Server.gear === 2){
+                        return "#7788f2"
+                    }else{
+                        return "#939395"
+                    }
+                } else{
+                    if(Server.gear === 2){
+                        return "#87f1d0"
+                    }else{
+                        return "#939395"
+                    }
+                }
+            }
             font.bold: true
         }
     }
@@ -371,7 +447,24 @@ ApplicationWindow {
         anchors.rightMargin: 104
         anchors.bottomMargin: 65
 //        source: "/IC Assets/left_dark.png"
-        source: Server.indicatorLeft ? "/IC Assets/left_bright.png" : "/IC Assets/left_dark.png"
+//        source: Server.indicatorLeft ? "/IC Assets/left_bright.png" : "/IC Assets/left_dark.png"
+        source:{
+            if(Server.mode === 1){
+                if(Server.indicatorLeft){
+                    return "/IC Assets/light/left_bright_l.png"
+                }else{
+                    return "/IC Assets/light/left_dark_l.png"
+                }
+            }
+            else{
+                if(Server.indicatorLeft){
+                    return "/IC Assets/left_bright.png"
+                }else{
+                    return "/IC Assets/left_dark.png"
+                }
+            }
+        }
+
         fillMode: Image.PreserveAspectFit
     }
 
@@ -381,8 +474,24 @@ ApplicationWindow {
         anchors.bottom: parent.verticalCenter
         anchors.leftMargin: 96
         anchors.bottomMargin:65
-        source: "/IC Assets/right_dark.png"
+//        source: "/IC Assets/right_dark.png"
 //        source: Server.indicatorRight ? "/IC Assets/right_bright.png" : "/IC Assets/right_dark.png"
+        source:{
+            if(Server.mode === 1){
+                if(Server.indicatorRight){
+                    return "/IC Assets/light/right_bright_l.png"
+                }else{
+                    return "/IC Assets/light/right_dark_l.png"
+                }
+            }
+            else{
+                if(Server.indicatorRight){
+                    return "/IC Assets/right_bright.png"
+                }else{
+                    return "/IC Assets/right_dark.png"
+                }
+            }
+        }
         fillMode: Image.PreserveAspectFit
     }
 

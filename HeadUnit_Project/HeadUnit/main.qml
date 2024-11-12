@@ -379,31 +379,95 @@ Window {
                     text: qsTr("P")
                     font.pixelSize: 30
 //                    color: "#959595"
-                    color: client.gear === 1 ? "#87F1D0" : "#939395"
+//                    color: client.gear === 1 ? "#87F1D0" : "#939395"
+                    color: {
+                        if (clickNotifier.clicked){
+                            if(client.gear === 1){
+                                return "#7788F2"
+                            } else{
+                                return "#939395"
+                            }
+                        }
+                        else{
+                            if(client.gear === 1){
+                                return "#87F1D0"
+                            } else{
+                                return "#939395"
+                            }
+                        }
+                    }
                 }
 
                 Text {
                     id: r
                     text: qsTr("R")
                     font.pixelSize: 30
-                    color: client.gear === 3 ? "#87F1D0" : "#939395"
+//                    color: client.gear === 3 ? "#87F1D0" : "#939395"
                     //                        color: currentGear === "R" ? "#87F1D0" : "#959595"
+                    color: {
+                        if (clickNotifier.clicked){
+                            if(client.gear === 3){
+                                return "#7788F2"
+                            } else{
+                                return "#939395"
+                            }
+                        }
+                        else{
+                            if(client.gear === 3){
+                                return "#87F1D0"
+                            } else{
+                                return "#939395"
+                            }
+                        }
+                    }
                 }
 
                 Text {
                     id: n
                     text: qsTr("N")
                     font.pixelSize: 30
-                    color: client.gear === 4 ? "#87F1D0" : "#939395"
+//                    color: client.gear === 4 ? "#87F1D0" : "#939395"
                     //                        color: currentGear === "N" ? "#87F1D0" : "#959595"
+                    color: {
+                        if (clickNotifier.clicked){
+                            if(client.gear === 4){
+                                return "#7788F2"
+                            } else{
+                                return "#939395"
+                            }
+                        }
+                        else{
+                            if(client.gear === 4){
+                                return "#87F1D0"
+                            } else{
+                                return "#939395"
+                            }
+                        }
+                    }
                 }
 
                 Text {
                     id: d
                     text: qsTr("D")
                     font.pixelSize: 30
-                    color: client.gear === 2 ? "#87F1D0" : "#939395"
+//                    color: client.gear === 2 ? "#87F1D0" : "#939395"
                     //                        color: currentGear === "D" ? "#87F1D0" : "#959595"
+                    color: {
+                        if (clickNotifier.clicked){
+                            if(client.gear === 2){
+                                return "#7788F2"
+                            } else{
+                                return "#939395"
+                            }
+                        }
+                        else{
+                            if(client.gear === 2){
+                                return "#87F1D0"
+                            } else{
+                                return "#939395"
+                            }
+                        }
+                    }
                 }
             }
         }
@@ -820,6 +884,7 @@ Window {
                 //                musicPlayer.playMusic(musicPlayer.getPathForSong(songTitle));
                 play_button.visible = true;
                 stop_button.visible = false;
+                album_cover.source = "Cover/Hanumankind-cover.jpeg"
             }
         }
 
@@ -1036,13 +1101,26 @@ Window {
                         anchors.fill: parent
                         onClicked: {
                             icon_line.x = 213;
+
+//                            if(musicQmlLoader.item === null){
+//                                musicQmlLoader.active = true;
+//                            }
+
 //                            musicQmlLoader.active = true;
+
 //                            musicQmlLoader.item.visible = true;
 //                            musicQmlLoader.item.x = main_window.x + 393;
 //                            musicQmlLoader.item.y = main_window.y + 40;
-                            musicQmlLoader.visible = true;
-                            musicQmlLoader.x = main_window.x + 393;
-                            musicQmlLoader.y = main_window.y + 40;
+
+                            if (musicQmlLoader.item){
+                                musicQmlLoader.item.visible = !musicQmlLoader.item.visible;
+                                musicQmlLoader.item.x = main_window.x + 393;
+                                musicQmlLoader.item.y = main_window.y + 40;
+                            }
+
+//                            musicQmlLoader.visible = true;
+//                            musicQmlLoader.x = main_window.x + 393;
+//                            musicQmlLoader.y = main_window.y + 40;
                         }
                     }
                 }
@@ -1090,7 +1168,8 @@ Window {
             anchors.fill: parent
             onClicked: {
                 mirrorQmlLoader.active = true;
-                mirrorQmlLoader.item.visible = true;
+                mirrorQmlLoader.visible = true;
+//                mirrorQmlLoader.item.visible = true;
             }
         }
     }
@@ -1138,16 +1217,35 @@ Window {
 //            mapQmlLoader.item.visible = false;
             mapQmlLoader.visible = false;
         }
+//        onStatusChanged: {
+//            if (status === Loader.Null){
+//                mapQmlLoader.visible = false;
+//            }
+//        }
     }
 
     Loader{
         id: musicQmlLoader
         source: "music_page.qml"
-        active: false
-        visible: false
+//        active: false
+        active: true
+        visible: true
         onLoaded: {
 //            musicQmlLoader.item.visible = false;
-            musicQmlLoader.visible = false;
+
+//            musicQmlLoader.visible = false;
+
+            if(item){
+                item.visible = false;
+            }
+
+//            musicQmlLoader.item.currentSong = main_window.currentSong;
+//            musicQmlLoader.item.currentSinger = main_window.currentSinger;
+//            musicQmlLoader.item.currentAlbumcover = main_window.currentAlbumcover;
+
+//            musicQmlLoader.item.setProperty("currentSong", main_window.currentSong);
+//            musicQmlLoader.item.setProperty("currentSinger", main_window.currentSinger);
+//            musicQmlLoader.item.setProperty("currentAlbumcover", main_window.currentAlbumcover);
         }
     }
 

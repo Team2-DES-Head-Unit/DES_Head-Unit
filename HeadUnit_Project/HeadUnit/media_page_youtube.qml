@@ -13,6 +13,7 @@ Rectangle{
     height: 480
     color: "transparent"
 //    flags: Qt.FramelessWindowHint
+
     Component.onCompleted: {
         youtube_quit.visible = false;
     }
@@ -68,6 +69,7 @@ Rectangle{
                     webView.reload();
 
                     webView.visible = false;
+                    youtubeMediaQmlLoader.active = false;
                 }
             }
         }
@@ -241,6 +243,7 @@ Rectangle{
                 youtubeListView.visible = true;
                 webView.visible = false;
                 youtube_quit.visible = false;
+//                youtubeMediaQmlLoader.active = false;
             }
         }
     }

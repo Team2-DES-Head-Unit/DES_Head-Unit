@@ -62,6 +62,7 @@ Rectangle{
             anchors.fill: parent
             onClicked: {
                 map_window.visible = false;
+                mapQmlLoader.active = false;
                 icon_line.x = 138;
             }
         }
