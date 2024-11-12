@@ -2,6 +2,7 @@ import QtQuick 2.12
 import QtQuick.Window 2.12
 import QtQuick.Controls 2.12
 //import timeprovider 1.0
+import QtQuick.mirroring 1.0
 
 Window {
     id: main_window
@@ -950,9 +951,7 @@ Window {
                     MouseArea{
                         anchors.fill: parent
                         onClicked: {
-                            icon_line.x = 357;
-                            mirrorQmlLoader.active = true;
-                            mirrorQmlLoader.item.visible = true;
+                            MirrorProvider.init()
                         }
                     }
                 }
@@ -998,16 +997,6 @@ Window {
         visible: false
         onLoaded: {
             mediaQmlLoader.item.visible = false;
-        }
-    }
-
-    Loader{
-        id: mirrorQmlLoader
-        source: "mirror_page.qml"
-        active: false
-        visible: false
-        onLoaded: {
-            mirrorQmlLoader.item.visible = false;
         }
     }
 }

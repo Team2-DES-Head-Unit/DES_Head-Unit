@@ -191,7 +191,7 @@
 				},
 				{
 					"name" : "HELPSTRING",
-					"value" : "No help, variable specified on the command line."
+					"value" : "CXX compiler"
 				}
 			],
 			"type" : "STRING",
@@ -1158,18 +1158,6 @@
 			"value" : "/home/yeongyoo/Qt5.12.8/5.12.8/gcc_64/bin/qmake"
 		},
 		{
-			"name" : "Qt5Bluetooth_DIR",
-			"properties" : 
-			[
-				{
-					"name" : "HELPSTRING",
-					"value" : "The directory containing a CMake configuration file for Qt5Bluetooth."
-				}
-			],
-			"type" : "PATH",
-			"value" : "/home/yeongyoo/Qt5.12.8/5.12.8/gcc_64/lib/cmake/Qt5Bluetooth"
-		},
-		{
 			"name" : "Qt5Core_DIR",
 			"properties" : 
 			[
@@ -1218,18 +1206,6 @@
 			"value" : "/home/yeongyoo/Qt5.12.8/5.12.8/gcc_64/lib/cmake/Qt5Network"
 		},
 		{
-			"name" : "Qt5Positioning_DIR",
-			"properties" : 
-			[
-				{
-					"name" : "HELPSTRING",
-					"value" : "The directory containing a CMake configuration file for Qt5Positioning."
-				}
-			],
-			"type" : "PATH",
-			"value" : "/home/yeongyoo/Qt5.12.8/5.12.8/gcc_64/lib/cmake/Qt5Positioning"
-		},
-		{
 			"name" : "Qt5Qml_DIR",
 			"properties" : 
 			[
@@ -1254,42 +1230,6 @@
 			"value" : "/home/yeongyoo/Qt5.12.8/5.12.8/gcc_64/lib/cmake/Qt5Quick"
 		},
 		{
-			"name" : "Qt5WebChannel_DIR",
-			"properties" : 
-			[
-				{
-					"name" : "HELPSTRING",
-					"value" : "The directory containing a CMake configuration file for Qt5WebChannel."
-				}
-			],
-			"type" : "PATH",
-			"value" : "/home/yeongyoo/Qt5.12.8/5.12.8/gcc_64/lib/cmake/Qt5WebChannel"
-		},
-		{
-			"name" : "Qt5WebEngineCore_DIR",
-			"properties" : 
-			[
-				{
-					"name" : "HELPSTRING",
-					"value" : "The directory containing a CMake configuration file for Qt5WebEngineCore."
-				}
-			],
-			"type" : "PATH",
-			"value" : "/home/yeongyoo/Qt5.12.8/5.12.8/gcc_64/lib/cmake/Qt5WebEngineCore"
-		},
-		{
-			"name" : "Qt5WebEngine_DIR",
-			"properties" : 
-			[
-				{
-					"name" : "HELPSTRING",
-					"value" : "The directory containing a CMake configuration file for Qt5WebEngine."
-				}
-			],
-			"type" : "PATH",
-			"value" : "/home/yeongyoo/Qt5.12.8/5.12.8/gcc_64/lib/cmake/Qt5WebEngine"
-		},
-		{
 			"name" : "Qt5_DIR",
 			"properties" : 
 			[
@@ -1300,18 +1240,6 @@
 			],
 			"type" : "PATH",
 			"value" : "/home/yeongyoo/Qt5.12.8/5.12.8/gcc_64/lib/cmake/Qt5"
-		},
-		{
-			"name" : "vsomeip3_DIR",
-			"properties" : 
-			[
-				{
-					"name" : "HELPSTRING",
-					"value" : "The directory containing a CMake configuration file for vsomeip3."
-				}
-			],
-			"type" : "PATH",
-			"value" : "/usr/local/lib/cmake/vsomeip3"
 		}
 	],
 	"kind" : "cache",

@@ -40,6 +40,5 @@
         <file>HU_Assets/Components/Music/shuffle.png</file>
         <file>HU_Assets/Icons/library.png</file>
         <file>HU_Assets/Components/Video/screen_off.png</file>
-        <file>mirror_page.qml</file>
     </qresource>
 </RCC>
