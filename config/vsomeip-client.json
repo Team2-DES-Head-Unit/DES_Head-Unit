@@ -2,34 +2,24 @@
     "unicast": "192.168.1.100",
     "logging": {
         "level": "debug",
-        "console": "true", 
-        "file": { "enable": "false", "path": "/tmp/vsomeip.log" },
+        "console": "true",
+        "file": {
+            "enable": "false",
+            "path": "/tmp/vsomeip.log"
+        },
         "dlt": "false"
     },
     "applications": [
         {
-            "name": "service-sample",
-            "id": "0x1212"
+            "name": "client-sample",
+            "id": "0x1313"
         }
     ],
-    "services": [
-        {  
-            "service": "0x1234",
-            "instance": "0x5678",
-            "unreliable": "30490"
-        },
-        {  
-            "service": "0x1234",
-            "instance": "0x5679",
-            "unreliable": "30491"
-        }
-    ],
-    "routing": "service-sample",
+    "routing": "client-sample",
     "service-discovery": {
-        "enable": "true", 
+        "enable": "true",
         "multicast": "224.224.224.225",
         "port": "30490",
-        "protocol": "udp",
-        "network_interface": "eth0"
+        "protocol": "udp"
     }
 }

@@ -30,6 +30,6 @@
         "multicast": "224.224.224.225",
         "port": "30490",
         "protocol": "udp",
-        "network_interface": "eht0"
+        "network_interface": "eth0"
     }
 }
