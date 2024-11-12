@@ -1,7 +1,7 @@
 import QtQuick 2.12
 import QtQuick.Window 2.12
 import QtQuick.Controls 2.12
-import QtQuick.mirroring 1.0
+//import QtQuick.mirroring 1.0
 //import timeprovider 1.0
 
 Window {

@@ -78,8 +78,9 @@ int main(int argc, char *argv[])
     engine.rootContext()->setContextProperty("Receiver", &receiver);
     engine.rootContext()->setContextProperty("client", &client);
     engine.rootContext()->setContextProperty("clickNotifier", &clickNotifier);
+    engine.rootContext()->setContextProperty("MirrorProvider", &mirrorProvider);
     qmlRegisterType<YoutubePlayer>("youtubePlayer", 1, 0, "YoutubePlayer");
-    qmlRegisterType<MirrorProvider>("QtQuick.mirroring", 1, 0, "MirrorProvider");
+//    qmlRegisterType<MirrorProvider>("QtQuick.mirroring", 1, 0, "MirrorProvider");
 
 //    // music test
 //    QString songtitle = "Hanumankind-Big_Dawgs.mp3";
