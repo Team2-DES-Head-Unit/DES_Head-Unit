@@ -67,7 +67,8 @@ public:
         foreach (const QString &music, musicList) {
             if(music == songTitle){
 //                qDebug() << "/media/llj/SanDisk/Music/" + music;
-                return "/media/llj/SanDisk/Music/" + music;
+//                return "/media/llj/SanDisk/Music/" + music;
+                return "/media/usb/Music/" + music;
             }
         } return QString();
     }
