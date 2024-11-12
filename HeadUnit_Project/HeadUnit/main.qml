@@ -1,6 +1,7 @@
 import QtQuick 2.12
 import QtQuick.Window 2.12
 import QtQuick.Controls 2.12
+import QtQuick.mirroring 1.0
 //import timeprovider 1.0
 
 Window {
@@ -19,7 +20,7 @@ Window {
     Component.onCompleted: { // initial setting
         weatherProvider.cityName = "Wolfsburg";
         musicQmlLoader.active = true;
-        p.color = (clickNotifier.clicked) ? "#7788F2" : "#87F1D0"
+//        p.color = (clickNotifier.clicked) ? "#7788F2" : "#87F1D0"
     }
 
     Connections{
@@ -1115,9 +1116,11 @@ Window {
         MouseArea{
             anchors.fill: parent
             onClicked: {
-                mirrorQmlLoader.active = true;
-                mirrorQmlLoader.visible = true;
+//                mirrorQmlLoader.active = true;
+//                mirrorQmlLoader.visible = true;
+
 //                mirrorQmlLoader.item.visible = true;
+                MirrorProvider.init()
             }
         }
     }

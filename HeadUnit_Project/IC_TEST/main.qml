@@ -81,7 +81,7 @@ ApplicationWindow {
                 var centerX = width / 2;
                 var centerY = height / 2;
                 var startAngle = (116 * Math.PI) / 180;
-                var endAngle = ((116 + (Receiver.speedKmh * 2.05)) * Math.PI) / 180;  // 끝 각도 (바늘 각도에 따라 변함)
+                var endAngle = ((116 + (Receiver.speedKmh * 1.711)) * Math.PI) / 180;  // 끝 각도 (바늘 각도에 따라 변함)
 
                 // 게이지 호 그리기
                 ctx.beginPath();
@@ -96,6 +96,7 @@ ApplicationWindow {
                 target: Server
                 onModeChanged:{
                     speed_canvas.gaugeColor = (Server.mode === 1) ? "#7788f2" : "#87f1d0"
+                    speed_canvas.update();
                 }
             }
 
@@ -109,7 +110,7 @@ ApplicationWindow {
             fillMode: Image.PreserveAspectFit
             transformOrigin: Item.BottomRight
 //            rotation: randomValue * 3.06 - 108 //(Receiver.speedKmh * 2.5 + 210)
-            rotation: (Receiver.speedKmh * 2.04 - 108)
+            rotation: (Receiver.speedKmh * 1.7 - 108)
 
             Behavior on rotation{
                 NumberAnimation{
@@ -119,7 +120,7 @@ ApplicationWindow {
             }
              Connections{
                  target: Receiver
-                 onSpeedChanged: speed_needle.angle = (Receiver.speedKmh * 2.04 - 108)
+                 onSpeedChanged: speed_needle.angle = (Receiver.speedKmh * 1.7 - 108)
              }
         }
         Image{
@@ -229,7 +230,7 @@ ApplicationWindow {
                 var centerX = width / 2;
                 var centerY = height / 2;
                 var startAngle = (116 * Math.PI) / 180;
-                var endAngle = ((116 + ((Receiver.speedKmh * 2.895) * 0.77)) * Math.PI) / 180;  // 끝 각도 (바늘 각도에 따라 변함)
+                var endAngle = ((116 + ((Receiver.speedKmh * 2.895) * 0.514)) * Math.PI) / 180;  // 끝 각도 (바늘 각도에 따라 변함)
 
                 // 게이지 호 그리기
                 ctx.beginPath();
@@ -244,6 +245,7 @@ ApplicationWindow {
                 target: Server
                 onModeChanged:{
                     rpm_canvas.gaugeColor = (Server.mode === 1) ? "#7788f2" : "#87f1d0"
+                    rpm_canvas.update();
                 }
             }
         }
@@ -257,7 +259,7 @@ ApplicationWindow {
             fillMode: Image.PreserveAspectFit
             transformOrigin: Item.BottomRight
 //            rotation: randomValue * 3.06 - 108 //(((Receiver.speedKmh) / (2 * 3.14 * 3.3)) * 60)
-            rotation: ((((Receiver.speedKmh) *2.895) * 0.765) - 108)
+            rotation: ((((Receiver.speedKmh) *2.895) * 0.51) - 108)
             Behavior on rotation{
                 NumberAnimation{
                     duration: 50
@@ -266,7 +268,7 @@ ApplicationWindow {
             }
              Connections{
                  target: Receiver
-                 onSpeedChanged: rpm_needle.angle = ((((Receiver.speedKmh) * 2.895) * 0.765) - 108)
+                 onSpeedChanged: rpm_needle.angle = ((((Receiver.speedKmh) * 2.895) * 0.51) - 108)
              }
         }
         Image{

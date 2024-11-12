@@ -33,7 +33,8 @@ public:
     }
 
     Q_INVOKABLE QStringList getMusics() {
-        return getAlbums("/media/llj/SanDisk/Music/", "*.mp3");
+//        return getAlbums("/media/llj/SanDisk/Music/", "*.mp3");
+        return getAlbums("/media/usb/Music/", "*.mp3");
     }
 
     // songTitle : ex)"Hanumankind-Big_Dawgs.mp3"

@@ -3,21 +3,16 @@ import QtQuick.Window 2.12
 import QtMultimedia 5.12
 import QtQuick.mirroring 1.0
 
-Rectangle{
+Window{
     id: mirror_window
-    visible: true
+    visible: mirrorProvider.state !== 2
     color: "transparent"
     width: 618
     height: 480
-//    flags: Qt.FramelessWindowHint
+    flags: Qt.FramelessWindowHint
 
+    property bool isConnected: false
     property bool isInitialized: false
-
-//    onActiveFocusItemChanged: {
-//        if(!activeFocusItem){
-//            visible = false;
-//        }
-//    }
 
     Component.onDestruction: {
         mirrorProvider.end();
@@ -25,25 +20,46 @@ Rectangle{
 
     onVisibleChanged: {
         if (!isInitialized && mirror_window.visible){
-            mirror_window.x = main_window.x + 393;
-            mirror_window.y = main_window.y + 40;
-            mirrorProvider.init(mirror_window); // Initialize mirrorProvider with baseItem
+            mirrorProvider.init(mirror_window);
             isInitialized = true;
+        }
+    }
+
+    MirrorProvider{
+        id: mirrorProvider
+        onMirroringStateChanged: {
+            if (isConnected && mirrorProvider.state === 1){
+                isConnected = false;
+                mirror_window.visible = false;
+                console.log("unconnected");
+            }
+            else if (mirrorProvider.state === 2){
+                isConnected = true;
+                console.log("connected");
+            }
         }
     }
 
     Image {
         fillMode: Image.PreserveAspectFit
-//        source: "HU_Assets/Background/basic_window.png"
-        source: clickNotifier.clicked ? "HU_Assets/light/Background/basic_window_l.png" : "HU_Assets/Background/basic_window.png"
+        source: "HU_Assets/Background/basic_window.png"
         id: base_window
         z : 0
-        visible: !mirrorProvider.isLoaded
 
-        MirrorProvider{
-            id: mirrorProvider
-        }
+        //LOADING
         Rectangle{
+            z : 1
+            visible: mirrorProvider.state === 0
+            Text{
+                text: "LOADING..."
+                color: "white"
+                font.pointSize: 25
+            }
+        }
+
+        //UNCONNECTED
+        Rectangle{
+            visible: mirrorProvider.state === 1
             z: 1
             anchors.centerIn: parent
             color: "transparent"
@@ -51,13 +67,12 @@ Rectangle{
                 anchors.centerIn: parent
                 Text{
                     text: "Not Connected"
-//                    color: "white"
-                    color: clickNotifier.clicked ? "#414141" : "#ffffff"
+                    color: "white"
                     font.pointSize: 25
                 }
                 Text{
                     text: "Please check the connection or \n check if it is connected properly."
-                    color: clickNotifier.clicked ? "#414141" : "#ffffff"
+                    color: "white"
                 }
                 Rectangle{
                     width: 120
@@ -98,7 +113,6 @@ Rectangle{
                 mirrorProvider.end();
                 isInitialized = false;
                 mirror_window.visible = false;
-                mirrorQmlLoader.active = false;
                 icon_line.x = 138;
             }
         }
