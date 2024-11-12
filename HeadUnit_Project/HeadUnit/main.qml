@@ -19,6 +19,7 @@ Window {
     Component.onCompleted: { // initial setting
         weatherProvider.cityName = "Wolfsburg";
         musicQmlLoader.active = true;
+        p.color = (clickNotifier.clicked) ? "#7788F2" : "#87F1D0"
     }
 
     Connections{
@@ -367,7 +368,7 @@ Window {
             height: 60
             color: "transparent"
 
-            property string currentGear: "N"
+            property string currentGear: "P"
 
             Row {
                 id: gear_list
@@ -380,22 +381,7 @@ Window {
                     font.pixelSize: 30
 //                    color: "#959595"
 //                    color: client.gear === 1 ? "#87F1D0" : "#939395"
-                    color: {
-                        if (clickNotifier.clicked){
-                            if(client.gear === 1){
-                                return "#7788F2"
-                            } else{
-                                return "#939395"
-                            }
-                        }
-                        else{
-                            if(client.gear === 1){
-                                return "#87F1D0"
-                            } else{
-                                return "#939395"
-                            }
-                        }
-                    }
+                    color: (clickNotifier.clicked) ? (client.gear === 1 ? "#7788F2" : "#939395") : (client.gear === 1 ? "#87F1D0" : "#939395")
                 }
 
                 Text {
@@ -404,22 +390,7 @@ Window {
                     font.pixelSize: 30
 //                    color: client.gear === 3 ? "#87F1D0" : "#939395"
                     //                        color: currentGear === "R" ? "#87F1D0" : "#959595"
-                    color: {
-                        if (clickNotifier.clicked){
-                            if(client.gear === 3){
-                                return "#7788F2"
-                            } else{
-                                return "#939395"
-                            }
-                        }
-                        else{
-                            if(client.gear === 3){
-                                return "#87F1D0"
-                            } else{
-                                return "#939395"
-                            }
-                        }
-                    }
+                    color: (clickNotifier.clicked) ? (client.gear === 3 ? "#7788F2" : "#939395") : (client.gear === 3 ? "#87F1D0" : "#939395")
                 }
 
                 Text {
@@ -428,22 +399,7 @@ Window {
                     font.pixelSize: 30
 //                    color: client.gear === 4 ? "#87F1D0" : "#939395"
                     //                        color: currentGear === "N" ? "#87F1D0" : "#959595"
-                    color: {
-                        if (clickNotifier.clicked){
-                            if(client.gear === 4){
-                                return "#7788F2"
-                            } else{
-                                return "#939395"
-                            }
-                        }
-                        else{
-                            if(client.gear === 4){
-                                return "#87F1D0"
-                            } else{
-                                return "#939395"
-                            }
-                        }
-                    }
+                    color: (clickNotifier.clicked) ? (client.gear === 4 ? "#7788F2" : "#939395") : (client.gear === 4 ? "#87F1D0" : "#939395")
                 }
 
                 Text {
@@ -452,22 +408,7 @@ Window {
                     font.pixelSize: 30
 //                    color: client.gear === 2 ? "#87F1D0" : "#939395"
                     //                        color: currentGear === "D" ? "#87F1D0" : "#959595"
-                    color: {
-                        if (clickNotifier.clicked){
-                            if(client.gear === 2){
-                                return "#7788F2"
-                            } else{
-                                return "#939395"
-                            }
-                        }
-                        else{
-                            if(client.gear === 2){
-                                return "#87F1D0"
-                            } else{
-                                return "#939395"
-                            }
-                        }
-                    }
+                    color: (clickNotifier.clicked) ? (client.gear === 2 ? "#7788F2" : "#939395") : (client.gear === 2 ? "#87F1D0" : "#939395")
                 }
             }
         }
@@ -1042,13 +983,20 @@ Window {
                         anchors.fill: parent
                         onClicked: {
                             icon_line.x = -8;
-                            settingQmlLoader.active = true;
+//                            settingQmlLoader.active = true;
+
 //                            settingQmlLoader.item.visible = true;
 //                            settingQmlLoader.item.x = main_window.x + 393;
 //                            settingQmlLoader.item.y = main_window.y + 40;
-                            settingQmlLoader.visible = true;
-                            settingQmlLoader.x = main_window.x + 393;
-                            settingQmlLoader.y = main_window.y + 40;
+//                            settingQmlLoader.visible = true;
+//                            settingQmlLoader.x = main_window.x + 393;
+//                            settingQmlLoader.y = main_window.y + 40;
+
+                            if (settingQmlLoader.item){
+                                settingQmlLoader.item.visible = !settingQmlLoader.item.visible;
+                                settingQmlLoader.item.x = main_window.x + 393;
+                                settingQmlLoader.item.y = main_window.y + 40;
+                            }
                         }
                     }
                 }
@@ -1200,11 +1148,15 @@ Window {
     Loader{
         id: settingQmlLoader
         source: "setting_page.qml"
-        active: false
-        visible: false
+        active: true
+        visible: true
         onLoaded: {
 //            settingQmlLoader.item.visible = false;
-            settingQmlLoader.visible = false;
+//            settingQmlLoader.visible = false;
+
+            if(item){
+                item.visible = false;
+            }
         }
     }
 

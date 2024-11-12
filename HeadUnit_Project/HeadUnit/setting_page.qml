@@ -151,8 +151,8 @@ Rectangle{
 
                         if (lightQmlLoader.item){
                             lightQmlLoader.item.visible = !lightQmlLoader.item.visible;
-                            lightQmlLoader.item.x = setting_window.x + 200;
-                            lightQmlLoader.item.y = setting_window.y + 14;
+                            lightQmlLoader.item.x = setting_window.x - 193;
+                            lightQmlLoader.item.y = setting_window.y - 26;
                         }
                     }
                 }
@@ -211,14 +211,21 @@ Rectangle{
                 MouseArea{
                     anchors.fill: parent
                     onClicked: {
-                        bluetoothQmlLoader.active = true;
+//                        bluetoothQmlLoader.active = true;
+
 //                        bluetoothQmlLoader.item.visible = true;
 //                        bluetoothQmlLoader.item.x = setting_window.x + 200;
 //                        bluetoothQmlLoader.item.y = setting_window.y + 14;
-                        bluetoothQmlLoader.visible = true;
-                        bluetoothQmlLoader.x = setting_window.x + 200;
-                        bluetoothQmlLoader.y = setting_window.y + 14;
+//                        bluetoothQmlLoader.visible = true;
+//                        bluetoothQmlLoader.x = setting_window.x - 193;
+//                        bluetoothQmlLoader.y = setting_window.y - 26;
                         service_selected.visible = true;
+
+                        if (bluetoothQmlLoader.item){
+                            bluetoothQmlLoader.item.visible = !bluetoothQmlLoader.item.visible;
+                            bluetoothQmlLoader.item.x = setting_window.x - 193;
+                            bluetoothQmlLoader.item.y = setting_window.y - 26;
+                        }
                     }
                 }
             }
@@ -247,11 +254,14 @@ Rectangle{
         id: bluetoothQmlLoader
         asynchronous: false
         source: "bluetooth_page.qml"
-        active: false
+        active: true
         visible: true
         onLoaded: {
 //            bluetoothQmlLoader.item.visible = false;
-            bluetoothQmlLoader.visible = false;
+//            bluetoothQmlLoader.visible = false;
+            if (item){
+                item.visible = false;
+            }
         }
     }
 
@@ -270,7 +280,7 @@ Rectangle{
             anchors.fill: parent
             onClicked: {
                 setting_window.visible = false;
-                settingQmlLoader.active = false;
+//                settingQmlLoader.active = false;
                 icon_line.x = 138;
             }
         }

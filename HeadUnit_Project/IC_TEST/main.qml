@@ -23,8 +23,6 @@ ApplicationWindow {
     property int currentrpm: 0
     property int targetrpm: 0
 
-    property color gaugeColor: (Server.mode === 1) ? "#7788f2" : "#87f1d0"
-
     Image{
         id: bg_car
         anchors.horizontalCenter: parent.horizontalCenter
@@ -73,6 +71,9 @@ ApplicationWindow {
             anchors.verticalCenter: parent.verticalCenter
             width: 400
             height: 400
+
+            property color gaugeColor: (Server.mode === 1) ? "#7788f2" : "#87f1d0"
+
             onPaint: {
                 var ctx = getContext("2d");
                 ctx.clearRect(0, 0, width, height);
@@ -94,7 +95,7 @@ ApplicationWindow {
             Connections{
                 target: Server
                 onModeChanged:{
-                    bg_window.gaugeColor = (Server.mode === 1) ? "#7788f2" : "#87f1d0"
+                    speed_canvas.gaugeColor = (Server.mode === 1) ? "#7788f2" : "#87f1d0"
                 }
             }
 
@@ -166,16 +167,16 @@ ApplicationWindow {
              font.pixelSize: 15
              color: "#939395"
          }
-         Text {
-             id: distance_text
-             text: qsTr("0 km")
-             anchors.horizontalCenter: speed_dial.horizontalCenter
-             anchors.bottom: parent.bottom
-             anchors.bottomMargin: 50
-             font.pixelSize: 25
-//             color: "#87F1D0"
-             color: Server.mode === 1 ? "#7788F2" : "#87F1D0"
-         }
+//         Text {
+//             id: distance_text
+//             text: qsTr("0 km")
+//             anchors.horizontalCenter: speed_dial.horizontalCenter
+//             anchors.bottom: parent.bottom
+//             anchors.bottomMargin: 50
+//             font.pixelSize: 25
+////             color: "#87F1D0"
+//             color: Server.mode === 1 ? "#7788F2" : "#87F1D0"
+//         }
     }
 
     Rectangle {
@@ -218,6 +219,9 @@ ApplicationWindow {
             anchors.verticalCenter: parent.verticalCenter
             width: 400
             height: 400
+
+            property color gaugeColor: (Server.mode === 1) ? "#7788f2" : "#87f1d0"
+
             onPaint: {
                 var ctx = getContext("2d");
                 ctx.clearRect(0, 0, width, height);
@@ -239,7 +243,7 @@ ApplicationWindow {
             Connections{
                 target: Server
                 onModeChanged:{
-                    bg_window.gaugeColor = (Server.mode === 1) ? "#7788f2" : "#87f1d0"
+                    rpm_canvas.gaugeColor = (Server.mode === 1) ? "#7788f2" : "#87f1d0"
                 }
             }
         }
@@ -322,21 +326,23 @@ ApplicationWindow {
             anchors.bottomMargin: 50
             font.pixelSize: 30
 //            color: Server.gear === 1 ? "#87F1D0" : "#939395"
-            color: {
-                if (Server.mode === 1){
-                    if(Server.gear === 1){
-                        return "#7788f2"
-                    }else{
-                        return "#939395"
-                    }
-                } else{
-                    if(Server.gear === 1){
-                        return "#87f1d0"
-                    }else{
-                        return "#939395"
-                    }
-                }
-            }
+//            color: {
+//                if (Server.mode === 1){
+//                    if(Server.gear === 1){
+//                        return "#7788f2"
+//                    }else{
+//                        return "#939395"
+//                    }
+//                } else{
+//                    if(Server.gear === 1){
+//                        return "#87f1d0"
+//                    }else{
+//                        return "#939395"
+//                    }
+//                }
+//            }
+
+            color: (Server.mode === 1) ? (Server.gear === 1 ? "#7788F2" : "#939395") : (Server.gear === 1 ? "#87F1D0" : "#939395")
 
             font.bold: true
         }
@@ -349,21 +355,7 @@ ApplicationWindow {
             anchors.bottomMargin: 50
             font.pixelSize: 30
 //            color: Server.gear === 3 ? "#87F1D0" : "#939395"
-            color: {
-                if (Server.mode === 1){
-                    if(Server.gear === 3){
-                        return "#7788f2"
-                    }else{
-                        return "#939395"
-                    }
-                } else{
-                    if(Server.gear === 3){
-                        return "#87f1d0"
-                    }else{
-                        return "#939395"
-                    }
-                }
-            }
+            color: (Server.mode === 1) ? (Server.gear === 3 ? "#7788F2" : "#939395") : (Server.gear === 3 ? "#87F1D0" : "#939395")
             font.bold: true
         }
         Text {
@@ -375,21 +367,7 @@ ApplicationWindow {
             anchors.bottomMargin: 50
             font.pixelSize: 30
 //            color: Server.gear === 4 ? "#87F1D0" : "#939395"
-            color: {
-                if (Server.mode === 1){
-                    if(Server.gear === 4){
-                        return "#7788f2"
-                    }else{
-                        return "#939395"
-                    }
-                } else{
-                    if(Server.gear === 4){
-                        return "#87f1d0"
-                    }else{
-                        return "#939395"
-                    }
-                }
-            }
+            color: (Server.mode === 1) ? (Server.gear === 4 ? "#7788F2" : "#939395") : (Server.gear === 4 ? "#87F1D0" : "#939395")
             font.bold: true
         }
         Text {
@@ -401,21 +379,7 @@ ApplicationWindow {
             anchors.bottomMargin: 50
             font.pixelSize: 30
 //            color: Server.gear === 2 ? "#87F1D0" : "#939395"
-            color: {
-                if (Server.mode === 1){
-                    if(Server.gear === 2){
-                        return "#7788f2"
-                    }else{
-                        return "#939395"
-                    }
-                } else{
-                    if(Server.gear === 2){
-                        return "#87f1d0"
-                    }else{
-                        return "#939395"
-                    }
-                }
-            }
+            color: (Server.mode === 1) ? (Server.gear === 2 ? "#7788F2" : "#939395") : (Server.gear === 2 ? "#87F1D0" : "#939395")
             font.bold: true
         }
     }
@@ -448,23 +412,23 @@ ApplicationWindow {
         anchors.bottomMargin: 65
 //        source: "/IC Assets/left_dark.png"
 //        source: Server.indicatorLeft ? "/IC Assets/left_bright.png" : "/IC Assets/left_dark.png"
-        source:{
-            if(Server.mode === 1){
-                if(Server.indicatorLeft){
-                    return "/IC Assets/light/left_bright_l.png"
-                }else{
-                    return "/IC Assets/light/left_dark_l.png"
-                }
-            }
-            else{
-                if(Server.indicatorLeft){
-                    return "/IC Assets/left_bright.png"
-                }else{
-                    return "/IC Assets/left_dark.png"
-                }
-            }
-        }
-
+//        source:{
+//            if(Server.mode === 1){
+//                if(Server.indicatorLeft){
+//                    return "/IC Assets/light/left_bright_l.png"
+//                }else{
+//                    return "/IC Assets/light/left_dark_l.png"
+//                }
+//            }
+//            else{
+//                if(Server.indicatorLeft){
+//                    return "/IC Assets/left_bright.png"
+//                }else{
+//                    return "/IC Assets/left_dark.png"
+//                }
+//            }
+//        }
+        source: (Server.mode === 1) ? (Server.indicatorLeft ? "/IC Assets/light/left_bright_l.png" : "/IC Assets/light/left_dark_l.png") : (Server.indicatorLeft ? "/IC Assets/left_bright.png" : "/IC Assets/left_dark.png")
         fillMode: Image.PreserveAspectFit
     }
 
@@ -476,22 +440,7 @@ ApplicationWindow {
         anchors.bottomMargin:65
 //        source: "/IC Assets/right_dark.png"
 //        source: Server.indicatorRight ? "/IC Assets/right_bright.png" : "/IC Assets/right_dark.png"
-        source:{
-            if(Server.mode === 1){
-                if(Server.indicatorRight){
-                    return "/IC Assets/light/right_bright_l.png"
-                }else{
-                    return "/IC Assets/light/right_dark_l.png"
-                }
-            }
-            else{
-                if(Server.indicatorRight){
-                    return "/IC Assets/right_bright.png"
-                }else{
-                    return "/IC Assets/right_dark.png"
-                }
-            }
-        }
+        source: (Server.mode === 1) ? (Server.indicatorRight ? "/IC Assets/light/right_bright_l.png" : "/IC Assets/light/right_dark_l.png") : (Server.indicatorRight ? "/IC Assets/right_bright.png" : "/IC Assets/right_dark.png")
         fillMode: Image.PreserveAspectFit
     }
 

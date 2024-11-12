@@ -24,12 +24,13 @@ Rectangle{
 
     Image {
         id: light_close_button
-        x: 350
-        y: 6
-        width: 50
-        height: 50
+        x: 300
+        y: 15
+        width: 30
+        height: 30
         fillMode: Image.PreserveAspectFit
-        source: "HU_Assets/Icons/tap_close_button.png"
+//        source: "HU_Assets/Icons/tap_close_button.png"
+        source: clickNotifier.clicked ? "HU_Assets/light/Components/Video/back_icon_l.png" : "HU_Assets/Components/Video/back_icon.png"
 //        source: clickNotifier.clicked ? "HU_Assets/light/Icons/close_icon_l.png" : "HU_Assets/Icons/tap_close_button.png"
 
         MouseArea{
