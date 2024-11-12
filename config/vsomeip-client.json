@@ -1,27 +1,35 @@
 {
-    "unicast": "192.168.1.100",
-    "interface" : "eth0",
+    "unicast": "192.168.86.228",
     "logging": {
         "level": "debug",
-        "console": "true",
-        "file": {
-            "enable": "false",
-            "path": "/tmp/vsomeip.log"
-        },
+        "console": "true", 
+        "file": { "enable": "false", "path": "/tmp/vsomeip.log" },
         "dlt": "false"
     },
     "applications": [
         {
-            "name": "client-sample",
-            "id": "0x1313"
+            "name": "service-sample",
+            "id": "0x1212"
         }
     ],
-    "routing": "client-sample",
+    "services": [
+        {  
+            "service": "0x1234",
+            "instance": "0x5678",
+            "unreliable": "30490"
+        },
+        {  
+            "service": "0x1234",
+            "instance": "0x5679",
+            "unreliable": "30491"
+        }
+    ],
+    "routing": "service-sample",
     "service-discovery": {
-        "enable": "true",
+        "enable": "true", 
         "multicast": "224.224.224.225",
         "port": "30490",
-        "protocol": "udp"
+        "protocol": "udp",
+        "network_interface": "eth0"
     }
 }
-
