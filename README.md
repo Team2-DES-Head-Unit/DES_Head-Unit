@@ -46,7 +46,7 @@ The device includes the function of mirroring the screen of mobile device, which
 
 ## Tech Stack
 
-<table>
+<table align="center">
   <tr>
     <td align="center" width="140px">
       <a href="https://www.linux.org/">
@@ -99,7 +99,7 @@ The device includes the function of mirroring the screen of mobile device, which
 ## Contributors
 
 <center>
-<table>
+<table align="center">
   <tr>
     <td align="center">
       <a href="https://github.com/jo49973477>">
