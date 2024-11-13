@@ -1127,8 +1127,8 @@ Window {
 
     Image {
            id: bluetooth_connected_image
-           x: 830
-           y: 10
+           x: 810
+           y: 15
            source: "/HU_Assets/Icons/charm_bluetooth.png"
            fillMode: Image.PreserveAspectFit
            visible: isBluetoothConnected

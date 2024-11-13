@@ -89,7 +89,7 @@ ApplicationWindow {
                 ctx.lineWidth = 38;
 //                ctx.strokeStyle = "#87F1D0";  // 게이지 색상
 //                ctx.strokeStyle = Server.mode === 1 ? "#7788F2" : "#87F1D0"
-                ctx.strokeStyle = gaugeColor;
+                ctx.strokeStyle = speed_canvas.gaugeColor;
                 ctx.stroke();
             }
             Connections{
@@ -238,7 +238,7 @@ ApplicationWindow {
                 ctx.lineWidth = 38;
 //                ctx.strokeStyle = "#87F1D0";  // 게이지 색상
 //                ctx.strokeStyle = Server.mode === 1 ? "#7788F2" : "#87F1D0";
-                ctx.strokeStyle = gaugeColor;
+                ctx.strokeStyle = rpm_canvas.gaugeColor;
                 ctx.stroke();
             }
             Connections{

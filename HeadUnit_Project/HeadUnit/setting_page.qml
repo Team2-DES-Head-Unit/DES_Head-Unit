@@ -70,6 +70,18 @@ Rectangle{
                 }
             }
 
+                        Image {
+                id: usrinfo_selected
+                anchors.horizontalCenter: user_info.horizontalCenter
+                anchors.verticalCenter: user_info.verticalCenter
+                anchors.verticalCenterOffset: 5.5
+                anchors.horizontalCenterOffset: 5.5
+                fillMode: Image.PreserveAspectFit
+                visible: false
+//                source: "/HU_Assets/Background/select_menu.png"
+                source: clickNotifier.clicked ? "HU_Assets/light/Background/select_menu_l.png" : "HU_Assets/Background/select_menu.png"
+            }
+
             Rectangle {
                 id: user_info
                 x: 42
@@ -88,6 +100,18 @@ Rectangle{
                     anchors{
                         verticalCenter: user_info.verticalCenter
                         left: user_info.left
+                    }
+                }
+                MouseArea{
+                    anchors.fill: parent
+                    onClicked: {
+                        usrinfo_selected.visible = true;
+
+                        if (infoQmlLoader.item){
+                            infoQmlLoader.item.visible = !infoQmlLoader.item.visible;
+                            infoQmlLoader.item.x = setting_window.x - 193;
+                            infoQmlLoader.item.y = setting_window.y - 26;
+                        }
                     }
                 }
 
@@ -228,6 +252,20 @@ Rectangle{
                         }
                     }
                 }
+            }
+
+        }
+    }
+
+    Loader{
+        id: infoQmlLoader
+        asynchronous: false
+        source: "usrinfo_page.qml"
+        active: true
+        visible: true
+        onLoaded: {
+            if (item){
+                item.visible = false;
             }
 
         }
