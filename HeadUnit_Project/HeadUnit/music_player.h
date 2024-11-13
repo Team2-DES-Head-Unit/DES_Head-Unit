@@ -34,7 +34,8 @@ public:
 
     Q_INVOKABLE QStringList getMusics() {
 //        return getAlbums("/media/llj/SanDisk/Music/", "*.mp3");
-        return getAlbums("/media/usb/Music/", "*.mp3");
+//        return getAlbums("/media/usb/Music/", "*.mp3");
+        return getAlbums("/usr/bin/Music/", "*.mp3");
     }
 
     // songTitle : ex)"Hanumankind-Big_Dawgs.mp3"
@@ -68,7 +69,8 @@ public:
             if(music == songTitle){
 //                qDebug() << "/media/llj/SanDisk/Music/" + music;
 //                return "/media/llj/SanDisk/Music/" + music;
-                return "/media/usb/Music/" + music;
+//                return "/media/usb/Music/" + music;
+                return "/usr/bin/Music/" + music;
             }
         } return QString();
     }
