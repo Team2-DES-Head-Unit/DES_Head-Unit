@@ -99,6 +99,12 @@ ApplicationWindow {
                     speed_canvas.update();
                 }
             }
+            Connections{
+                target: Receiver
+                onSpeedChanged:{
+                    speed_canvas.update();
+                }
+            }
 
         }
         Image{
@@ -245,6 +251,12 @@ ApplicationWindow {
                 target: Server
                 onModeChanged:{
                     rpm_canvas.gaugeColor = (Server.mode === 1) ? "#7788f2" : "#87f1d0"
+                    rpm_canvas.update();
+                }
+            }
+            Connections{
+                target: Receiver
+                onSpeedChanged:{
                     rpm_canvas.update();
                 }
             }
