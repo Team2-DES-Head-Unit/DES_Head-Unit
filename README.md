@@ -64,14 +64,14 @@ The **Yocto Project** is an open-source collaboration project that provides a fl
 ### Layer Architecture
 In our project, we utilized two Raspberry Pi devices to develop two distinct versions of custom Linux OS: **CAR** and **IC/HU**. Each version features a unique layer architecture, tailored to optimize hardware resources by excluding unnecessary layers. 
 
-#### IC/HU Layer Architecture
+#### IC/HU OS Layer Architecture
 <p align="center">
   <img src="https://github.com/user-attachments/assets/0df2862a-31e9-4199-a166-0ff013947e56" align="center" width="40%">
   <img src="https://github.com/user-attachments/assets/2497a167-6610-4252-aef1-1fdc75e7e69e" align="center" width="29%">
 </p>
 To function as IC/HU OS, these OS has Instrument Cluster and Head Unit application recipe file. And As Instrument cluster and Head Unit process exchange data like gear, ambient light each other using internal vsomeip, there are recipe files for vsomeip communication.
 
-#### CAR Layer Architecture
+#### CAR OS Layer Architecture
 <p align="center">
   <img src="https://github.com/user-attachments/assets/91d22cd6-08a9-4c35-afff-47f1fe6fb46a" align="center" width="50%">
   <img src="https://github.com/user-attachments/assets/8855e7f6-082b-4d7c-908f-d3623948d254" align="center" width="33%">
@@ -80,6 +80,8 @@ To function as IC/HU OS, these OS has Instrument Cluster and Head Unit applicati
 To function as CAR OS, these OS has recipe files which includes piracer control code and python dependencies in  **meta-control layer**. And As RaspberryPi with this OS should send attributes like gear, Indicator by using external vsomeip, it had recipe files that enable this OS to use vsomeip communication.      
 
 
+
+- And both OS has common layer(**meta-minam**, **meta-env**)
 
 ## Tech Stack
 
