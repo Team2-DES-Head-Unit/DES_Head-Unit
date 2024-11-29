@@ -41,7 +41,31 @@ The device includes the function of mirroring the screen of mobile device, which
 ### SOME/IP Protocol Communication
 
 
-### Embedded system using Yocto
+
+markdown
+Copy code
+## Yocto Project
+
+The **Yocto Project** is an open-source collaboration project that provides a flexible set of tools and a comprehensive framework for creating custom Linux-based systems. Designed to support embedded development, Yocto helps developers build, customize, and maintain lightweight, scalable Linux distributions tailored to specific hardware and software requirements.
+
+### Key Features
+- **Customizable Linux Systems**: Build minimal, optimized Linux distributions for embedded devices.
+- **BitBake Build System**: A powerful tool to automate the build process for cross-compilation and package management.
+- **Layered Architecture**: Use layers to modularize features, configurations, and machine-specific customizations.
+- **Board Support Package (BSP)**: Simplifies hardware integration for a variety of platforms and architectures.
+- **OpenEmbedded Core**: Provides a rich set of metadata and recipes to simplify development.
+
+### Why Use Yocto?
+- **Portability**: Works across a wide range of hardware architectures.
+- **Scalability**: Ideal for small embedded systems and larger IoT devices.
+- **Flexibility**: Offers full control over system configuration, software packages, and dependencies.
+
+
+### Layer Architecture
+In our project, we utilized two Raspberry Pi devices to develop two distinct versions of custom Linux OS: **CAR** and **IC/HU**. Each version features a unique layer architecture, tailored to optimize hardware resources by excluding unnecessary layers. Below are the layer architectures for our custom Linux systems, showcasing their streamlined designs.
+
+
+
 
 
 ## Tech Stack
