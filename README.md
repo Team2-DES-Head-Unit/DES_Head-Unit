@@ -67,7 +67,7 @@ In our project, we utilized two Raspberry Pi devices to develop two distinct ver
 #### IC/HU Layer Architecture
 <p align="center">
   <img src="https://github.com/user-attachments/assets/0df2862a-31e9-4199-a166-0ff013947e56" align="center" width="40%">
-  <img src="https://github.com/user-attachments/assets/2497a167-6610-4252-aef1-1fdc75e7e69e" align="center" width="35%">
+  <img src="https://github.com/user-attachments/assets/2497a167-6610-4252-aef1-1fdc75e7e69e" align="center" width="33%">
 </p>
 To function as IC/HU OS, these OS has Instrument Cluster and Head Unit application recipe file. And As Instrument cluster and Head Unit process exchange data like gear, ambient light each other using internal vsomeip, there are recipe files for vsomeip communication.
 
