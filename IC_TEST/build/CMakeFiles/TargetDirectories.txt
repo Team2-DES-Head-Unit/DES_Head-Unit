@@ -1,4 +1,0 @@
-/home/jimmy/coding/IC_TEST/build/CMakeFiles/rebuild_cache.dir
-/home/jimmy/coding/IC_TEST/build/CMakeFiles/edit_cache.dir
-/home/jimmy/coding/IC_TEST/build/CMakeFiles/IC_TEST.dir
-/home/jimmy/coding/IC_TEST/build/CMakeFiles/IC_TEST_autogen.dir
