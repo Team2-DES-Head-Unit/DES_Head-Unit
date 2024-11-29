@@ -64,7 +64,16 @@ The **Yocto Project** is an open-source collaboration project that provides a fl
 ### Layer Architecture
 In our project, we utilized two Raspberry Pi devices to develop two distinct versions of custom Linux OS: **CAR** and **IC/HU**. Each version features a unique layer architecture, tailored to optimize hardware resources by excluding unnecessary layers. Below are the layer architectures for our custom Linux systems, showcasing their streamlined designs.
 
-
+<div style="display: flex; justify-content: space-around; align-items: center;">
+    <div style="text-align: center;">
+        <img src="https://github.com/user-attachments/assets/0df2862a-31e9-4199-a166-0ff013947e56" alt="IC/HU" width="400">
+        <p><strong>IC/HU</strong></p>
+    </div>
+    <div style="text-align: center;">
+        <img src="https://github.com/user-attachments/assets/15c6d66b-d74f-4295-bd1b-c498e649da39" alt="CAR" width="400">
+        <p><strong>CAR</strong></p>
+    </div>
+</div>
 
 
 
