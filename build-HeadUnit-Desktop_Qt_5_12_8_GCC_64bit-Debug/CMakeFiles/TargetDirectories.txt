@@ -1,4 +1,0 @@
-/home/yeongyoo/DES_Head-Unit/build-HeadUnit-Desktop_Qt_5_12_8_GCC_64bit-Debug/CMakeFiles/HeadUnit.dir
-/home/yeongyoo/DES_Head-Unit/build-HeadUnit-Desktop_Qt_5_12_8_GCC_64bit-Debug/CMakeFiles/edit_cache.dir
-/home/yeongyoo/DES_Head-Unit/build-HeadUnit-Desktop_Qt_5_12_8_GCC_64bit-Debug/CMakeFiles/rebuild_cache.dir
-/home/yeongyoo/DES_Head-Unit/build-HeadUnit-Desktop_Qt_5_12_8_GCC_64bit-Debug/CMakeFiles/HeadUnit_autogen.dir
