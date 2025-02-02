@@ -12,38 +12,75 @@ Basically, two Raspberry Pi (CAR Pi, IC/HU Pi) is used.
 Here are the divided technical requirements for composing the Head Unit:
 
 - **[Head Unit Application](#head-unit-application):** A robust and scalable head unit application for automotive use on Raspberry Pi is developed using QT Quick Framework. The QT Quick Framework includes user-freindly and interactive features, and various infotainment functions. Here are the contents:
-    - **[Dashboard](#dashboard):** The ]ashboard which shows the speed data and battery. The detailed information is described in Instrument Cluster Project.
+    - **[Dashboard](#dashboard):** The dashboard shows the speed and battery data. The detailed information is described in Instrument Cluster Project.
     - **[Mirroring](#mirroring):** The screen of mobile device is shown when USB connection is conducted.
-    - **[Youtube Player](#youtube-player):** Recent YouTube video is played.
-    - **[Music Player](#music-player):** The infotainment system can play the music you saved in the USB flash memory.
-    - **[bluetooth managing](#bluetooth-managing):** You can connect the bluetooth device with the infotainment system.
-    - **[etc](#etc):** map, weather, calendar, theme light/dark mode change etc.
+    - **[Youtube Player](#youtube-player):** Recent YouTube trending videos will be played.
+    - **[Music Player](#music-player):** User can load their playlist and listen songs with their USB or extenal device.
+    - **[bluetooth managing](#bluetooth-managing):** User can connect the bluetooth device with the infotainment system.
+    - **[etc](#etc):** map, weather, calendar, change light/dark mode theme etc.
 - **[SOME/IP Protocol Communication](#someip-protocol-communication):** The client/server or two Raspberry Pi send and receive the data by SOME/IP Protocol. The server exists in the IC Application of IC/HU Pi, which oversees the organic communication with client1 in the CAR Pi and client2 with HU application of IC/HU Pi.
 - **[Embedded system using Yocto](#embedded-system-using-yocto):** Yocto is utilized for creating a stable and customizable embedded Linux operating system for the project. Wayland, whose compositor is Weston, is used as GUI environment of the custom linux OS.
 
 ## Project Description
 
 ### Head Unit Application
+Considering IC & HU design is based on the user and system requirements. Those designs are made in [Figma](https://www.figma.com/design/4kdeuqjVnv2GWXMGwS88OF/Head-Unit?node-id=0-1&p=f&t=LxXl4KtK2MOydygM-0). You can click the link to view our demo. If there’s any questions or suggestions, feel free to contact us 🙂
+
+#### Main Page
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/ef49c2a8-2c63-4cc0-a498-770df32b759e" align="center" width="60%">
+</p>
+Main page is consists of 3 elements : Car status, Basic components, Main control bar. 
+
+- **Car status** : User can see all the car’s information like speed, mileage, remaining time, gear selection
+- **Basic components** : It is a basic background of main home. User can get some information about current climate, schedule, music player
+- **Main control bar** : There’s 5 options to selecting page(function) : setting, map, home, music, video
 
 #### Dashboard
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/5689b0ea-1938-494d-8a3b-3da3200a0142" align="center" width="50%">
+</p>
+This image shows the UI of Instrument Cluster. It separated into 3 parts.
+
+- **Left** : Gauge chart of Speed
+- **Middle** : Status like date, current time, temperature
+- **Right** : Gauge chart of RPM & Gear Information
 
 #### Mirroring
 The device includes the function of mirroring the screen of mobile device, which is formally aimed to Android decive connected by USB port of RaspberryPi. (iPhone is functionally impossible.) The installed linux command `scrcpy` is automotically executed by methods of header `QProcess` whenever mirroring is turned on. Whenever processing, it checks the status of the process if the command successfully run or failed to find devices, and when the device is not found, the error window is shown.
 
 #### Youtube Player
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/7ccbce24-d5aa-470a-94f5-7c5b3ec580f5" align="center" width="50%">
+</p>
+User can load and watch a list of videos that are trending on YouTube and can also be reflected in real time.
 
 #### Music Player
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/26442e50-22bb-4e1f-aa94-668d2c75f876" align="center" width="50%">
+</p>
+With user’s USB or external device, User can listen & check playlist. It provides options such as play, stop, and select previous or next song. (We planning to load playlists from bluetooth-connected devices or connect to external streaming sites such as Spotify.)
 
 #### Bluetooth Managing
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/84078924-424e-42b4-8991-8137bd06da35" align="center" width="50%">
+</p>
+In the setting page, service option offers the bluetooth function to connect devices such as phone, speaker and etc. If user connect device successfully, bluetooth icon will be displayed on the top bar (next to the mirroring icon)
 
-#### etc
+#### Ambient Lighting
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/ad8619a1-ea5d-4b26-85bc-690ef2659585" align="center" width="50%">
+</p>
+In the setting page, there’s a display option to choose mode like dark and light. The mode of entire Headunit & InstrumentCluster can be changed whenever the user wants. 
 
-### SOME/IP Protocol Communication
+#### Map
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/86740124-e6b2-4a40-adba-9bdfb8bba426" align="center" width="50%">
+</p>
+User can check current location in the map page. (We can’t use GPS, so now it is specified only at predefined places.)
 
+## SOME/IP Protocol Communication
 
-
-markdown
-Copy code
 ## Yocto Project
 
 The **Yocto Project** is an open-source collaboration project that provides a flexible set of tools and a comprehensive framework for creating custom Linux-based systems. Designed to support embedded development, Yocto helps developers build, customize, and maintain lightweight, scalable Linux distributions tailored to specific hardware and software requirements.
