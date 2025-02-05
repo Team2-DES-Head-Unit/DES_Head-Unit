@@ -6,7 +6,7 @@ Before proceeding, ensure you have **Ubuntu 20.04 or later** installed.
 --------------------------------------------------------------------------------------------------------
 ## 🚀 Quick Installation (Recommended)
 
-Run the following command to install all required dependencies at once:
+Run the following command to install all required dependencies and packages at once:
 
 ```bash
 sudo apt install -y \
@@ -26,6 +26,14 @@ sudo apt install -y \
     gstreamer1.0-plugins-good \
     gstreamer1.0-plugins-bad \
     gstreamer1.0-plugins-ugly
+```
+```bash
+git clone https://github.com/GENIVI/vsomeip.git
+cd vsomeip
+mkdir build
+cd build
+cmake ..
+make
 ```
 --------------------------------------------------------------------------------------------------------
 # CMake
@@ -58,5 +66,4 @@ sudo apt install -y \
 - gstreamer1.0-plugins-good
 - gstreamer1.0-plugins-bad
 - gstreamer1.0-plugins-ugly
-
 
