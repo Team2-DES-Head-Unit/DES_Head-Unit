@@ -4,6 +4,8 @@
 
 This project aims to develop a Head Unit Qt application running on a Raspberry Pi (RPi) alongside the previously developed PiRacer Instrument Cluster Qt application. The Head Unit application will provide additional features like ambient lighting, gear selection, and a media app. The project will use Yocto as the build system for the RPi. [Here is the detailed explanation of This Head Unit Project](https://github.com/SEA-ME/DES_Head-Unit)
 
+If you want to launch this project, [follow this guide](https://github.com/Team2-DES-Head-Unit/DES_Head-Unit/blob/main/INSTALL.md)
+
 ## **Overview**
 Basically, two Raspberry Pi (CAR Pi, IC/HU Pi) is used.
 - **CAR Pi** oversees the movement of PiRacer and communicates directly with joy stick and PiRacer The Client1 of CAR Pi sends gear and battery information to the server in IC/HU Pi. 
