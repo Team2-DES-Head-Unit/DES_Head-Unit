@@ -82,6 +82,60 @@ In the setting page, there’s a display option to choose mode like dark and lig
 User can check current location in the map page. (We can’t use GPS, so now it is specified only at predefined places.)
 
 ## SOME/IP Protocol Communication
+**VSOME/IP** (Vehicle Service Oriented Middleware over IP) is a middleware that enables service-based communication between ECUs in a vehicle.
+This technology is based on SOME/IP and is used to implement Service-Oriented Architecture in the automotive industry.
+
+### Key Features
+- **Real-time vehicle data transmission**: Enables real-time data exchange from various sensors and devices in the vehicle.
+- **VSOME/IP-based service communication**: Ensures fast and stable data exchange between ECUs in the vehicle.
+- **Client-server architecture**: Clearly separates the roles of Car OS (Client) and IC/HU OS (Server) for easier management.
+- **Multiple request/response handling**: Optimizes information flow by having Server (IC OS) receive data from Client1 (Car OS) and forward it to Client2 (HU OS).
+- **Compatibility with automotive industry standards**: Fully compatible with the AUTOSAR Adaptive Platform.
+
+### Overview
+This project builds a VSOME/IP-based system for exchanging gear state and turn signal information between two OS (Car OS and IC/HU OS).
+Each OS contains applications that perform Client & Server roles, enabling vehicle control and information sharing. 
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/821aaf0e-bfd6-48b2-92ed-0cab71ad398a" width="500" height="400" />
+</p>
+
+### System Configuration
+#### OS 1: Car OS (Raspberry Pi 1)
+- **Role**: Manages vehicle operation and sends gear state and turn signal information to the server.
+- **Client 1**
+  - Sends a request to the Server whenever gear or turn signal information changes (VSOME/IP).
+  - Periodically sends requests to ensure the Server maintains up-to-date information.
+
+#### OS 2: IC/HU OS (Raspberry Pi 2)
+- **Role**: Collects vehicle information and transmits data to the HU (display system).
+- **Applications**: IC application (Server), HU application (Client 2).
+
+##### IC application (Server)
+- Receives gear and turn signal data from Client 1.
+- Responds with gear and turn signal information when Client 2 (HU) sends a request.
+- Receives and stores ambient mode data from Client 2.
+
+##### HU application (Client 2)
+- Requests gear and turn signal information from the Server (IC) every 0.2 seconds.
+- Sends ambient mode settings to the Server (IC) via request.
+- Displays gear and turn signal information received from the IC Server.
+
+### Client & Server Operation
+#### Client1 (Car OS)
+- Detects gear and turn signal state changes.
+- Sends requests with updated information to Server (IC).
+
+#### Server (IC)
+- Receives requests from Client1 and stores gear and turn signal information.
+- Responds to requests from Client2 (HU) every 0.2 seconds with the latest gear and turn signal data.
+- Stores ambient mode settings received from Client2 (HU).
+
+#### Client2 (HU)
+- Sends a request to Server (IC) every 0.2 seconds for gear and turn signal information.
+- Displays gear and turn signal information received from the IC Server.
+- Sends ambient mode settings to Server (IC) via request.
+
 
 ## Yocto Project
 
