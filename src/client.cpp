@@ -20,14 +20,27 @@ std::condition_variable condition;
 std::string gear_state = "P";  // 기본 기어 상태
 std::string previous_gear_state = "";  // 이전 기어 상태
 
+struct ControlData {
+    float throttle;
+    float steering;
+    float distance;
+    float speed;
+    uint8_t gear_P;
+    uint8_t gear_D;
+    uint8_t gear_R;
+    uint8_t gear_N;
+    uint8_t indicator_l;
+    uint8_t indicator_r;
+};
+
 // Python에서 기어 상태를 받는 함수
 void receive_gear_state() {
     int server_fd, new_socket;
     struct sockaddr_in address;
     int opt = 1;
     int addrlen = sizeof(address);
-    char buffer[1024] = {0};
-
+    // char buffer[1024] = {0};
+    ControlData control_data;
     // 소켓 생성
     if ((server_fd = socket(AF_INET, SOCK_STREAM, 0)) == 0) {
         std::cerr << "Socket creation error" << std::endl;
@@ -66,13 +79,20 @@ void receive_gear_state() {
     }
 
     while (true) {
-        int valread = read(new_socket, buffer, 1024);
+        int valread = read(new_socket, &control_data, sizeof(ControlData));
         if (valread > 0) {
-            std::string new_gear_state(buffer, valread);  // Python으로부터 받은 기어 상태
-            if (new_gear_state != gear_state) {
-                gear_state = new_gear_state;  // 기어 상태 변경 시 업데이트
-                std::cout << "Updated gear state: " << gear_state << std::endl;
-            }
+            if (control_data.gear_P == 1) gear_state = "P";
+            else if (control_data.gear_D == 1) gear_state = "D";
+            else if (control_data.gear_R == 1) gear_state = "R";
+            else if (control_data.gear_N == 1) gear_state = "N";
+
+            // 속도, 거리 출력
+            std::cout << "Gear: " << gear_state
+                      << " | Throttle: " << control_data.throttle
+                      << " | Steering: " << control_data.steering
+                      << " | Speed: " << control_data.speed << " cm/s"
+                      << " | Distance: " << control_data.distance << " cm"
+                      << std::endl;
         }
     }
 
